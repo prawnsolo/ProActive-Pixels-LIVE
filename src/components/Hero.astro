@@ -1,0 +1,266 @@
+---
+---
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Powered by Retell AI · Cloudflare · Supabase
+      </div>
+      <h1 class="hero-headline">
+        Meet Alex — The AI That Knows<br />
+        <span class="headline-accent">Who's Calling Before They Speak</span>
+      </h1>
+      <p class="hero-sub">
+        Fill out the form below. Then call Alex's number. He'll greet you by
+        name, speak your industry's language, and show you exactly what AI can
+        do for your service business — live on the call.
+      </p>
+      <div class="hero-actions">
+        <a href="#form" class="btn-primary">
+          Register &amp; Call Alex
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <span class="proof-num">10</span>
+          <span class="proof-label">Industry Agents</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-num">&lt;1s</span>
+          <span class="proof-label">Routing Time</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-num">100%</span>
+          <span class="proof-label">Personalized</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-image-glow"></div>
+      <img
+        src="/hero.jpg"
+        alt="AI Automation Opportunity Report being demonstrated on a laptop"
+        class="hero-image"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #0F2347 60%, #162C54 100%);
+    padding: 120px 2rem 80px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(91, 188, 232, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(91, 188, 232, 0.12);
+    border: 1px solid rgba(91, 188, 232, 0.25);
+    color: var(--sky);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sky);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-headline {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+
+  .headline-accent {
+    color: var(--sky);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    margin-bottom: 2rem;
+    max-width: 520px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--sky);
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.75rem;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(91, 188, 232, 0.35);
+    letter-spacing: -0.01em;
+  }
+
+  .btn-primary:hover {
+    background: #7DCEF2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(91, 188, 232, 0.45);
+  }
+
+  .btn-ghost {
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    color: var(--white);
+  }
+
+  .hero-proof {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .proof-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .proof-num {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .proof-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .proof-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .hero-image-wrap {
+    position: relative;
+  }
+
+  .hero-image-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(ellipse at center, rgba(33, 120, 180, 0.25) 0%, transparent 70%);
+    border-radius: 20px;
+    z-index: 0;
+  }
+
+  .hero-image {
+    position: relative;
+    z-index: 1;
+    border-radius: 16px;
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(91, 188, 232, 0.15);
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      padding: 100px 1.5rem 60px;
+    }
+
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      text-align: center;
+    }
+
+    .hero-badge {
+      margin: 0 auto 1.5rem;
+    }
+
+    .hero-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-proof {
+      justify-content: center;
+    }
+
+    .hero-image-wrap {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+  }
+</style>
