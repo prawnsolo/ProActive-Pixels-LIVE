@@ -2,22 +2,28 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
+import WhatThisIs from '../components/WhatThisIs.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import LeadForm from '../components/LeadForm.astro';
 import TechStack from '../components/TechStack.astro';
+import AgentConfig from '../components/AgentConfig.astro';
+import CriticalThings from '../components/CriticalThings.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout
-  title="Proactive Pixels | AI Voice That Knows Who's Calling"
-  description="Fill out the form. Call Alex. He'll greet you by name, speak your industry's language, and demo what AI can do for your service business — live on the call."
+  title="Proactive Pixels | Retell AI Inbound Routing System"
+  description="Fill out a three-field form, then call Alex. He'll greet you by name, route you to the right niche agent, and speak your industry's language — before you say a word."
 >
   <Nav />
   <main>
     <Hero />
+    <WhatThisIs />
     <HowItWorks />
     <LeadForm />
     <TechStack />
+    <AgentConfig />
+    <CriticalThings />
   </main>
   <Footer />
 </Layout>

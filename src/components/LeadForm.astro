@@ -12,46 +12,29 @@ const niches = [
   'Other / not listed',
 ];
 
-// Worker endpoint — swap this to your deployed Worker URL
 const WORKER_URL = 'https://your-worker.workers.dev/submit';
 ---
 
 <section class="form-section" id="form">
   <div class="form-inner">
     <div class="form-left">
-      <span class="section-eyebrow">Register Now</span>
-      <h2 class="form-title">One Form. One Call.<br />Alex Does the Rest.</h2>
+      <span class="eyebrow">Get Started</span>
+      <h2 class="section-title">Fill Out the Form.<br />Then Call Alex.</h2>
       <p class="form-desc">
-        Fill out all three fields below. We'll log your info so Alex knows
-        exactly who's calling the moment you dial. The whole process takes
-        under a minute.
+        Enter your first name, business type, and the phone number you'll be
+        calling from. After you submit, Alex's Retell phone number will appear
+        on the next screen.
       </p>
-
-      <ul class="form-guarantees">
-        <li>
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Alex greets you by name
-        </li>
-        <li>
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Routed to your industry's specialist agent
-        </li>
-        <li>
-          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Live demo of AI voice on your first call
-        </li>
-      </ul>
+      <p class="form-desc">
+        Use the same number you'll call from — that's how the system identifies
+        you and routes your call to the right agent.
+      </p>
     </div>
 
     <div class="form-right">
       <div class="form-card">
         <form id="lead-form" novalidate>
+
           <div class="field-group">
             <label for="first_name" class="field-label">First Name</label>
             <input
@@ -93,14 +76,16 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
               autocomplete="tel"
               required
             />
-            <p class="field-hint">Use the same number you'll call from — this is how Alex identifies you.</p>
+            <p class="field-hint">
+              Use the same number you'll call from. This is how Alex identifies you.
+            </p>
             <span class="field-error" id="err-phone"></span>
           </div>
 
           <div id="form-error" class="form-error-banner" style="display:none;"></div>
 
           <button type="submit" class="submit-btn" id="submit-btn">
-            <span id="btn-text">Register &amp; Get Alex's Number</span>
+            <span id="btn-text">Submit &amp; Get Alex's Number</span>
             <svg id="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -116,7 +101,7 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0110 0v4" stroke-linecap="round"/>
           </svg>
-          Your info is never sold or shared. Used only to route your call to Alex.
+          Your information is used only to route your call to Alex. Never sold or shared.
         </p>
       </div>
     </div>
@@ -144,7 +129,7 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
 
   function setLoading(loading) {
     submitBtn.disabled = loading;
-    btnText.textContent = loading ? 'Registering…' : 'Register & Get Alex\'s Number';
+    btnText.textContent = loading ? 'Submitting…' : "Submit & Get Alex's Number";
     btnArrow.style.display = loading ? 'none' : '';
     btnSpinner.style.display = loading ? '' : 'none';
   }
@@ -161,7 +146,6 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
     if (!firstName) { showError('err-name', 'First name is required.'); valid = false; }
     if (!niche) { showError('err-niche', 'Please select your business type.'); valid = false; }
     if (!phone) { showError('err-phone', 'Phone number is required.'); valid = false; }
-
     if (!valid) return;
 
     setLoading(true);
@@ -174,15 +158,14 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
       });
 
       if (res.ok) {
-        const encodedName = encodeURIComponent(firstName);
-        window.location.href = `/thank-you?name=${encodedName}`;
+        window.location.href = `/thank-you?name=${encodeURIComponent(firstName)}`;
       } else {
         const data = await res.json().catch(() => ({}));
         formError.textContent = data.error || 'Something went wrong. Please try again.';
         formError.style.display = 'block';
         setLoading(false);
       }
-    } catch (err) {
+    } catch {
       formError.textContent = 'Could not connect. Please check your internet and try again.';
       formError.style.display = 'block';
       setLoading(false);
@@ -202,21 +185,21 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    align-items: center;
+    align-items: start;
   }
 
-  .section-eyebrow {
+  .eyebrow {
     display: inline-block;
-    font-size: 0.75rem;
+    font-size: 0.73rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.13em;
     color: var(--sky);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
   }
 
-  .form-title {
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+  .section-title {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
     font-weight: 900;
     color: var(--white);
     letter-spacing: -0.03em;
@@ -225,50 +208,27 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
   }
 
   .form-desc {
-    font-size: 1rem;
+    font-size: 0.975rem;
     color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-    margin-bottom: 2rem;
+    line-height: 1.75;
+    margin-bottom: 0.9rem;
   }
 
-  .form-guarantees {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+  .form-desc:last-child { margin-bottom: 0; }
 
-  .form-guarantees li {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.8);
-    font-weight: 500;
-  }
-
-  .check-icon {
-    width: 18px;
-    height: 18px;
-    color: var(--sky);
-    flex-shrink: 0;
-  }
-
-  /* --- Card --- */
+  /* Card */
   .form-card {
     background: var(--white);
     border-radius: 20px;
     padding: 2.5rem;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(91,188,232,0.15);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(91,188,232,0.12);
   }
 
-  .field-group {
-    margin-bottom: 1.4rem;
-  }
+  .field-group { margin-bottom: 1.4rem; }
 
   .field-label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.83rem;
     font-weight: 700;
     color: var(--navy);
     margin-bottom: 0.45rem;
@@ -291,21 +251,14 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
 
   .field-input:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(33, 120, 180, 0.12);
+    box-shadow: 0 0 0 3px rgba(33,120,180,0.12);
   }
 
-  .field-input::placeholder {
-    color: #94A3B8;
-  }
+  .field-input::placeholder { color: #94A3B8; }
 
-  .select-wrap {
-    position: relative;
-  }
+  .select-wrap { position: relative; }
 
-  .field-select {
-    cursor: pointer;
-    padding-right: 2.5rem;
-  }
+  .field-select { cursor: pointer; padding-right: 2.5rem; }
 
   .select-arrow {
     position: absolute;
@@ -320,14 +273,14 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
 
   .field-hint {
     margin-top: 0.35rem;
-    font-size: 0.78rem;
+    font-size: 0.77rem;
     color: var(--gray);
     line-height: 1.5;
   }
 
   .field-error {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.77rem;
     color: #DC2626;
     margin-top: 0.3rem;
     font-weight: 500;
@@ -360,7 +313,7 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
     border: none;
     cursor: pointer;
     transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(27, 58, 110, 0.4);
+    box-shadow: 0 4px 20px rgba(27,58,110,0.4);
     letter-spacing: -0.01em;
     margin-top: 0.5rem;
   }
@@ -368,54 +321,32 @@ const WORKER_URL = 'https://your-worker.workers.dev/submit';
   .submit-btn:hover:not(:disabled) {
     opacity: 0.9;
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(27, 58, 110, 0.5);
+    box-shadow: 0 8px 30px rgba(27,58,110,0.5);
   }
 
-  .submit-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
+  .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-  .spinner {
-    animation: spin 0.8s linear infinite;
-  }
+  .spinner { animation: spin 0.8s linear infinite; }
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   .form-privacy {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     color: var(--gray);
     margin-top: 1rem;
     justify-content: center;
   }
 
   @media (max-width: 900px) {
-    .form-inner {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
-    .form-left {
-      text-align: center;
-    }
-
-    .form-guarantees {
-      align-items: center;
-    }
+    .form-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-left { text-align: center; }
   }
 
   @media (max-width: 640px) {
-    .form-section {
-      padding: 64px 1.5rem;
-    }
-
-    .form-card {
-      padding: 1.75rem;
-    }
+    .form-section { padding: 64px 1.5rem; }
+    .form-card { padding: 1.75rem; }
   }
 </style>

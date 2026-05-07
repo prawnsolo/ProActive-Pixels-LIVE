@@ -1,0 +1,175 @@
+---
+const nicheAgentItems = [
+  'A system prompt written specifically for that industry (roofing terminology, pain points, common objections, seasonal patterns, etc.)',
+  'A begin message that uses the customer_name dynamic variable: "Hey {{customer_name}}, this is Alex…"',
+  'Access to the customer_name and customer_niche dynamic variables',
+];
+
+const fallbackItems = [
+  'Uses a generic opening: "Hey there, this is Alex…"',
+  'Asks the caller what type of business they run',
+  'Collects their name',
+  'Either transfers to the right niche agent mid-call or schedules a callback',
+];
+---
+
+<section class="agents" id="agent-config">
+  <div class="agents-inner">
+    <div class="agents-header">
+      <span class="eyebrow">Retell Agent Configuration</span>
+      <h2 class="section-title">10 Agents. All in the Retell Dashboard.</h2>
+      <p class="section-sub">
+        There are 9 niche-specific agents plus 1 intake fallback agent.
+      </p>
+    </div>
+
+    <div class="agents-grid">
+      <div class="agent-card">
+        <div class="agent-badge agent-badge--niche">9 Niche Agents</div>
+        <h3 class="agent-card-title">Roofing · HVAC · Plumbing · Pest Control · Lawn Care · Electrical · Cleaning · Auto Repair · Med Spa</h3>
+        <p class="agent-card-intro">Each niche agent must be configured with:</p>
+        <ul class="agent-list">
+          {nicheAgentItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-badge agent-badge--fallback">1 Intake Fallback</div>
+        <h3 class="agent-card-title">Default intake agent for unrecognized callers</h3>
+        <p class="agent-card-intro">The intake fallback agent:</p>
+        <ul class="agent-list">
+          {fallbackItems.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .agents {
+    background: var(--light);
+    padding: 96px 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .agents-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .agents-header {
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--blue);
+    margin-bottom: 0.85rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 900;
+    color: var(--navy);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  .agents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .agent-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .agent-card:hover {
+    box-shadow: 0 6px 24px rgba(27,58,110,0.08);
+  }
+
+  .agent-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .agent-badge--niche {
+    background: rgba(33,120,180,0.1);
+    color: var(--blue);
+  }
+
+  .agent-badge--fallback {
+    background: rgba(91,188,232,0.12);
+    color: #1A7AAF;
+  }
+
+  .agent-card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .agent-card-intro {
+    font-size: 0.875rem;
+    color: var(--gray);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  .agent-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .agent-list li {
+    font-size: 0.875rem;
+    color: var(--gray);
+    line-height: 1.65;
+    padding-left: 1.1rem;
+    position: relative;
+  }
+
+  .agent-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--sky);
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .agents-grid { grid-template-columns: 1fr; }
+    .agents { padding: 64px 1.5rem; }
+  }
+</style>

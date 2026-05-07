@@ -1,0 +1,142 @@
+---
+---
+
+<section class="what" id="what-this-is">
+  <div class="what-inner">
+    <div class="what-text">
+      <span class="eyebrow">What This Is and Why It Exists</span>
+      <h2 class="section-title">The Problem This System Solves</h2>
+      <p>
+        Proactive Pixels runs a lead generation system where local service
+        business owners fill out a form on a landing page, then call a shared
+        Retell AI phone number to speak with an AI agent named Alex. The goal
+        is for Alex to sound like he already knows who the caller is and what
+        industry they're in, because he does.
+      </p>
+      <p>
+        The problem: Retell doesn't know who's calling. It just sees an
+        inbound phone number. This system bridges that gap by looking up the
+        caller's information before the call connects, then telling Retell
+        which specialized agent to use and what to call the person by name.
+      </p>
+    </div>
+    <div class="what-callout">
+      <div class="callout-card">
+        <div class="callout-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13 1.04.38 2.05.72 3.02a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.06-1.06a2 2 0 012.11-.45c.97.34 1.98.59 3.02.72A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <h3>Retell sees a phone number.</h3>
+        <p>That's it. No name. No industry. No context.</p>
+        <div class="callout-arrow">↓</div>
+        <div class="callout-icon callout-icon--blue">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </div>
+        <h3>This system looks it up.</h3>
+        <p>Name, niche, and the right agent — returned in under a second.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .what {
+    background: var(--white);
+    padding: 96px 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .what-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--blue);
+    margin-bottom: 0.85rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 900;
+    color: var(--navy);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .what-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .what-text p:last-child { margin-bottom: 0; }
+
+  /* Callout card */
+  .callout-card {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .callout-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: rgba(27,58,110,0.08);
+    color: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .callout-icon--blue {
+    background: rgba(33,120,180,0.1);
+    color: var(--blue);
+  }
+
+  .callout-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+  }
+
+  .callout-card p {
+    font-size: 0.875rem;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .callout-arrow {
+    font-size: 1.5rem;
+    color: var(--sky);
+    margin: 1.25rem 0;
+    font-weight: 900;
+  }
+
+  @media (max-width: 900px) {
+    .what-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .what { padding: 64px 1.5rem; }
+  }
+</style>
