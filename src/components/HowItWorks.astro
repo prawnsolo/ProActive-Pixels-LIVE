@@ -1,0 +1,177 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Fill Out the Form',
+    description:
+      'Enter your first name, business type, and phone number on this page. Takes under 30 seconds.',
+  },
+  {
+    number: '02',
+    title: 'Your Info Gets Saved',
+    description:
+      'Your data is stored in our secure database, indexed to your exact phone number in E.164 format.',
+  },
+  {
+    number: '03',
+    title: 'You See Alex\'s Number',
+    description:
+      'After submitting, Alex\'s direct Retell AI phone number appears on screen. Give him a call.',
+  },
+  {
+    number: '04',
+    title: 'Retell Fires a Webhook',
+    description:
+      'The moment your call connects, Retell detects your number and pings our routing system in real time.',
+  },
+  {
+    number: '05',
+    title: 'We Look You Up Instantly',
+    description:
+      'Our Cloudflare Worker queries the database for your phone number and retrieves your name and niche — in under a second.',
+  },
+  {
+    number: '06',
+    title: 'Alex Greets You by Name',
+    description:
+      'Retell routes your call to the right industry-specific agent. Alex opens with your name and speaks your industry\'s language fluently.',
+  },
+  {
+    number: '07',
+    title: 'No Record? No Problem.',
+    description:
+      'If you called from a different number or skipped the form, a fallback agent collects your info and routes you manually.',
+  },
+];
+---
+
+<section class="hiw" id="how-it-works">
+  <div class="hiw-inner">
+    <div class="hiw-header">
+      <span class="section-eyebrow">The System</span>
+      <h2 class="section-title">How It Works End to End</h2>
+      <p class="section-sub">
+        Every inbound call runs through this seven-step flow — fully automated,
+        no human in the loop required.
+      </p>
+    </div>
+
+    <div class="steps-grid">
+      {steps.map((step) => (
+        <div class="step-card">
+          <div class="step-num">{step.number}</div>
+          <div class="step-body">
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hiw {
+    background: var(--white);
+    padding: 96px 2rem;
+  }
+
+  .hiw-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hiw-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 900;
+    color: var(--navy);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--gray);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .step-card {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .step-card:hover {
+    border-color: var(--sky);
+    box-shadow: 0 4px 24px rgba(33, 120, 180, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: var(--sky);
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 640px) {
+    .hiw {
+      padding: 64px 1.5rem;
+    }
+
+    .steps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
