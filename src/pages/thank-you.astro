@@ -1,0 +1,308 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="You're All Set | Proactive Pixels"
+  description="You've been registered. Call Alex now and experience AI that greets you by name."
+>
+  <main class="ty-page">
+    <!-- Nav bar (minimal) -->
+    <nav class="ty-nav">
+      <div class="ty-nav-inner">
+        <a href="/" class="ty-nav-brand">
+          <img src="/logo.png" alt="Proactive Pixels" />
+          <span>Proactive Pixels</span>
+        </a>
+      </div>
+    </nav>
+
+    <section class="ty-hero">
+      <div class="ty-card">
+        <!-- Animated checkmark -->
+        <div class="ty-check-wrap">
+          <svg class="ty-check" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="38" stroke="#5BBCE8" stroke-width="3" stroke-dasharray="239" stroke-dashoffset="239" class="check-circle"/>
+            <path d="M22 40l13 14 23-28" stroke="#5BBCE8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60" class="check-mark"/>
+          </svg>
+        </div>
+
+        <p class="ty-eyebrow">You're registered</p>
+        <h1 class="ty-headline">
+          Hey <span id="caller-name" class="ty-name">there</span>, Alex is ready for you.
+        </h1>
+        <p class="ty-sub">
+          Your info is saved. The moment you dial from the number you registered
+          with, Alex will greet you by name and speak your industry's language.
+          Go ahead — give him a call.
+        </p>
+
+        <!-- Phone CTA -->
+        <div class="ty-phone-box">
+          <div class="ty-phone-label">Alex's Retell AI Number</div>
+          <a href="tel:+15406000080" class="ty-phone-number">
+            +1 (540) 600-0080
+          </a>
+          <a href="tel:+15406000080" class="ty-call-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13 1.04.38 2.05.72 3.02a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.06-1.06a2 2 0 012.11-.45c.97.34 1.98.59 3.02.72A2 2 0 0122 16.92z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Call Alex Now
+          </a>
+        </div>
+
+        <!-- Instructions -->
+        <div class="ty-instructions">
+          <div class="ty-step">
+            <span class="ty-step-num">1</span>
+            <span>Call from the phone number you just registered</span>
+          </div>
+          <div class="ty-step">
+            <span class="ty-step-num">2</span>
+            <span>Alex will greet you by name within seconds</span>
+          </div>
+          <div class="ty-step">
+            <span class="ty-step-num">3</span>
+            <span>He'll speak your industry's language — live on the call</span>
+          </div>
+        </div>
+
+        <a href="/" class="ty-back">← Back to homepage</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // Pull the first name from the URL param
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('name');
+  const nameEl = document.getElementById('caller-name');
+  if (name && nameEl) {
+    nameEl.textContent = decodeURIComponent(name);
+  }
+
+  // Trigger SVG animations
+  const circle = document.querySelector('.check-circle');
+  const mark = document.querySelector('.check-mark');
+  if (circle && mark) {
+    requestAnimationFrame(() => {
+      circle.style.transition = 'stroke-dashoffset 0.6s ease';
+      circle.style.strokeDashoffset = '0';
+      setTimeout(() => {
+        mark.style.transition = 'stroke-dashoffset 0.4s ease 0.3s';
+        mark.style.strokeDashoffset = '0';
+      }, 100);
+    });
+  }
+</script>
+
+<style>
+  .ty-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, var(--navy) 0%, #0A1E40 100%);
+  }
+
+  /* Nav */
+  .ty-nav {
+    padding: 0 2rem;
+    border-bottom: 1px solid rgba(91, 188, 232, 0.1);
+  }
+
+  .ty-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 68px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ty-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .ty-nav-brand img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .ty-nav-brand span {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  /* Hero */
+  .ty-hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+  }
+
+  .ty-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(91, 188, 232, 0.15);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(12px);
+  }
+
+  /* Check animation */
+  .ty-check-wrap {
+    margin: 0 auto 1.5rem;
+    width: 80px;
+    height: 80px;
+  }
+
+  .ty-check {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ty-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--sky);
+    margin-bottom: 0.6rem;
+  }
+
+  .ty-headline {
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .ty-name {
+    color: var(--sky);
+  }
+
+  .ty-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  /* Phone box */
+  .ty-phone-box {
+    background: rgba(27, 58, 110, 0.5);
+    border: 1px solid rgba(91, 188, 232, 0.25);
+    border-radius: 16px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .ty-phone-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .ty-phone-number {
+    display: block;
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    transition: color 0.2s;
+  }
+
+  .ty-phone-number:hover {
+    color: var(--sky);
+  }
+
+  .ty-call-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--sky);
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(91, 188, 232, 0.3);
+  }
+
+  .ty-call-btn:hover {
+    background: #7DCEF2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(91, 188, 232, 0.45);
+  }
+
+  /* Instructions */
+  .ty-instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .ty-step {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+
+  .ty-step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(91, 188, 232, 0.15);
+    border: 1px solid rgba(91, 188, 232, 0.3);
+    color: var(--sky);
+    font-size: 0.8rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ty-back {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s;
+  }
+
+  .ty-back:hover {
+    color: rgba(255,255,255,0.7);
+  }
+
+  @media (max-width: 640px) {
+    .ty-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .ty-phone-number {
+      font-size: 1.75rem;
+    }
+  }
+</style>
