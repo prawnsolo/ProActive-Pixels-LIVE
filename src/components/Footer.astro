@@ -1,0 +1,66 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/logo.png" alt="Proactive Pixels" class="footer-logo" />
+      <span class="footer-name">Proactive Pixels</span>
+    </div>
+    <p class="footer-tagline">
+      AI voice routing for local service businesses. Built on Cloudflare, Supabase, and Retell AI.
+    </p>
+    <p class="footer-copy">&copy; {year} Proactive Pixels. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #0A1E40;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(91, 188, 232, 0.1);
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .footer-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .footer-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.25rem;
+  }
+</style>
