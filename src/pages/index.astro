@@ -1,29 +1,67 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import WhatThisIs from '../components/WhatThisIs.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import LeadForm from '../components/LeadForm.astro';
-import TechStack from '../components/TechStack.astro';
-import AgentConfig from '../components/AgentConfig.astro';
-import CriticalThings from '../components/CriticalThings.astro';
+import Form from '../components/Form.astro';
+import Objections from '../components/Objections.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout
-  title="Proactive Pixels | Retell AI Inbound Routing System"
-  description="Fill out a three-field form, then call Alex. He'll greet you by name, route you to the right niche agent, and speak your industry's language — before you say a word."
->
-  <Nav />
+<BaseLayout>
+  <!-- No navigation. Single conversion goal. -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <span class="site-logo">Proactive Pixels</span>
+    </div>
+  </header>
+
   <main>
     <Hero />
-    <WhatThisIs />
-    <HowItWorks />
-    <LeadForm />
-    <TechStack />
-    <AgentConfig />
-    <CriticalThings />
+    <Form />
+    <Objections />
   </main>
+
   <Footer />
-</Layout>
+</BaseLayout>
+
+<style>
+  .site-header {
+    padding: 20px 24px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-header__inner {
+    max-width: var(--max-hero);
+    margin: 0 auto;
+  }
+
+  .site-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-navy);
+    letter-spacing: -0.01em;
+    /* NOT a link — intentional. Landing page keeps users on page. */
+  }
+</style>
+
+<script>
+  // ===========================
+  // SCROLL FADE-IN OBSERVER
+  // ===========================
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.fade-in').forEach((el) => {
+    observer.observe(el);
+  });
+</script>

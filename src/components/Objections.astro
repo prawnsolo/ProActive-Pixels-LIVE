@@ -1,0 +1,119 @@
+---
+const objections = [
+  {
+    quote: '"AI probably isn\'t relevant to my business."',
+    answer:
+      "Most owners say that. Most owners are wrong. The report shows you exactly which parts of your operation are bleeding money on tasks a $50/month tool could handle today.",
+  },
+  {
+    quote: '"I don\'t know enough about this stuff."',
+    answer:
+      "You don't need to. That's the point. You answer 8 questions about how your business runs. We figure out the rest and hand you a plain-English report with a ranked list of fixes.",
+  },
+  {
+    quote: '"This is probably just a sales pitch."',
+    answer:
+      "The report is yours whether you work with us or not. No follow-up call unless you want one. No invoice. Read it, hand it to whoever you want, or ignore it. We're fine either way.",
+  },
+];
+---
+
+<section class="objections">
+  <div class="objections__inner">
+    {
+      objections.map((item, i) => (
+        <div class={`objection fade-in fade-in-delay-${i + 1}`}>
+          <p class="objection__quote">{item.quote}</p>
+          <p class="objection__answer">{item.answer}</p>
+        </div>
+      ))
+    }
+
+    <div class="objections__cta fade-in fade-in-delay-3">
+      <a href="#form" class="btn btn--primary">
+        Show Me What My Business Is Losing
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M3.75 9h10.5M9.75 4.5L14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .objections {
+    padding: 80px 24px 100px;
+    background: var(--color-bg);
+  }
+
+  .objections__inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+  }
+
+  .objection {
+    border-left: 3px solid var(--color-amber);
+    padding-left: 24px;
+    margin-bottom: 48px;
+  }
+
+  .objection:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .objection__quote {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-muted);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .objection__answer {
+    font-size: 16px;
+    color: var(--color-text-light);
+    line-height: 1.75;
+  }
+
+  .objections__cta {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 18px 32px;
+    border-radius: var(--radius-sm);
+  }
+
+  .btn--primary {
+    background: var(--color-navy);
+    color: white;
+    box-shadow: var(--shadow-btn);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-navy-hover);
+    box-shadow: var(--shadow-btn-hover);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 600px) {
+    .objections__cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

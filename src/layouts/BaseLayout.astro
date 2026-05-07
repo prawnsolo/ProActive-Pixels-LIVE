@@ -1,0 +1,142 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Free Business Leak Report | Proactive Pixels",
+  description = "Find out what your business is losing every year. Free 12-minute call. Written report within 24 hours. Every leak named, priced, and ranked by what to fix first.",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: Fraunces (display) + DM Sans (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GA4 Placeholder -->
+    <!-- Replace G-XXXXXXXXXX with your Measurement ID -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+
+    <!-- Meta Pixel Placeholder -->
+    <!-- Replace YOUR_PIXEL_ID with your Meta Pixel ID -->
+    <!--
+    <script>
+      !function(f,b,e,v,n,t,s){...}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    -->
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* ===========================
+     CSS VARIABLES
+  =========================== */
+  :root {
+    --color-bg: #F9F8F6;
+    --color-bg-card: #F0EDE8;
+    --color-bg-dark: #1A1A1A;
+    --color-text: #1A1A1A;
+    --color-text-light: #2D2D2D;
+    --color-muted: #6B7280;
+    --color-border: #E0DDD8;
+    --color-navy: #1B3A5C;
+    --color-navy-hover: #254d7a;
+    --color-amber: #E8A020;
+    --color-error: #DC2626;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --shadow-card: 0 2px 20px rgba(27, 58, 92, 0.08);
+    --shadow-btn: 0 4px 14px rgba(27, 58, 92, 0.25);
+    --shadow-btn-hover: 0 6px 20px rgba(27, 58, 92, 0.35);
+
+    --max-content: 680px;
+    --max-hero: 1100px;
+  }
+
+  /* ===========================
+     RESET & BASE
+  =========================== */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  /* ===========================
+     SCROLL ANIMATIONS
+  =========================== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+</style>
