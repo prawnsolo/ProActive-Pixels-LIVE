@@ -57,9 +57,16 @@ const objections = [
   }
 
   .objection {
-    border-left: 3px solid var(--pp-navy);
-    padding-left: 24px;
-    margin-bottom: 48px;
+    padding-top: 40px;
+    margin-bottom: 0;
+  }
+
+  .objection + .objection {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .objections__inner > .objection:first-child {
+    padding-top: 0;
   }
 
   .objection:last-of-type {
