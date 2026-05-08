@@ -7,7 +7,7 @@
     <div class="form-card" id="form-card">
       <div id="form-view">
         <h2 class="form-card__headline">Start Your Free 12-Minute Profit Leak Diagnostic</h2>
-        <p class="form-card__sub">Three quick fields. Takes under 60 seconds — we'll walk you through what happens next.</p>
+        <p class="form-card__sub">Three quick fields. Takes under 60 seconds. We'll walk you through what happens next.</p>
 
         <form id="leak-form" novalidate>
           <div class="form-field" id="field-name">
@@ -42,7 +42,7 @@
                 <option value="other">Other</option>
               </select>
               <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M4 6l4 4 4-4" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
             <span class="form-error" id="error-business">Please select your business type.</span>
@@ -158,6 +158,7 @@
     text-align: center;
     margin-bottom: 8px;
     letter-spacing: -0.01em;
+    text-wrap: balance;
   }
 
   .form-card__sub {
@@ -240,6 +241,7 @@
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
+    color: var(--color-muted);
   }
 
   /* ===========================
@@ -271,6 +273,14 @@
     justify-content: center;
   }
 
+  .disclosure__icon circle {
+    fill: var(--pp-navy);
+  }
+
+  .disclosure__icon path {
+    stroke: var(--pp-navy);
+  }
+
   .disclosure__heading {
     font-family: var(--font-body);
     font-size: 24px;
@@ -278,6 +288,7 @@
     color: var(--color-text);
     margin-bottom: 16px;
     letter-spacing: -0.01em;
+    text-wrap: balance;
   }
 
   .disclosure__body {
