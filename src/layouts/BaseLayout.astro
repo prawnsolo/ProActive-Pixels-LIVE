@@ -29,28 +29,6 @@ const {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- GA4 Placeholder -->
-    <!-- Replace G-XXXXXXXXXX with your Measurement ID -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
-
-    <!-- Meta Pixel Placeholder -->
-    <!-- Replace YOUR_PIXEL_ID with your Meta Pixel ID -->
-    <!--
-    <script>
-      !function(f,b,e,v,n,t,s){...}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', 'YOUR_PIXEL_ID');
-      fbq('track', 'PageView');
-    </script>
-    -->
   </head>
   <body>
     <slot />
@@ -58,9 +36,6 @@ const {
 </html>
 
 <style is:global>
-  /* ===========================
-     CSS VARIABLES
-  =========================== */
   :root {
     --color-bg: #ffffff;
     --color-bg-card: #ffffff;
@@ -95,9 +70,6 @@ const {
     --max-hero: 1100px;
   }
 
-  /* ===========================
-     RESET & BASE
-  =========================== */
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -128,9 +100,6 @@ const {
     color: inherit;
   }
 
-  /* ===========================
-     GLOBAL BUTTON SYSTEM
-  =========================== */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -168,9 +137,6 @@ const {
     justify-content: center;
   }
 
-  /* ===========================
-     SCROLL ANIMATIONS
-  =========================== */
   .fade-in {
     opacity: 0;
     transform: translateY(20px);
