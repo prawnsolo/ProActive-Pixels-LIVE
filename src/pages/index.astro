@@ -7,10 +7,30 @@ import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout>
-  <!-- No navigation. Single conversion goal. -->
   <header class="site-header">
     <div class="site-header__inner">
-      <span class="site-logo">Proactive Pixels</span>
+
+      <!-- Wordmark logo matching brand image -->
+      <span class="site-logo" aria-label="ProActive Pixels">
+        <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels">Pixels</span>
+      </span>
+
+      <!-- Dark / Light mode toggle -->
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="toggle-icon toggle-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="toggle-icon toggle-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+      </button>
+
     </div>
   </header>
 
@@ -24,28 +44,151 @@ import Footer from '../components/Footer.astro';
 </BaseLayout>
 
 <style>
+  /* ===========================
+     HEADER
+  =========================== */
   .site-header {
-    padding: 20px 24px;
+    padding: 18px 24px;
     background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-header-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
   }
 
   .site-header__inner {
     max-width: var(--max-hero);
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
+  /* ===========================
+     WORDMARK LOGO
+  =========================== */
   .site-logo {
-    font-family: var(--font-display);
-    font-size: 18px;
+    font-family: var(--font-body);
+    font-size: 22px;
     font-weight: 700;
-    color: var(--color-navy);
-    letter-spacing: -0.01em;
-    /* NOT a link — intentional. Landing page keeps users on page. */
+    letter-spacing: -0.02em;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .logo-pro,
+  .logo-pixels {
+    color: var(--logo-main);
+    transition: color 0.25s ease;
+  }
+
+  .logo-active {
+    color: var(--logo-active);
+    transition: color 0.25s ease;
+  }
+
+  /* ===========================
+     THEME TOGGLE
+  =========================== */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: var(--radius-pill);
+    color: var(--color-muted);
+    transition: color 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-text);
+  }
+
+  /* Track pill */
+  .toggle-track {
+    display: inline-flex;
+    align-items: center;
+    width: 44px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--color-border);
+    border: 1.5px solid var(--color-border-input);
+    padding: 2px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  [data-theme="dark"] .toggle-track {
+    background: var(--pp-sky);
+    border-color: var(--pp-sky);
+    opacity: 1;
+  }
+
+  /* Thumb dot */
+  .toggle-thumb {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-text);
+    transition: transform 0.25s ease, background 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  [data-theme="dark"] .toggle-thumb {
+    transform: translateX(20px);
+    background: #ffffff;
+  }
+
+  /* Sun icon: hidden in light, shown in dark */
+  .toggle-icon--sun {
+    display: none;
+  }
+  [data-theme="dark"] .toggle-icon--sun {
+    display: block;
+    color: var(--pp-sky);
+  }
+
+  /* Moon icon: shown in light, hidden in dark */
+  .toggle-icon--moon {
+    display: block;
+  }
+  [data-theme="dark"] .toggle-icon--moon {
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    .site-logo {
+      font-size: 19px;
+    }
   }
 </style>
 
 <script>
+  // ===========================
+  // DARK MODE TOGGLE
+  // ===========================
+  const toggle = document.getElementById('theme-toggle') as HTMLButtonElement;
+
+  function applyTheme(theme: 'light' | 'dark') {
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    try { localStorage.setItem('pp-theme', theme); } catch (e) {}
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    applyTheme(isDark ? 'light' : 'dark');
+  });
+
   // ===========================
   // SCROLL FADE-IN OBSERVER
   // ===========================

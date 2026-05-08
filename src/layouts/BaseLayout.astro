@@ -29,6 +29,38 @@ const {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Anti-FOUC: apply saved theme before render -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('pp-theme');
+          if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- GA4 Placeholder -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+
+    <!-- Meta Pixel Placeholder -->
+    <!--
+    <script>
+      !function(f,b,e,v,n,t,s){...}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'PageView');
+    </script>
+    -->
   </head>
   <body>
     <slot />
@@ -36,6 +68,9 @@ const {
 </html>
 
 <style is:global>
+  /* ===========================
+     LIGHT MODE (default)
+  =========================== */
   :root {
     --color-bg: #ffffff;
     --color-bg-card: #ffffff;
@@ -48,12 +83,17 @@ const {
     --color-border: #e0e0e0;
     --color-border-input: #000000;
     --color-chip: #efefef;
+    --color-input-bg: #ffffff;
+    --color-header-border: #e0e0e0;
 
     --pp-navy: #171E62;
-    --pp-navy-hover: #1770B2;
+    --pp-ocean: #1770B2;
     --pp-sky: #40A5DD;
     --color-amber: #E8A020;
     --color-error: #DC2626;
+
+    --logo-main: #171E62;
+    --logo-active: #40A5DD;
 
     --font-body: 'Inter', system-ui, sans-serif;
 
@@ -62,7 +102,7 @@ const {
     --radius-lg: 12px;
     --radius-pill: 999px;
 
-    --shadow-card: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
+    --shadow-card: rgba(0, 0, 0, 0.10) 0px 4px 16px 0px;
     --shadow-btn: rgba(23, 30, 98, 0.28) 0px 4px 14px 0px;
     --shadow-btn-hover: rgba(23, 30, 98, 0.38) 0px 6px 20px 0px;
 
@@ -70,6 +110,40 @@ const {
     --max-hero: 1100px;
   }
 
+  /* ===========================
+     DARK MODE
+  =========================== */
+  [data-theme="dark"] {
+    --color-bg: #0f0f0f;
+    --color-bg-card: #1a1a1a;
+    --color-bg-section: #141414;
+    --color-bg-dark: #0a0e2e;
+    --color-text: #f0f0f0;
+    --color-text-light: #d0d0d0;
+    --color-muted: #9CA3AF;
+    --color-body: #b0b0b0;
+    --color-border: #2a2a2a;
+    --color-border-input: rgba(255, 255, 255, 0.6);
+    --color-chip: #1e2a3a;
+    --color-input-bg: #1e1e1e;
+    --color-header-border: #1e1e1e;
+
+    --pp-navy: #3a5ccc;
+    --pp-ocean: #1770B2;
+    --pp-sky: #40A5DD;
+    --color-amber: #F0B030;
+
+    --logo-main: #f0f0f0;
+    --logo-active: #40A5DD;
+
+    --shadow-card: rgba(0, 0, 0, 0.5) 0px 4px 24px 0px;
+    --shadow-btn: rgba(64, 165, 221, 0.25) 0px 4px 14px 0px;
+    --shadow-btn-hover: rgba(64, 165, 221, 0.38) 0px 6px 20px 0px;
+  }
+
+  /* ===========================
+     RESET & BASE
+  =========================== */
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -88,6 +162,7 @@ const {
     font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   img {
@@ -100,6 +175,9 @@ const {
     color: inherit;
   }
 
+  /* ===========================
+     GLOBAL BUTTON SYSTEM
+  =========================== */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -123,7 +201,7 @@ const {
   }
 
   .btn--primary:hover {
-    background: var(--pp-navy-hover);
+    background: var(--pp-ocean);
     box-shadow: var(--shadow-btn-hover);
     transform: translateY(-1px);
   }
@@ -137,6 +215,9 @@ const {
     justify-content: center;
   }
 
+  /* ===========================
+     SCROLL ANIMATIONS
+  =========================== */
   .fade-in {
     opacity: 0;
     transform: translateY(20px);
