@@ -1,0 +1,502 @@
+---
+---
+
+<section class="form-section" id="form">
+  <div class="form-section__inner">
+
+    <p class="form-section__urgency">
+      $30,000 a year is $2,500 a month. Most businesses don't know which $2,500 they're losing, or where it's going.
+    </p>
+
+    <div class="form-card" id="form-card">
+      <div id="form-view">
+        <h2 class="form-card__headline">Start Your Free Assessment</h2>
+        <p class="form-card__sub">Three quick fields. Takes under 60 seconds — we'll walk you through what happens next.</p>
+
+        <form id="leak-form" novalidate>
+          <div class="form-field" id="field-name">
+            <label for="first-name" class="form-label">First Name</label>
+            <input
+              type="text"
+              id="first-name"
+              name="first_name"
+              class="form-input"
+              placeholder="Your first name"
+              autocomplete="given-name"
+              required
+            />
+            <span class="form-error" id="error-name">Please enter your first name.</span>
+          </div>
+
+          <div class="form-field" id="field-business">
+            <label for="business-type" class="form-label">Business Type</label>
+            <div class="select-wrap">
+              <select id="business-type" name="business_type" class="form-input form-select" required>
+                <option value="" disabled selected>Select your industry</option>
+                <option value="hvac">HVAC</option>
+                <option value="plumbing">Plumbing</option>
+                <option value="roofing">Roofing</option>
+                <option value="electrical">Electrical</option>
+                <option value="landscaping">Landscaping</option>
+                <option value="lawn_care">Lawn Care</option>
+                <option value="cleaning">Cleaning Services</option>
+                <option value="pest_control">Pest Control</option>
+                <option value="auto_repair">Auto Repair</option>
+                <option value="med_spa">Med Spa</option>
+                <option value="other">Other</option>
+              </select>
+              <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="form-error" id="error-business">Please select your business type.</span>
+          </div>
+
+          <div class="form-field" id="field-phone">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="form-input"
+              placeholder="(555) 000-0000"
+              autocomplete="tel"
+              required
+            />
+            <span class="form-error" id="error-phone">Please enter a valid phone number.</span>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full form-submit" id="submit-btn">
+            <span id="btn-text">Show Me What My Business Is Losing</span>
+            <span id="btn-loading" style="display:none;">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="spin" aria-hidden="true">
+                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" stroke-dasharray="25 15" opacity="0.8"/>
+              </svg>
+              Submitting...
+            </span>
+            <svg id="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M3.75 9h10.5M9.75 4.5L14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <p class="form-privacy">
+            Your information is never sold or shared. Ever.
+          </p>
+        </form>
+      </div>
+
+      <!-- POST-SUBMISSION DISCLOSURE -->
+      <div id="disclosure-view" style="display:none;" aria-live="polite">
+        <div class="disclosure">
+          <div class="disclosure__icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="20" r="20" fill="#171E62" opacity="0.1"/>
+              <path d="M12 20l6 6 10-12" stroke="#171E62" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <h3 class="disclosure__heading">One thing before you call.</h3>
+
+          <p class="disclosure__body">
+            You'll be speaking with <strong>Alex</strong>, our AI business analyst. Alex asks 8 focused questions about how your business runs, takes detailed notes, and hands everything directly to our team. We then build your personalized report within 24 hours.
+          </p>
+
+          <p class="disclosure__emphasis">
+            No salesperson. No pitch. Just 12 minutes and you're done.
+          </p>
+
+          <p class="disclosure__cta-label">Ready? Call Alex now:</p>
+
+          <a href="tel:+15406000080" class="disclosure__phone" id="alex-phone">
+            (540) 600-0080
+          </a>
+
+          <p class="disclosure__hours">
+            Available Mon–Fri 8am–8pm ET · Your report arrives within 24 hours of your call.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image moved from Hero section -->
+    <div class="form-image">
+      <img
+        src="/images/hero-jose.png"
+        alt="Jose reviewing an AI & Automation Opportunity Report on his laptop"
+        class="form-image__img"
+        width="520"
+        height="560"
+        loading="lazy"
+      />
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .form-section {
+    padding: 80px 24px;
+    background: var(--color-bg-section);
+  }
+
+  .form-section__inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+  }
+
+  .form-section__urgency {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-align: center;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  /* ===========================
+     FORM CARD
+  =========================== */
+  .form-card {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    padding: 48px 40px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .form-card__headline {
+    font-family: var(--font-body);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .form-card__sub {
+    font-size: 15px;
+    color: var(--color-muted);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  /* ===========================
+     FORM FIELDS
+  =========================== */
+  .form-field {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text);
+    background: var(--color-input-bg);
+    border: 1px solid var(--color-border-input);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-input:focus {
+    border-color: var(--pp-sky);
+    box-shadow: 0 0 0 3px rgba(64, 165, 221, 0.2);
+  }
+
+  .form-input.error {
+    border-color: var(--color-error);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+
+  .form-error {
+    display: none;
+    font-size: 13px;
+    color: var(--color-error);
+    margin-top: 6px;
+  }
+
+  .form-field.has-error .form-error {
+    display: block;
+  }
+
+  /* Select wrapper */
+  .select-wrap {
+    position: relative;
+  }
+
+  .form-select {
+    cursor: pointer;
+    padding-right: 40px;
+    color: var(--color-text);
+  }
+
+  .form-select option[value=""] {
+    color: #9CA3AF;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  /* ===========================
+     SUBMIT BUTTON
+  =========================== */
+  .form-submit {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .form-privacy {
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-top: 14px;
+  }
+
+  /* ===========================
+     DISCLOSURE VIEW
+  =========================== */
+  .disclosure {
+    text-align: center;
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  .disclosure__icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .disclosure__heading {
+    font-family: var(--font-body);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .disclosure__body {
+    font-size: 16px;
+    color: var(--color-body);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .disclosure__emphasis {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--pp-navy);
+    margin-bottom: 28px;
+  }
+
+  .disclosure__cta-label {
+    font-size: 15px;
+    color: var(--color-muted);
+    margin-bottom: 10px;
+  }
+
+  .disclosure__phone {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--pp-navy);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    transition: color 0.2s ease;
+  }
+
+  .disclosure__phone:hover {
+    color: var(--pp-sky);
+  }
+
+  .disclosure__hours {
+    font-size: 13px;
+    color: var(--color-muted);
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .spin {
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ===========================
+     RESPONSIVE
+  =========================== */
+  /* ===========================
+     IMAGE BELOW FORM
+  =========================== */
+  .form-image {
+    margin-top: 48px;
+    max-width: var(--max-content);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-image__img {
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+    object-position: center 15%;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .form-card {
+      padding: 32px 24px;
+    }
+
+    .disclosure__phone {
+      font-size: 30px;
+    }
+
+    .form-image__img {
+      height: 320px;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('leak-form') as HTMLFormElement;
+  const formView = document.getElementById('form-view') as HTMLElement;
+  const disclosureView = document.getElementById('disclosure-view') as HTMLElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText = document.getElementById('btn-text') as HTMLElement;
+  const btnLoading = document.getElementById('btn-loading') as HTMLElement;
+  const btnArrow = document.getElementById('btn-arrow') as HTMLElement;
+
+  function validateField(id: string, errorId: string, validator: () => boolean): boolean {
+    const fieldWrapper = document.getElementById(id) as HTMLElement;
+    const isValid = validator();
+    if (!isValid) {
+      fieldWrapper.classList.add('has-error');
+    } else {
+      fieldWrapper.classList.remove('has-error');
+      (fieldWrapper.querySelector('.form-input') as HTMLElement)?.classList.remove('error');
+    }
+    return isValid;
+  }
+
+  function isValidPhone(phone: string): boolean {
+    return /^[\d\s\-\(\)\+]{7,15}$/.test(phone.trim());
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const firstName = (document.getElementById('first-name') as HTMLInputElement).value.trim();
+    const businessType = (document.getElementById('business-type') as HTMLSelectElement).value;
+    const phone = (document.getElementById('phone') as HTMLInputElement).value.trim();
+
+    const nameValid = validateField('field-name', 'error-name', () => firstName.length > 0);
+    const bizValid = validateField('field-business', 'error-business', () => businessType !== '');
+    const phoneValid = validateField('field-phone', 'error-phone', () => isValidPhone(phone));
+
+    if (!nameValid || !bizValid || !phoneValid) return;
+
+    // Show loading state
+    btnText.style.display = 'none';
+    btnArrow.style.display = 'none';
+    btnLoading.style.display = 'flex';
+    submitBtn.disabled = true;
+
+    try {
+      // =============================================
+      // FORM BACKEND — Replace with your webhook URL
+      // Options: Airtable, GoHighLevel, Make, Zapier
+      // =============================================
+      const WEBHOOK_URL = 'YOUR_WEBHOOK_URL_HERE';
+
+      if (WEBHOOK_URL !== 'YOUR_WEBHOOK_URL_HERE') {
+        await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            first_name: firstName,
+            business_type: businessType,
+            phone: phone,
+            submitted_at: new Date().toISOString(),
+            source: window.location.href,
+          }),
+        });
+      }
+
+      // Fire GA4 conversion event if available
+      if (typeof (window as any).gtag !== 'undefined') {
+        (window as any).gtag('event', 'form_submit', {
+          event_category: 'Lead',
+          event_label: businessType,
+        });
+      }
+
+      // Fire Meta Pixel event if available
+      if (typeof (window as any).fbq !== 'undefined') {
+        (window as any).fbq('track', 'Lead', { business_type: businessType });
+      }
+
+    } catch (err) {
+      console.error('Form submission error:', err);
+      // Still show disclosure even if webhook fails
+      // Don't block the user experience
+    }
+
+    // Show disclosure
+    formView.style.display = 'none';
+    disclosureView.style.display = 'block';
+    disclosureView.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // Real-time field validation on blur
+  document.getElementById('first-name')?.addEventListener('blur', () => {
+    const val = (document.getElementById('first-name') as HTMLInputElement).value.trim();
+    validateField('field-name', 'error-name', () => val.length > 0);
+  });
+
+  document.getElementById('business-type')?.addEventListener('change', () => {
+    const val = (document.getElementById('business-type') as HTMLSelectElement).value;
+    validateField('field-business', 'error-business', () => val !== '');
+  });
+
+  document.getElementById('phone')?.addEventListener('blur', () => {
+    const val = (document.getElementById('phone') as HTMLInputElement).value.trim();
+    validateField('field-phone', 'error-phone', () => isValidPhone(val));
+  });
+</script>

@@ -1,0 +1,245 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import WhyFree from '../components/WhyFree.astro';
+import Form from '../components/Form.astro';
+import Objections from '../components/Objections.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <header class="site-header">
+    <div class="site-header__inner">
+
+      <!-- Wordmark logo matching brand image -->
+      <span class="site-logo" aria-label="ProActive Pixels">
+        <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels">Pixels</span>
+      </span>
+
+      <!-- Dark / Light mode toggle: ☀️ [track] 🌙 -->
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <!-- Sun icon — left, glows when in LIGHT mode -->
+        <svg class="toggle-icon toggle-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Pill track + sliding thumb -->
+        <span class="toggle-track">
+          <span class="toggle-thumb"></span>
+        </span>
+
+        <!-- Moon icon — right, glows when in DARK mode -->
+        <svg class="toggle-icon toggle-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <main>
+    <Hero />
+    <WhyFree />
+    <Form />
+    <Objections />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* ===========================
+     HEADER
+  =========================== */
+  .site-header {
+    padding: 18px 24px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-header-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .site-header__inner {
+    max-width: var(--max-hero);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ===========================
+     WORDMARK LOGO
+  =========================== */
+  .site-logo {
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .logo-pro,
+  .logo-pixels {
+    color: var(--logo-main);
+    transition: color 0.25s ease;
+  }
+
+  .logo-active {
+    color: var(--logo-active);
+  }
+
+  /* ===========================
+     THEME TOGGLE
+     Uses .is-dark class toggled by JS
+     so Astro scoped CSS works reliably
+  =========================== */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: var(--radius-pill);
+    transition: opacity 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    opacity: 0.85;
+  }
+
+  /* ---- Sun icon ---- */
+  /* Light mode: sun is active / glowing */
+  .toggle-icon--sun {
+    color: #F0A020;
+    transition: color 0.25s ease, opacity 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  /* Dark mode: sun is muted */
+  .theme-toggle.is-dark .toggle-icon--sun {
+    color: var(--color-muted);
+    opacity: 0.5;
+  }
+
+  /* ---- Moon icon ---- */
+  /* Light mode: moon is muted */
+  .toggle-icon--moon {
+    color: var(--color-muted);
+    opacity: 0.5;
+    transition: color 0.25s ease, opacity 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  /* Dark mode: moon is active / glowing */
+  .theme-toggle.is-dark .toggle-icon--moon {
+    color: #40A5DD;
+    opacity: 1;
+  }
+
+  /* ---- Track ---- */
+  .toggle-track {
+    display: inline-flex;
+    align-items: center;
+    width: 46px;
+    height: 26px;
+    border-radius: 999px;
+    background: #D0D5ED;
+    padding: 3px;
+    transition: background 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  /* Dark mode: track fills with sky blue */
+  .theme-toggle.is-dark .toggle-track {
+    background: #40A5DD;
+  }
+
+  /* ---- Thumb ---- */
+  .toggle-thumb {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #171E62;
+    transition: transform 0.25s ease, background 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  /* Dark mode: thumb slides right and turns white */
+  .theme-toggle.is-dark .toggle-thumb {
+    transform: translateX(20px);
+    background: #ffffff;
+  }
+
+  @media (max-width: 480px) {
+    .site-logo {
+      font-size: 19px;
+    }
+    .theme-toggle {
+      gap: 5px;
+      padding: 4px 6px;
+    }
+  }
+</style>
+
+<script>
+  // ===========================
+  // DARK MODE TOGGLE
+  // Uses .is-dark class on the button for
+  // reliable CSS scoping in Astro.
+  // ===========================
+  const toggle = document.getElementById('theme-toggle') as HTMLButtonElement;
+
+  function applyTheme(theme: 'light' | 'dark') {
+    const isDark = theme === 'dark';
+
+    if (isDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggle.classList.add('is-dark');
+      toggle.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      toggle.classList.remove('is-dark');
+      toggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+
+    try { localStorage.setItem('pp-theme', theme); } catch (e) {}
+  }
+
+  // Sync toggle button class with any theme already applied
+  // (set by the anti-FOUC inline script in BaseLayout)
+  if (document.documentElement.getAttribute('data-theme') === 'dark') {
+    toggle.classList.add('is-dark');
+    toggle.setAttribute('aria-label', 'Switch to light mode');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isDark = toggle.classList.contains('is-dark');
+    applyTheme(isDark ? 'light' : 'dark');
+  });
+
+  // ===========================
+  // SCROLL FADE-IN OBSERVER
+  // ===========================
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.fade-in').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
