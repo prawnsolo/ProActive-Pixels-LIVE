@@ -62,7 +62,7 @@
             <span class="form-error" id="error-phone">Please enter a valid phone number.</span>
           </div>
 
-          <button type="submit" class="btn btn--primary btn--full" id="submit-btn">
+          <button type="submit" class="btn btn--primary btn--full form-submit" id="submit-btn">
             <span id="btn-text">Show Me What My Business Is Losing</span>
             <span id="btn-loading" style="display:none;">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="spin" aria-hidden="true">
@@ -85,9 +85,9 @@
       <div id="disclosure-view" style="display:none;" aria-live="polite">
         <div class="disclosure">
           <div class="disclosure__icon">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <circle cx="16" cy="16" r="16" fill="#1B3A5C" opacity="0.1"/>
-              <path d="M10 16l4 4 8-8" stroke="#1B3A5C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="20" r="20" fill="#1B3A6E" opacity="0.1"/>
+              <path d="M12 20l6 6 10-12" stroke="#1B3A6E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
 
@@ -103,9 +103,8 @@
 
           <p class="disclosure__cta-label">Ready? Call Alex now:</p>
 
-          <a href="tel:+1XXXXXXXXXX" class="disclosure__phone" id="alex-phone">
-            <!-- Replace with your Retell AI number -->
-            (XXX) XXX-XXXX
+          <a href="tel:+15406000080" class="disclosure__phone" id="alex-phone">
+            (540) 600-0080
           </a>
 
           <p class="disclosure__hours">
@@ -121,7 +120,7 @@
 <style>
   .form-section {
     padding: 80px 24px;
-    background: var(--color-bg);
+    background: var(--color-bg-section);
   }
 
   .form-section__inner {
@@ -134,15 +133,14 @@
   =========================== */
   .form-card {
     background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     padding: 48px 40px;
     box-shadow: var(--shadow-card);
   }
 
   .form-card__headline {
-    font-family: var(--font-display);
-    font-size: 28px;
+    font-family: var(--font-body);
+    font-size: 26px;
     font-weight: 700;
     color: var(--color-text);
     text-align: center;
@@ -180,7 +178,7 @@
     font-size: 16px;
     color: var(--color-text);
     background: white;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-border-input);
     border-radius: var(--radius-sm);
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -189,8 +187,8 @@
   }
 
   .form-input:focus {
-    border-color: var(--color-navy);
-    box-shadow: 0 0 0 3px rgba(27, 58, 92, 0.12);
+    border-color: var(--pp-navy);
+    box-shadow: 0 0 0 3px rgba(27, 58, 110, 0.12);
   }
 
   .form-input.error {
@@ -235,10 +233,8 @@
   /* ===========================
      SUBMIT BUTTON
   =========================== */
-  .btn--full {
-    width: 100%;
-    justify-content: center;
-    margin-top: 8px;
+  .form-submit {
+    margin-top: 10px;
     font-size: 16px;
   }
 
@@ -246,7 +242,7 @@
     text-align: center;
     font-size: 12px;
     color: var(--color-muted);
-    margin-top: 12px;
+    margin-top: 14px;
   }
 
   /* ===========================
@@ -258,13 +254,13 @@
   }
 
   .disclosure__icon {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
   }
 
   .disclosure__heading {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 24px;
     font-weight: 700;
     color: var(--color-text);
@@ -274,7 +270,7 @@
 
   .disclosure__body {
     font-size: 16px;
-    color: var(--color-text-light);
+    color: var(--color-body);
     line-height: 1.7;
     margin-bottom: 16px;
     max-width: 480px;
@@ -285,7 +281,7 @@
   .disclosure__emphasis {
     font-size: 16px;
     font-weight: 600;
-    color: var(--color-navy);
+    color: var(--pp-navy);
     margin-bottom: 28px;
   }
 
@@ -297,10 +293,10 @@
 
   .disclosure__phone {
     display: block;
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 38px;
     font-weight: 700;
-    color: var(--color-navy);
+    color: var(--pp-navy);
     text-decoration: none;
     letter-spacing: -0.02em;
     margin-bottom: 12px;
@@ -308,7 +304,7 @@
   }
 
   .disclosure__phone:hover {
-    color: var(--color-amber);
+    color: var(--pp-sky);
   }
 
   .disclosure__hours {

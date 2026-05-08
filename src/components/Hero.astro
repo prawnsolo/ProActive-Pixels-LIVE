@@ -8,9 +8,9 @@
 
       <h1 class="hero__headline">
         12 minutes.<br />
-        <span class="hero__headline-rest">That's how long it takes to find the</span>
+        That's how long it takes to find the
         <span class="hero__amount">$20,000 to $60,000</span>
-        <span class="hero__headline-rest"> your business is losing every year.</span>
+        your business is losing every year.
       </h1>
 
       <p class="hero__subheadline">
@@ -20,22 +20,22 @@
       <div class="hero__trust">
         <span class="hero__trust-item">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <circle cx="7" cy="7" r="7" fill="#1B3A5C" opacity="0.12"/>
-            <path d="M4 7l2 2 4-4" stroke="#1B3A5C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="7" cy="7" r="7" fill="#1B3A6E" opacity="0.14"/>
+            <path d="M4 7l2 2 4-4" stroke="#1B3A6E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           No pitch
         </span>
         <span class="hero__trust-item">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <circle cx="7" cy="7" r="7" fill="#1B3A5C" opacity="0.12"/>
-            <path d="M4 7l2 2 4-4" stroke="#1B3A5C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="7" cy="7" r="7" fill="#1B3A6E" opacity="0.14"/>
+            <path d="M4 7l2 2 4-4" stroke="#1B3A6E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           No obligation
         </span>
         <span class="hero__trust-item">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <circle cx="7" cy="7" r="7" fill="#1B3A5C" opacity="0.12"/>
-            <path d="M4 7l2 2 4-4" stroke="#1B3A5C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="7" cy="7" r="7" fill="#1B3A6E" opacity="0.14"/>
+            <path d="M4 7l2 2 4-4" stroke="#1B3A6E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           You keep the report either way
         </span>
@@ -82,6 +82,9 @@
     align-items: center;
   }
 
+  /* ===========================
+     EYEBROW CHIP
+  =========================== */
   .hero__eyebrow {
     display: inline-block;
     font-family: var(--font-body);
@@ -89,50 +92,52 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-navy);
-    background: rgba(27, 58, 92, 0.08);
-    padding: 6px 14px;
-    border-radius: 100px;
-    margin-bottom: 20px;
+    color: var(--pp-navy);
+    background: var(--color-chip);
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 22px;
   }
 
+  /* ===========================
+     HEADLINE
+  =========================== */
   .hero__headline {
-    font-family: var(--font-display);
-    font-size: clamp(36px, 5vw, 58px);
+    font-family: var(--font-body);
+    font-size: clamp(34px, 4.5vw, 52px);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.23;
     color: var(--color-text);
     margin-bottom: 20px;
     letter-spacing: -0.02em;
   }
 
-  .hero__headline-rest {
-    font-weight: 400;
-    font-style: italic;
-  }
-
   .hero__amount {
     color: var(--color-amber);
-    font-weight: 900;
-    font-style: normal;
-    position: relative;
-    white-space: nowrap;
+    font-weight: 700;
   }
 
+  /* ===========================
+     SUBHEADLINE
+  =========================== */
   .hero__subheadline {
+    font-family: var(--font-body);
     font-size: 19px;
     font-weight: 400;
-    color: var(--color-text-light);
+    color: var(--color-body);
     line-height: 1.6;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     max-width: 480px;
   }
 
+  /* ===========================
+     TRUST BADGES
+  =========================== */
   .hero__trust {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 36px;
   }
 
   .hero__trust-item {
@@ -140,48 +145,18 @@
     align-items: center;
     gap: 6px;
     font-size: 14px;
-    color: var(--color-muted);
     font-weight: 500;
+    color: var(--color-muted);
   }
 
   /* ===========================
-     CTA BUTTON
+     CTA
   =========================== */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-body);
-    font-size: 17px;
-    font-weight: 600;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 18px 32px;
-    border-radius: var(--radius-sm);
-  }
-
-  .btn--primary {
-    background: var(--color-navy);
-    color: white;
-    box-shadow: var(--shadow-btn);
-  }
-
-  .btn--primary:hover {
-    background: var(--color-navy-hover);
-    box-shadow: var(--shadow-btn-hover);
-    transform: translateY(-1px);
-  }
-
-  .btn--primary:active {
-    transform: translateY(0);
-  }
-
   .hero__cta {
+    max-width: 420px;
     width: 100%;
     justify-content: center;
-    max-width: 420px;
+    font-size: 17px;
   }
 
   /* ===========================
@@ -195,7 +170,7 @@
     width: 100%;
     max-width: 520px;
     border-radius: var(--radius-md);
-    box-shadow: 0 20px 60px rgba(27, 58, 92, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
     margin-left: auto;
     object-fit: cover;
   }
@@ -207,15 +182,14 @@
     background: white;
     border-radius: var(--radius-md);
     padding: 14px 20px;
-    box-shadow: var(--shadow-card);
-    border: 1px solid var(--color-border);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px 0px;
     z-index: 2;
     animation: float 4s ease-in-out infinite;
   }
 
   .hero__badge-number {
     display: block;
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 22px;
     font-weight: 700;
     color: var(--color-amber);
@@ -224,6 +198,7 @@
 
   .hero__badge-label {
     display: block;
+    font-family: var(--font-body);
     font-size: 12px;
     color: var(--color-muted);
     margin-top: 2px;
