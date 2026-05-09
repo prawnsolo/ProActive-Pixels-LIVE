@@ -14,6 +14,16 @@
       In exchange for your 12 minutes, you get a written report that tells you specifically what's costing you the most in your business right now, with a dollar number next to each item.
     </p>
 
+    <p class="why-free__roi">
+      <em>If even one of those turns out to be right, the 12 minutes was worth it.</em>
+    </p>
+
+    <hr class="why-free__divider" />
+
+    <p class="why-free__closing">
+      No pitch on the call. If you want to know what it would cost to fix something we found, ask. We'll tell you. The report is yours to keep, share, or ignore. No follow-up unless you want one. That's not a policy. That's the deal.
+    </p>
+
     <div class="why-free__anchor">
       <div class="why-free__anchor-row">
         <span class="why-free__anchor-label">What a consultant charges for this</span>
@@ -24,16 +34,6 @@
         <span class="why-free__anchor-free">12 minutes</span>
       </div>
     </div>
-
-    <p class="why-free__roi">
-      If even one of those turns out to be right, the 12 minutes was worth it.
-    </p>
-
-    <hr class="why-free__divider" />
-
-    <p class="why-free__closing">
-      No pitch on the call. If you want to know what it would cost to fix something we found, ask. We'll tell you. The report is yours to keep, share, or ignore. No follow-up unless you want one. That's not a policy. That's the deal.
-    </p>
 
   </div>
 </section>
@@ -68,10 +68,11 @@
   }
 
   .why-free__roi {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: clamp(20px, 2.5vw, 24px);
+    font-weight: 700;
+    font-style: italic;
     color: var(--color-text);
-    line-height: 1.6;
+    line-height: 1.55;
     margin-bottom: 36px;
     padding: 16px 20px;
     background: rgba(64, 165, 221, 0.06);
@@ -92,7 +93,8 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 20px 24px;
-    margin-bottom: 32px;
+    margin-top: 40px;
+    margin-bottom: 0;
   }
 
   .why-free__anchor-row {
@@ -145,7 +147,7 @@
     }
 
     .why-free__roi {
-      font-size: 17px;
+      font-size: 19px;
     }
   }
 </style>
