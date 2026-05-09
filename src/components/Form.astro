@@ -27,19 +27,18 @@
           <div class="form-field" id="field-business">
             <label for="business-type" class="form-label">Business Type</label>
             <div class="select-wrap">
-              <select id="business-type" name="business_type" class="form-input form-select" required>
+              <select id="business-type" name="niche" class="form-input form-select" required>
                 <option value="" disabled selected>Select your industry</option>
-                <option value="hvac">HVAC</option>
-                <option value="plumbing">Plumbing</option>
-                <option value="roofing">Roofing</option>
-                <option value="electrical">Electrical</option>
-                <option value="landscaping">Landscaping</option>
-                <option value="lawn_care">Lawn Care</option>
-                <option value="cleaning">Cleaning Services</option>
-                <option value="pest_control">Pest Control</option>
-                <option value="auto_repair">Auto Repair</option>
-                <option value="med_spa">Med Spa</option>
-                <option value="other">Other</option>
+                <option value="HVAC">HVAC</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="Roofing">Roofing</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Lawn care">Lawn Care</option>
+                <option value="Cleaning">Cleaning Services</option>
+                <option value="Pest control">Pest Control</option>
+                <option value="Auto repair">Auto Repair</option>
+                <option value="Med spa / Aesthetics">Med Spa / Aesthetics</option>
+                <option value="Other / not listed">Other / Not Listed</option>
               </select>
               <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -78,6 +77,7 @@
           <p class="form-privacy">
             Your information is never sold or shared. Ever.
           </p>
+          <p class="form-api-error" id="api-error" style="display:none;">Something went wrong. Please try again.</p>
         </form>
       </div>
 
@@ -259,6 +259,13 @@
     margin-top: 14px;
   }
 
+  .form-api-error {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-error);
+    margin-top: 10px;
+  }
+
   /* ===========================
      DISCLOSURE VIEW
   =========================== */
@@ -401,6 +408,7 @@
   const btnText = document.getElementById('btn-text') as HTMLElement;
   const btnLoading = document.getElementById('btn-loading') as HTMLElement;
   const btnArrow = document.getElementById('btn-arrow') as HTMLElement;
+  const apiError = document.getElementById('api-error') as HTMLElement;
 
   function validateField(id: string, errorId: string, validator: () => boolean): boolean {
     const fieldWrapper = document.getElementById(id) as HTMLElement;
@@ -418,6 +426,13 @@
     return /^[\d\s\-\(\)\+]{7,15}$/.test(phone.trim());
   }
 
+  function resetButton(): void {
+    btnText.style.display = '';
+    btnArrow.style.display = '';
+    btnLoading.style.display = 'none';
+    submitBtn.disabled = false;
+  }
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -431,6 +446,9 @@
 
     if (!nameValid || !bizValid || !phoneValid) return;
 
+    // Hide any previous api error
+    apiError.style.display = 'none';
+
     // Show loading state
     btnText.style.display = 'none';
     btnArrow.style.display = 'none';
@@ -438,24 +456,22 @@
     submitBtn.disabled = true;
 
     try {
-      // =============================================
-      // FORM BACKEND — Replace with your webhook URL
-      // Options: Airtable, GoHighLevel, Make, Zapier
-      // =============================================
-      const WEBHOOK_URL = 'YOUR_WEBHOOK_URL_HERE';
+      const WEBHOOK_URL = 'https://proactivepixels-router.aqua-noriega.workers.dev/submit';
 
-      if (WEBHOOK_URL !== 'YOUR_WEBHOOK_URL_HERE') {
-        await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            first_name: firstName,
-            business_type: businessType,
-            phone: phone,
-            submitted_at: new Date().toISOString(),
-            source: window.location.href,
-          }),
-        });
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          first_name: firstName,
+          niche: businessType,
+          phone: phone,
+        }),
+      });
+
+      if (!res.ok) {
+        resetButton();
+        apiError.style.display = 'block';
+        return;
       }
 
       // Fire GA4 conversion event if available
@@ -471,16 +487,17 @@
         (window as any).fbq('track', 'Lead', { business_type: businessType });
       }
 
+      // Show disclosure
+      formView.style.display = 'none';
+      disclosureView.style.display = 'block';
+      disclosureView.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
     } catch (err) {
       console.error('Form submission error:', err);
-      // Still show disclosure even if webhook fails
-      // Don't block the user experience
+      resetButton();
+      apiError.style.display = 'block';
+      return;
     }
-
-    // Show disclosure
-    formView.style.display = 'none';
-    disclosureView.style.display = 'block';
-    disclosureView.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
   // Real-time field validation on blur
