@@ -1,0 +1,346 @@
+---
+export interface Props {
+  currentPage?: string;
+}
+const { currentPage = '' } = Astro.props;
+---
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="/" class="nav-logo" aria-label="ProActive Pixels home">
+      <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels">Pixels</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/services" class:list={["nav-link", { "nav-link--active": currentPage === "services" }]}>Services</a>
+      <a href="/work" class:list={["nav-link", { "nav-link--active": currentPage === "work" }]}>Work</a>
+      <a href="/about" class:list={["nav-link", { "nav-link--active": currentPage === "about" }]}>About</a>
+      <a href="/assessment" class="btn btn--primary btn--sm">Get Free Leak Report →</a>
+    </nav>
+
+    <!-- Desktop theme toggle -->
+    <button class="theme-toggle" aria-label="Switch to dark mode">
+      <svg class="toggle-icon toggle-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      <svg class="toggle-icon toggle-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <!-- Mobile hamburger -->
+    <button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="nav-mobile-drawer" id="mobile-drawer">
+    <a href="/services" class="nav-mobile-link">Services</a>
+    <a href="/work" class="nav-mobile-link">Work</a>
+    <a href="/about" class="nav-mobile-link">About</a>
+
+    <!-- Theme toggle row inside drawer -->
+    <div class="mobile-theme-row">
+      <span class="mobile-theme-label">Appearance</span>
+      <button class="theme-toggle theme-toggle--drawer" aria-label="Switch to dark mode">
+        <svg class="toggle-icon toggle-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <svg class="toggle-icon toggle-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <a href="/assessment" class="btn btn--primary btn--full" style="margin-top:8px;">Get Free Leak Report →</a>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-header-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .site-nav__inner {
+    max-width: var(--max-hero);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .nav-logo {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-decoration: none;
+    user-select: none;
+  }
+
+  .logo-pro,
+  .logo-pixels {
+    color: var(--logo-main);
+    transition: color 0.25s ease;
+  }
+
+  .logo-active {
+    color: var(--logo-active);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+    padding: 4px 0;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--pp-navy);
+  }
+
+  .nav-link--active {
+    color: var(--pp-navy);
+    font-weight: 600;
+  }
+
+  .nav-link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--pp-sky);
+    border-radius: 1px;
+  }
+
+  /* Theme toggle — shared styles */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: var(--radius-pill);
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover { opacity: 0.85; }
+
+  .toggle-icon--sun {
+    color: #F0A020;
+    transition: color 0.25s ease, opacity 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle.is-dark .toggle-icon--sun {
+    color: var(--color-muted);
+    opacity: 0.5;
+  }
+
+  .toggle-icon--moon {
+    color: var(--color-muted);
+    opacity: 0.5;
+    transition: color 0.25s ease, opacity 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle.is-dark .toggle-icon--moon {
+    color: #40A5DD;
+    opacity: 1;
+  }
+
+  .toggle-track {
+    display: inline-flex;
+    align-items: center;
+    width: 46px;
+    height: 26px;
+    border-radius: 999px;
+    background: var(--pp-sky);
+    padding: 3px;
+    transition: background 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .toggle-thumb {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #171E62;
+    transition: transform 0.25s ease, background 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle.is-dark .toggle-thumb {
+    transform: translateX(20px);
+    background: #ffffff;
+  }
+
+  /* Mobile hamburger button */
+  .nav-mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .nav-mobile-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--pp-navy);
+    border-radius: 1px;
+    transition: background 0.25s ease;
+  }
+
+  /* Mobile drawer */
+  .nav-mobile-drawer {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 24px 20px;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  .nav-mobile-drawer.is-open {
+    display: flex;
+  }
+
+  .nav-mobile-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-body);
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: color 0.15s;
+  }
+
+  .nav-mobile-link:hover {
+    color: var(--pp-navy);
+  }
+
+  /* Theme toggle row inside mobile drawer */
+  .mobile-theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-theme-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-body);
+  }
+
+  /* The drawer toggle doesn't need extra padding */
+  .theme-toggle--drawer {
+    padding: 4px 6px;
+  }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    /* Hide the desktop toggle; drawer toggle handles mobile */
+    .theme-toggle:not(.theme-toggle--drawer) { display: none; }
+    .nav-mobile-toggle { display: flex; }
+  }
+</style>
+
+<script>
+  // Grab ALL theme toggles (desktop + mobile drawer)
+  const allToggles = document.querySelectorAll<HTMLButtonElement>('.theme-toggle');
+
+  function applyTheme(theme: 'light' | 'dark') {
+    const isDark = theme === 'dark';
+    if (isDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      allToggles.forEach(t => {
+        t.classList.add('is-dark');
+        t.setAttribute('aria-label', 'Switch to light mode');
+      });
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      allToggles.forEach(t => {
+        t.classList.remove('is-dark');
+        t.setAttribute('aria-label', 'Switch to dark mode');
+      });
+    }
+    try { localStorage.setItem('pp-theme', theme); } catch (e) {}
+  }
+
+  // Sync state on load
+  if (document.documentElement.getAttribute('data-theme') === 'dark') {
+    allToggles.forEach(t => {
+      t.classList.add('is-dark');
+      t.setAttribute('aria-label', 'Switch to light mode');
+    });
+  }
+
+  // Each toggle clicks the same handler
+  allToggles.forEach(t => {
+    t.addEventListener('click', () => {
+      const isDark = t.classList.contains('is-dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    });
+  });
+
+  // Mobile menu open/close
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+
+  mobileToggle?.addEventListener('click', () => {
+    mobileDrawer?.classList.toggle('is-open');
+  });
+
+  // Scroll fade-in observer
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll('.fade-in').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
