@@ -85,10 +85,10 @@ const {
 
     /* Logo */
     --logo-main: #171E62;
-    --logo-active: #F5A623;
+    --logo-active: #40A5DD;
 
     /* Highlight / accent (dollar amounts, emphasis) */
-    --color-highlight: #F5A623;
+    --color-highlight: #40A5DD;
 
     /* Fonts */
     --font-body: 'DM Sans', system-ui, sans-serif;
@@ -99,10 +99,10 @@ const {
     --radius-lg: 12px;
     --radius-pill: 999px;
 
-    /* Shadows — amber tinted for CTA buttons */
+    /* Shadows — sky-blue tinted for CTA buttons */
     --shadow-card: rgba(23, 30, 98, 0.08) 0px 4px 16px 0px;
-    --shadow-btn: rgba(245, 166, 35, 0.40) 0px 4px 14px 0px;
-    --shadow-btn-hover: rgba(245, 166, 35, 0.60) 0px 6px 20px 0px;
+    --shadow-btn: rgba(64, 165, 221, 0.35) 0px 4px 14px 0px;
+    --shadow-btn-hover: rgba(64, 165, 221, 0.50) 0px 6px 20px 0px;
 
     /* Layout */
     --max-content: 680px;
@@ -129,16 +129,15 @@ const {
     --color-border: #22243a;
     --color-border-input: rgba(64, 165, 221, 0.5);
 
-    --pp-navy: #4d8fc8;
-    --pp-amber: #F5A623;
-    --color-highlight: #F5A623;
+    --pp-navy: #5a78d0;
+    --color-highlight: #40A5DD;
 
     --logo-main: #eef0f8;
-    --logo-active: #F5A623;
+    --logo-active: #40A5DD;
 
     --shadow-card: rgba(0, 0, 0, 0.5) 0px 4px 24px 0px;
-    --shadow-btn: rgba(245, 166, 35, 0.32) 0px 4px 14px 0px;
-    --shadow-btn-hover: rgba(245, 166, 35, 0.50) 0px 6px 20px 0px;
+    --shadow-btn: rgba(64, 165, 221, 0.28) 0px 4px 14px 0px;
+    --shadow-btn-hover: rgba(64, 165, 221, 0.45) 0px 6px 20px 0px;
   }
 
   /* ===========================
@@ -178,7 +177,7 @@ const {
 
   /* ===========================
      GLOBAL BUTTON SYSTEM
-     CTAs use Golden Amber (#F5A623)
+     CTAs use Sky Blue (#40A5DD)
   =========================== */
   .btn {
     display: inline-flex;
@@ -197,13 +196,13 @@ const {
   }
 
   .btn--primary {
-    background: var(--pp-amber);
-    color: var(--pp-navy);
+    background: var(--pp-sky);
+    color: #ffffff;
     box-shadow: var(--shadow-btn);
   }
 
   .btn--primary:hover {
-    background: #d48a15;
+    background: var(--pp-ocean);
     box-shadow: var(--shadow-btn-hover);
     transform: translateY(-1px);
   }
@@ -267,7 +266,7 @@ const {
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--pp-amber);
+    color: var(--pp-sky);
     margin-bottom: 12px;
   }
 
