@@ -42,9 +42,9 @@ import SiteFooter from '../components/SiteFooter.astro';
     <div class="hook-bar fade-in">
       <div class="container">
         <p class="hook-text">
-          If a lead calls after hours and no one answers — that's a leak.
-          If your follow-up sequence stops after 2 emails — that's a leak.
-          If your team is doing data entry that a bot could handle — that's a leak.
+          If a lead calls after hours and no one answers: that's a leak.
+          If your follow-up sequence stops after 2 emails: that's a leak.
+          If your team is doing data entry that a bot could handle: that's a leak.
           <strong>We find every one of them.</strong>
         </p>
       </div>
@@ -148,33 +148,35 @@ import SiteFooter from '../components/SiteFooter.astro';
     <!-- WHY NOT JUST HIRE -->
     <section class="section-why">
       <div class="container">
-        <div class="section-header fade-in" style="text-align:center; max-width:640px; margin:0 auto 48px;">
-          <div class="section-label">Why ProActive Pixels</div>
-          <h2 class="section-headline">Not an Agency. Not a Dev Shop. Not a Consultant.</h2>
-          <p class="section-sub" style="margin:0 auto;">
-            We're operators. We've run service businesses. We know what it costs to miss a lead,
-            lose a customer, or have a system break on a Friday afternoon.
-          </p>
-        </div>
-
-        <div class="why-grid">
-          <div class="why-card fade-in">
-            <div class="why-icon">🚫</div>
-            <h3>Not a Custom Dev Shop</h3>
-            <p>We don't charge $50K to build software from scratch. We implement proven, production-ready
-            AI tools fast — because the best tool is one that's working today.</p>
+        <div class="why-inner">
+          <div class="why-left fade-in">
+            <div class="section-label">Why ProActive Pixels</div>
+            <h2 class="section-headline">Not an Agency. Not a Dev Shop. Not a Consultant.</h2>
+            <p class="why-lead">
+              We're operators. We've run service businesses. We know what it costs to miss a lead,
+              lose a customer, or have a system break on a Friday afternoon.
+            </p>
           </div>
-          <div class="why-card fade-in fade-in-delay-1">
-            <div class="why-icon">🚫</div>
-            <h3>Not a Strategy Consultant</h3>
-            <p>We don't hand you a 40-page roadmap and disappear. Every engagement ends with
-            something live, running, and making you money.</p>
-          </div>
-          <div class="why-card fade-in fade-in-delay-2">
-            <div class="why-icon">✅</div>
-            <h3>A Proactive Partner</h3>
-            <p>We monitor your solutions, alert you before things break, and keep improving them
-            over time. Your automations get smarter every month.</p>
+          <div class="why-right fade-in fade-in-delay-1">
+            <div class="why-compare">
+              <div class="why-compare-row">
+                <div class="why-col why-col--no">
+                  <span class="why-col-label">Custom Dev Shop</span>
+                  <p>Charges $30–50K to build from scratch. Takes months. You own the liability when it breaks.</p>
+                </div>
+                <div class="why-col why-col--no">
+                  <span class="why-col-label">Strategy Consultant</span>
+                  <p>Gives you a 40-page roadmap and disappears. Nothing is ever actually live.</p>
+                </div>
+              </div>
+              <div class="why-divider-row">
+                <div class="why-divider-label">vs.</div>
+              </div>
+              <div class="why-col why-col--yes">
+                <span class="why-col-label">ProActive Pixels</span>
+                <p>We implement proven tools in 72 hours, maintain them long-term, and alert you before things break. Results before month one ends.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -183,22 +185,32 @@ import SiteFooter from '../components/SiteFooter.astro';
     <!-- RESULTS -->
     <section class="section-results">
       <div class="container">
-        <div class="section-header fade-in" style="text-align:center; max-width:600px; margin:0 auto 48px;">
-          <div class="section-label">Results</div>
-          <h2 class="section-headline">What Fixing the Leaks Actually Looks Like</h2>
-        </div>
-        <div class="results-grid">
-          <div class="result-card fade-in">
-            <div class="result-metric">$18K</div>
-            <div class="result-desc">recovered in the first month from a HVAC company that was missing after-hours calls — 3 booked jobs in week one.</div>
+        <div class="results-inner">
+          <div class="results-label fade-in">
+            <div class="section-label">Results</div>
+            <h2 class="section-headline">What Fixing the Leaks Actually Looks Like</h2>
           </div>
-          <div class="result-card fade-in fade-in-delay-1">
-            <div class="result-metric">14 hrs</div>
-            <div class="result-desc">saved per week for a med-spa by automating intake forms, appointment confirmations, and no-show follow-ups.</div>
+          <div class="results-featured fade-in fade-in-delay-1">
+            <div class="featured-number">$18K</div>
+            <div class="featured-story">
+              <p class="featured-headline">HVAC company, month one.</p>
+              <p class="featured-detail">They were missing 43% of after-hours calls. Every missed call was a $450–$900 job walking to a competitor. We installed a Voice AI receptionist. It went live in 68 hours. Three booked jobs in week one. The owner stopped counting at $18K in recovered revenue.</p>
+              <a href="/work" class="results-link">Read all case studies →</a>
+            </div>
           </div>
-          <div class="result-card fade-in fade-in-delay-2">
-            <div class="result-metric">72 hrs</div>
-            <div class="result-desc">from first call to live Voice AI for a roofing company. No new hardware, no IT department needed.</div>
+          <div class="results-secondary fade-in fade-in-delay-2">
+            <div class="result-row">
+              <span class="result-row-num">14 hrs</span>
+              <span class="result-row-desc">saved per week — med-spa automated intake, confirmations, and no-show follow-ups</span>
+            </div>
+            <div class="result-row">
+              <span class="result-row-num">31%</span>
+              <span class="result-row-desc">increase in close rate — roofing company added an 8-touch automated follow-up sequence</span>
+            </div>
+            <div class="result-row">
+              <span class="result-row-num">72 hrs</span>
+              <span class="result-row-desc">median time from kickoff to live solution — no new hardware, no IT department</span>
+            </div>
           </div>
         </div>
       </div>
@@ -248,6 +260,7 @@ import SiteFooter from '../components/SiteFooter.astro';
     letter-spacing: -0.03em;
     color: var(--color-text);
     margin-bottom: 24px;
+    text-wrap: balance;
   }
 
   .headline-accent {
@@ -260,6 +273,7 @@ import SiteFooter from '../components/SiteFooter.astro';
     line-height: 1.65;
     max-width: 580px;
     margin-bottom: 36px;
+    text-wrap: pretty;
   }
 
   .hero-ctas {
@@ -427,6 +441,7 @@ import SiteFooter from '../components/SiteFooter.astro';
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1;
+    font-variant-numeric: tabular-nums;
   }
 
   .metric-label {
@@ -444,38 +459,98 @@ import SiteFooter from '../components/SiteFooter.astro';
     background: var(--color-bg);
   }
 
-  .why-grid {
+  .why-inner {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
   }
 
-  .why-card {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 32px 28px;
-    box-shadow: var(--shadow-card);
-  }
-
-  .why-icon {
-    font-size: 28px;
-    margin-bottom: 14px;
-    line-height: 1;
-  }
-
-  .why-card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--color-text);
-    letter-spacing: -0.01em;
-    margin-bottom: 10px;
-  }
-
-  .why-card p {
-    font-size: 14px;
+  .why-lead {
+    font-size: 16px;
     color: var(--color-body);
-    line-height: 1.65;
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  .why-compare {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .why-compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-bottom: 24px;
+  }
+
+  .why-divider-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    margin-bottom: 24px;
+  }
+
+  .why-divider-row::before,
+  .why-divider-row::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .why-divider-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .why-col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .why-col-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .why-col p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .why-col--no .why-col-label {
+    color: var(--color-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(93, 100, 148, 0.4);
+  }
+
+  .why-col--no p {
+    color: var(--color-muted);
+  }
+
+  .why-col--yes {
+    padding: 20px 24px;
+    background: rgba(64,165,221,0.06);
+    border: 1px solid rgba(64,165,221,0.2);
+    border-radius: var(--radius-md);
+  }
+
+  .why-col--yes .why-col-label {
+    color: var(--pp-sky);
+  }
+
+  .why-col--yes p {
+    color: var(--color-body);
+    font-size: 14px;
   }
 
   /* RESULTS */
@@ -484,33 +559,99 @@ import SiteFooter from '../components/SiteFooter.astro';
     background: var(--color-bg-section);
   }
 
-  .results-grid {
+  .results-inner {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto auto;
+    gap: 48px 80px;
   }
 
-  .result-card {
+  .results-label {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .results-featured {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 36px 40px;
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: 36px 28px;
     box-shadow: var(--shadow-card);
   }
 
-  .result-metric {
-    font-size: 52px;
+  .featured-number {
+    font-size: 64px;
     font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--pp-sky);
+    letter-spacing: -0.04em;
     line-height: 1;
-    margin-bottom: 16px;
+    color: var(--pp-sky);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
   }
 
-  .result-desc {
+  .featured-headline {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 10px;
+  }
+
+  .featured-detail {
     font-size: 15px;
     color: var(--color-body);
-    line-height: 1.6;
+    line-height: 1.7;
+    margin-bottom: 14px;
+    text-wrap: pretty;
+  }
+
+  .results-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--pp-sky);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .results-link:hover { color: var(--pp-ocean); }
+
+  .results-secondary {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .result-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .result-row:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .result-row-num {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .result-row-desc {
+    font-size: 13px;
+    color: var(--color-muted);
+    line-height: 1.5;
   }
 
   /* CTA */
@@ -548,7 +689,7 @@ import SiteFooter from '../components/SiteFooter.astro';
   .cta-fine {
     margin-top: 16px;
     font-size: 13px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.68);
   }
 
   /* RESPONSIVE */
@@ -566,9 +707,21 @@ import SiteFooter from '../components/SiteFooter.astro';
       grid-template-columns: 1fr;
       gap: 40px;
     }
-    .why-grid,
-    .results-grid {
+    .why-inner {
       grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .results-inner {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+    .results-featured {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .results-secondary {
+      grid-column: 1;
+      grid-row: 3;
     }
   }
 

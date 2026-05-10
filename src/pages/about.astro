@@ -130,62 +130,48 @@ import SiteFooter from '../components/SiteFooter.astro';
           <h2 class="section-headline">The Principles We Don't Compromise</h2>
         </div>
 
-        <div class="values-grid">
-          <div class="value-card fade-in">
-            <div class="value-icon">⚡</div>
-            <h3 class="value-title">Speed Over Perfection</h3>
-            <p class="value-desc">
-              A working solution live in 72 hours beats a perfect solution live in 6 months. We move
-              fast, test in production, and iterate. Your business can't afford to wait.
-            </p>
+        <div class="values-list">
+          <div class="value-row fade-in">
+            <span class="value-num">1</span>
+            <div class="value-content">
+              <h3 class="value-title">Speed Over Perfection</h3>
+              <p class="value-desc">A working solution live in 72 hours beats a perfect solution live in 6 months. We move fast, test in production, and iterate. Your business can't afford to wait.</p>
+            </div>
           </div>
-
-          <div class="value-card fade-in fade-in-delay-1">
-            <div class="value-icon">🎯</div>
-            <h3 class="value-title">ROI First</h3>
-            <p class="value-desc">
-              Every solution we implement has a clear, measurable business outcome. If we can't
-              explain how it pays for itself, we don't recommend it. We're operators — we think
-              in dollars and hours, not features.
-            </p>
+          <div class="value-row fade-in">
+            <span class="value-num">2</span>
+            <div class="value-content">
+              <h3 class="value-title">ROI First</h3>
+              <p class="value-desc">Every solution we implement has a clear, measurable business outcome. If we can't explain how it pays for itself, we don't recommend it. We think in dollars and hours, not features.</p>
+            </div>
           </div>
-
-          <div class="value-card fade-in fade-in-delay-2">
-            <div class="value-icon">🤝</div>
-            <h3 class="value-title">Partnership, Not Projects</h3>
-            <p class="value-desc">
-              We don't do one-time builds. We stay. Your business evolves, your tools should evolve
-              with it. We're most valuable to clients who think of us as part of the team, not a vendor.
-            </p>
+          <div class="value-row fade-in">
+            <span class="value-num">3</span>
+            <div class="value-content">
+              <h3 class="value-title">Partnership, Not Projects</h3>
+              <p class="value-desc">We don't do one-time builds. We stay. Your business evolves, your tools should evolve with it. We're most valuable to clients who think of us as part of the team, not a vendor.</p>
+            </div>
           </div>
-
-          <div class="value-card fade-in">
-            <div class="value-icon">🔍</div>
-            <h3 class="value-title">Honest Assessment</h3>
-            <p class="value-desc">
-              If there's nothing worth automating in your business, we'll tell you. The audit is
-              genuinely free — we don't manufacture opportunities to justify an engagement.
-              Long-term relationships require honesty upfront.
-            </p>
+          <div class="value-row fade-in">
+            <span class="value-num">4</span>
+            <div class="value-content">
+              <h3 class="value-title">Honest Assessment</h3>
+              <p class="value-desc">If there's nothing worth automating in your business, we'll tell you. The audit is genuinely free. We don't manufacture opportunities to justify an engagement. Long-term relationships require honesty upfront.</p>
+            </div>
           </div>
-
-          <div class="value-card fade-in fade-in-delay-1">
-            <div class="value-icon">🛠️</div>
-            <h3 class="value-title">Right Tool for the Job</h3>
-            <p class="value-desc">
-              We're not attached to any particular platform or tool. We recommend what's right for
-              your specific situation — not what's easiest to implement or what we already know.
-              The tool serves your outcome.
-            </p>
+          <div class="value-row fade-in">
+            <span class="value-num">5</span>
+            <div class="value-content">
+              <h3 class="value-title">Right Tool for the Job</h3>
+              <p class="value-desc">We're not attached to any particular platform or tool. We recommend what's right for your specific situation, not what's easiest to implement or what we already know. The tool serves your outcome.</p>
+            </div>
           </div>
-
-          <div class="value-card fade-in fade-in-delay-2">
-            <div class="value-icon">📞</div>
-            <h3 class="value-title">Reachable, Always</h3>
-            <p class="value-desc">
-              You get a real person — not a ticket system, not a 3-day SLA. When something
-              matters to your business, it matters to us. We respond same-day.
-            </p>
+          <div class="value-row fade-in">
+            <span class="value-num">6</span>
+            <div class="value-content">
+              <h3 class="value-title">Reachable, Always</h3>
+              <p class="value-desc">You get a real person: no ticket systems, no 3-day SLA. When something matters to your business, it matters to us. We respond same-day.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -326,24 +312,40 @@ import SiteFooter from '../components/SiteFooter.astro';
     background: var(--color-bg);
   }
 
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  .values-list {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .value-row {
+    display: flex;
     gap: 24px;
+    align-items: baseline;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .value-card {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 32px 28px;
-    box-shadow: var(--shadow-card);
+  .value-row:first-child {
+    border-top: 1px solid var(--color-border);
   }
 
-  .value-icon {
+  .value-num {
     font-size: 28px;
-    margin-bottom: 14px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-border);
+    flex-shrink: 0;
+    width: 32px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
     line-height: 1;
+  }
+
+  .value-content {
+    flex: 1;
   }
 
   .value-title {
@@ -351,13 +353,14 @@ import SiteFooter from '../components/SiteFooter.astro';
     font-weight: 700;
     color: var(--color-text);
     letter-spacing: -0.01em;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .value-desc {
     font-size: 14px;
     color: var(--color-body);
     line-height: 1.65;
+    text-wrap: pretty;
   }
 
   /* CTA */
@@ -395,7 +398,7 @@ import SiteFooter from '../components/SiteFooter.astro';
   .cta-fine {
     margin-top: 16px;
     font-size: 13px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.68);
   }
 
   /* RESPONSIVE */
@@ -406,15 +409,6 @@ import SiteFooter from '../components/SiteFooter.astro';
     }
     .about-photo-wrap {
       max-width: 360px;
-    }
-    .values-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .values-grid {
-      grid-template-columns: 1fr;
     }
   }
 </style>

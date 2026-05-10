@@ -1,26 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 const year = new Date().getFullYear();
 ---
 
 <BaseLayout
-  title="Privacy Policy | Proactive Pixels"
-  description="Privacy Policy for Proactive Pixels LLC"
+  title="Privacy Policy | ProActive Pixels"
+  description="Privacy Policy for ProActive Pixels LLC — how we collect, use, and protect your information."
 >
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a href="/" class="site-logo">Proactive Pixels</a>
-    </div>
-  </header>
+  <Nav />
 
-  <main class="privacy">
-    <div class="privacy__inner">
-      <h1 class="privacy__title">Privacy Policy</h1>
-      <p class="privacy__date">Last updated: {year}</p>
+  <main class="privacy-page">
+    <div class="container--narrow">
+      <div class="privacy-header">
+        <h1 class="privacy-title">Privacy Policy</h1>
+        <p class="privacy-date">Last updated: {year}</p>
+      </div>
 
-      <div class="privacy__body">
+      <div class="privacy-body">
         <h2>Information We Collect</h2>
-        <p>When you submit our form, we collect your first name, business type, and phone number. This information is used solely to conduct your free business assessment and deliver your report.</p>
+        <p>When you submit our assessment form, we collect your first name, business type, and phone number. This information is used solely to conduct your free business assessment and deliver your personalized Leak Report.</p>
 
         <h2>How We Use Your Information</h2>
         <p>Your information is used to contact you for your requested business assessment and to deliver your written report. We do not sell, rent, or share your personal information with third parties for marketing purposes.</p>
@@ -32,79 +32,76 @@ const year = new Date().getFullYear();
         <p>We retain your information for as long as necessary to provide our services. You may request deletion of your data at any time by contacting us.</p>
 
         <h2>Contact</h2>
-        <p>For privacy questions or data deletion requests, contact us at: <a href="mailto:hello@proactivepixels.com">hello@proactivepixels.com</a></p>
+        <p>For privacy questions or data deletion requests, contact us at: <a href="mailto:solutions@proactivepixels.com">solutions@proactivepixels.com</a></p>
 
-        <p class="privacy__footer">&copy; {year} Proactive Pixels LLC. All rights reserved.</p>
+        <p class="privacy-footer">&copy; {year} ProActive Pixels LLC. All rights reserved.</p>
       </div>
     </div>
   </main>
+
+  <SiteFooter />
 </BaseLayout>
 
 <style>
-  .site-header {
-    padding: 20px 24px;
+  .privacy-page {
+    padding: 72px 0 96px;
+    background: var(--color-bg);
+  }
+
+  .privacy-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
     border-bottom: 1px solid var(--color-border);
   }
 
-  .site-header__inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .site-logo {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--color-navy);
-    text-decoration: none;
-  }
-
-  .privacy {
-    padding: 60px 24px 100px;
-  }
-
-  .privacy__inner {
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .privacy__title {
-    font-family: var(--font-display);
-    font-size: 36px;
+  .privacy-title {
+    font-size: clamp(28px, 4vw, 40px);
     font-weight: 700;
     color: var(--color-text);
-    margin-bottom: 8px;
     letter-spacing: -0.02em;
+    margin-bottom: 8px;
   }
 
-  .privacy__date {
+  .privacy-date {
     font-size: 14px;
     color: var(--color-muted);
-    margin-bottom: 48px;
   }
 
-  .privacy__body h2 {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 600;
+  .privacy-body h2 {
+    font-size: 18px;
+    font-weight: 700;
     color: var(--color-text);
-    margin: 32px 0 12px;
+    letter-spacing: -0.01em;
+    margin: 40px 0 12px;
   }
 
-  .privacy__body p {
+  .privacy-body h2:first-child {
+    margin-top: 0;
+  }
+
+  .privacy-body p {
     font-size: 16px;
     line-height: 1.75;
-    color: var(--color-text-light);
+    color: var(--color-body);
     margin-bottom: 16px;
+    max-width: 65ch;
+    text-wrap: pretty;
   }
 
-  .privacy__body a {
-    color: var(--color-navy);
+  .privacy-body a {
+    color: var(--pp-sky);
     text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
-  .privacy__footer {
-    margin-top: 60px;
+  .privacy-body a:hover {
+    color: var(--pp-ocean);
+  }
+
+  .privacy-footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
     font-size: 13px;
     color: var(--color-muted);
   }
