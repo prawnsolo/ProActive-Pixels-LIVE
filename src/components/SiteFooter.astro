@@ -1,0 +1,127 @@
+---
+// Multi-page site footer
+---
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">
+          <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels">Pixels</span>
+        </span>
+        <p class="footer-tagline">We find the leaks. We fix them. We keep them fixed.</p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-col">
+          <div class="footer-col-label">Company</div>
+          <a href="/about">About</a>
+          <a href="/work">Work</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Services</div>
+          <a href="/services">What We Do</a>
+          <a href="/assessment">Free Leak Report</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Contact</div>
+          <a href="mailto:solutions@proactivepixels.com">solutions@proactivepixels.com</a>
+          <a href="/assessment">Book a Call</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ProActive Pixels</span>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    padding: 56px 0 32px;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .logo-pro, .logo-pixels { color: var(--logo-main); }
+  .logo-active { color: var(--logo-active); }
+
+  .footer-tagline {
+    font-size: 14px;
+    color: var(--color-muted);
+    max-width: 220px;
+    line-height: 1.5;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 4px;
+  }
+
+  .footer-col a {
+    font-size: 14px;
+    color: var(--color-body);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-col a:hover { color: var(--pp-navy); }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+    font-size: 13px;
+    color: var(--color-muted);
+  }
+
+  .footer-bottom a {
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-bottom a:hover { color: var(--pp-navy); }
+
+  @media (max-width: 640px) {
+    .footer-top { flex-direction: column; gap: 32px; }
+    .footer-nav { gap: 32px; }
+  }
+</style>

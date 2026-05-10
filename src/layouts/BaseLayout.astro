@@ -2,11 +2,13 @@
 export interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = "Free Business Leak Report | Proactive Pixels",
-  description = "Find out what your business is losing every year. Free 12-minute call. Written report within 24 hours. Every leak named, priced, and ranked by what to fix first.",
+  title = "ProActive Pixels | AI & Automation for Local Service Businesses",
+  description = "We find the automation and AI opportunities in your business, implement the right solution, and maintain it. Most clients are live within 72 hours.",
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -16,7 +18,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex" />
+    {noindex && <meta name="robots" content="noindex" />}
     <title>{title}</title>
 
     <!-- Favicons -->
@@ -208,9 +210,80 @@ const {
     transform: translateY(0);
   }
 
+  .btn--ghost {
+    background: transparent;
+    color: var(--pp-sky);
+    border: 2px solid var(--pp-sky);
+  }
+
+  .btn--ghost:hover {
+    background: rgba(64, 165, 221, 0.08);
+  }
+
+  .btn--white {
+    background: #ffffff;
+    color: #171E62;
+  }
+
+  .btn--white:hover {
+    background: rgba(255,255,255,0.92);
+    transform: translateY(-1px);
+  }
+
+  .btn--lg {
+    font-size: 18px;
+    padding: 20px 40px;
+  }
+
+  .btn--sm {
+    font-size: 14px;
+    padding: 11px 22px;
+  }
+
   .btn--full {
     width: 100%;
     justify-content: center;
+  }
+
+  /* ===========================
+     SHARED LAYOUT
+  =========================== */
+  .container {
+    max-width: var(--max-hero);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .container--narrow {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pp-sky);
+    margin-bottom: 12px;
+  }
+
+  .section-headline {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--pp-navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--color-body);
+    line-height: 1.65;
+    max-width: 580px;
+    margin-bottom: 40px;
   }
 
   /* ===========================
