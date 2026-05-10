@@ -391,6 +391,11 @@ import SiteFooter from '../components/SiteFooter.astro';
     margin-bottom: 16px;
   }
 
+  [data-theme="dark"] .phase-badge {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.09);
+  }
+
   .phase-header {
     display: flex;
     align-items: center;
@@ -520,6 +525,11 @@ import SiteFooter from '../components/SiteFooter.astro';
     border-radius: var(--radius-pill);
   }
 
+  [data-theme="dark"] .solution-tag {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.09);
+  }
+
   .solutions-note {
     text-align: center;
     font-size: 15px;
@@ -588,6 +598,10 @@ import SiteFooter from '../components/SiteFooter.astro';
     padding: 4px 14px;
     border-radius: var(--radius-pill);
     white-space: nowrap;
+  }
+
+  [data-theme="dark"] .tier-chip {
+    color: #171E62;
   }
 
   .tier-label {
