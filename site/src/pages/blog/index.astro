@@ -1,0 +1,250 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+const posts = [
+  {
+    slug: 'after-hours-calls',
+    title: 'How Much Is Your Voicemail Costing You?',
+    description: 'The average service business misses 40% of its after-hours calls. Here\'s how to calculate exactly what that\'s worth in lost revenue — and what to do about it.',
+    pubDate: 'May 8, 2026',
+    readTime: '5 min',
+    category: 'Lead Capture',
+  },
+  {
+    slug: 'five-signs-ready-for-ai',
+    title: '5 Signs Your Service Business Is Ready for AI Automation',
+    description: 'Not every business needs AI. Here are the five indicators that your operation has reached the point where automation will pay for itself quickly.',
+    pubDate: 'April 29, 2026',
+    readTime: '6 min',
+    category: 'Strategy',
+  },
+  {
+    slug: 'set-it-and-forget-it-myth',
+    title: 'The "Set It and Forget It" Automation Myth',
+    description: 'Why most automation projects fail at month three — and what the businesses that get lasting results do differently.',
+    pubDate: 'April 15, 2026',
+    readTime: '4 min',
+    category: 'Operations',
+  },
+];
+---
+
+<BaseLayout
+  title="Blog | ProActive Pixels — AI & Automation Insights"
+  description="Practical guides on AI and automation for local service businesses. No theory — just what works."
+>
+  <Nav />
+
+  <main>
+
+    <section class="blog-hero">
+      <div class="container">
+        <div class="section-label fade-in">Resources</div>
+        <h1 class="blog-headline fade-in fade-in-delay-1">
+          What We've Learned<br>
+          <span class="headline-accent">Fixing the Leaks</span>
+        </h1>
+        <p class="blog-sub fade-in fade-in-delay-2">
+          Practical guides on AI and automation for service businesses.
+          No theory, no vendor pitches — just patterns we see working in the field.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-posts">
+      <div class="container">
+        <div class="posts-grid">
+          {posts.map((post, i) => (
+            <a href={`/blog/${post.slug}`} class={`post-card fade-in${i > 0 ? ` fade-in-delay-${i}` : ''}`}>
+              <div class="post-card-top">
+                <span class="post-card-category">{post.category}</span>
+              </div>
+              <h2 class="post-card-title">{post.title}</h2>
+              <p class="post-card-desc">{post.description}</p>
+              <div class="post-card-meta">
+                <span class="post-card-date">{post.pubDate}</span>
+                <span class="post-card-divider">·</span>
+                <span class="post-card-time">{post.readTime} read</span>
+              </div>
+              <span class="post-card-cta">Read article →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-subscribe">
+      <div class="container">
+        <div class="subscribe-inner fade-in">
+          <div class="subscribe-text">
+            <h2 class="subscribe-heading">Ready to find your leaks?</h2>
+            <p class="subscribe-sub">Skip the reading list. Get a personalized audit of your biggest automation opportunities — free, no commitment.</p>
+          </div>
+          <a href="/assessment" class="btn btn--primary">Get Your Free Leak Report →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    padding: 80px 0 72px;
+    background: var(--color-bg);
+  }
+
+  .blog-headline {
+    font-size: clamp(36px, 5.5vw, 54px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    text-wrap: balance;
+  }
+
+  .headline-accent {
+    color: var(--pp-amber);
+  }
+
+  .blog-sub {
+    font-size: 18px;
+    color: var(--color-body);
+    line-height: 1.65;
+    max-width: 540px;
+    text-wrap: pretty;
+  }
+
+  .section-posts {
+    padding: 64px 0 96px;
+    background: var(--color-bg);
+  }
+
+  .posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .post-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: background 0.15s;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .post-card:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-card:hover .post-card-title {
+    color: var(--pp-sky);
+  }
+
+  .post-card:hover .post-card-cta {
+    color: var(--pp-sky);
+    transform: translateX(4px);
+  }
+
+  .post-card-top {
+    margin-bottom: 12px;
+  }
+
+  .post-card-category {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pp-amber);
+  }
+
+  .post-card-title {
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    transition: color 0.15s;
+    text-wrap: balance;
+    max-width: 680px;
+  }
+
+  .post-card-desc {
+    font-size: 16px;
+    color: var(--color-body);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    max-width: 64ch;
+    text-wrap: pretty;
+  }
+
+  .post-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-muted);
+    margin-bottom: 14px;
+  }
+
+  .post-card-divider {
+    opacity: 0.5;
+  }
+
+  .post-card-cta {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-muted);
+    transition: color 0.15s, transform 0.15s;
+    display: inline-block;
+  }
+
+  /* SUBSCRIBE */
+  .section-subscribe {
+    padding: 56px 0;
+    background: var(--color-bg-section);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .subscribe-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .subscribe-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .subscribe-sub {
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 640px) {
+    .subscribe-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .subscribe-inner .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
