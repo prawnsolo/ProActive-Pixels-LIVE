@@ -61,7 +61,13 @@ import SiteFooter from '../components/SiteFooter.astro';
         <div class="process-steps">
           <div class="process-step fade-in">
             <div class="step-number">01</div>
-            <div class="step-icon">🔍</div>
+            <div class="step-icon">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                <circle cx="19" cy="19" r="12" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M28 28l8 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M14 18h10M14 23h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
             <h3 class="step-title">Find</h3>
             <p class="step-desc">
               We map your customer journey from first contact to final invoice. Every manual touchpoint,
@@ -75,7 +81,12 @@ import SiteFooter from '../components/SiteFooter.astro';
 
           <div class="process-step fade-in fade-in-delay-1">
             <div class="step-number">02</div>
-            <div class="step-icon">⚡</div>
+            <div class="step-icon">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                <circle cx="22" cy="22" r="18" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M25 11L17 24h8L19 37" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
             <h3 class="step-title">Implement</h3>
             <p class="step-desc">
               We don't build custom software from scratch. We connect proven AI tools and automation
@@ -89,7 +100,12 @@ import SiteFooter from '../components/SiteFooter.astro';
 
           <div class="process-step fade-in fade-in-delay-2">
             <div class="step-number">03</div>
-            <div class="step-icon">🛡️</div>
+            <div class="step-icon">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                <path d="M22 4L8 10v12c0 9.5 6.2 16.5 14 18.5C29.8 38.5 36 31.5 36 22V10L22 4z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M15 22l5 5 9-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
             <h3 class="step-title">Maintain</h3>
             <p class="step-desc">
               AI tools drift. Integrations break. APIs update. We monitor your solutions, fix issues
@@ -348,9 +364,9 @@ import SiteFooter from '../components/SiteFooter.astro';
   }
 
   .step-icon {
-    font-size: 36px;
     margin-bottom: 16px;
-    line-height: 1;
+    color: var(--pp-sky);
+    line-height: 0;
   }
 
   .step-title {
