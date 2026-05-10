@@ -1,0 +1,324 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "ProActive Pixels | AI & Automation for Local Service Businesses",
+  description = "We find the automation and AI opportunities in your business, implement the right solution, and maintain it. Most clients are live within 72 hours.",
+  noindex = false,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <title>{title}</title>
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Fonts: DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Anti-FOUC: apply saved theme before first paint -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('pp-theme');
+          if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* ===========================
+     LIGHT MODE (default)
+  =========================== */
+  :root {
+    /* Backgrounds */
+    --color-bg: oklch(99.5% 0.006 265);
+    --color-bg-card: oklch(99.8% 0.004 265);
+    --color-bg-section: #f4f6fb;
+    --color-bg-dark: #171E62;
+    --color-input-bg: #ffffff;
+    --color-chip: #eef0fa;
+    --color-header-border: #e4e7f4;
+
+    /* Text — all navy-family */
+    --color-text: #171E62;
+    --color-text-light: #252F6E;
+    --color-body: #374070;
+    --color-muted: #5D6494;
+
+    /* Borders */
+    --color-border: #dde1f0;
+    --color-border-input: #171E62;
+
+    /* Brand palette */
+    --pp-navy: #171E62;
+    --pp-ocean: #1770B2;
+    --pp-sky: #40A5DD;
+    --pp-amber: #F5A623;
+    --color-error: #DC2626;
+
+    /* Logo */
+    --logo-main: #171E62;
+    --logo-active: #40A5DD;
+
+    /* Highlight / accent (dollar amounts, emphasis) */
+    --color-highlight: #40A5DD;
+
+    /* Fonts */
+    --font-body: 'DM Sans', system-ui, sans-serif;
+
+    /* Radii */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 12px;
+    --radius-pill: 999px;
+
+    /* Shadows — sky-blue tinted for CTA buttons */
+    --shadow-card: rgba(23, 30, 98, 0.08) 0px 4px 16px 0px;
+    --shadow-btn: rgba(64, 165, 221, 0.35) 0px 4px 14px 0px;
+    --shadow-btn-hover: rgba(64, 165, 221, 0.50) 0px 6px 20px 0px;
+
+    /* Layout */
+    --max-content: 680px;
+    --max-hero: 1100px;
+  }
+
+  /* ===========================
+     DARK MODE
+  =========================== */
+  [data-theme="dark"] {
+    --color-bg: #0e0e14;
+    --color-bg-card: #16161f;
+    --color-bg-section: #111119;
+    --color-bg-dark: #08091a;
+    --color-input-bg: #1c1c28;
+    --color-chip: #1e2038;
+    --color-header-border: #1e1e2e;
+
+    --color-text: #eef0f8;
+    --color-text-light: #e4e8f8;
+    --color-body: #cdd4ec;
+    --color-muted: #b0bada;
+
+    --color-border: #22243a;
+    --color-border-input: rgba(64, 165, 221, 0.5);
+
+    --pp-navy: #5a78d0;
+    --color-highlight: #40A5DD;
+
+    --logo-main: #eef0f8;
+    --logo-active: #40A5DD;
+
+    --shadow-card: rgba(0, 0, 0, 0.5) 0px 4px 24px 0px;
+    --shadow-btn: rgba(64, 165, 221, 0.28) 0px 4px 14px 0px;
+    --shadow-btn-hover: rgba(64, 165, 221, 0.45) 0px 6px 20px 0px;
+  }
+
+  /* ===========================
+     RESET & BASE
+  =========================== */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  /* ===========================
+     GLOBAL BUTTON SYSTEM
+     CTAs use Sky Blue (#40A5DD)
+  =========================== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    padding: 17px 32px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.01em;
+  }
+
+  .btn--primary {
+    background: var(--pp-sky);
+    color: #ffffff;
+    box-shadow: var(--shadow-btn);
+  }
+
+  .btn--primary:hover {
+    background: var(--pp-ocean);
+    box-shadow: var(--shadow-btn-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn--primary:active {
+    transform: translateY(0);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--pp-sky);
+    border: 2px solid var(--pp-sky);
+  }
+
+  .btn--ghost:hover {
+    background: rgba(64, 165, 221, 0.08);
+  }
+
+  .btn--white {
+    background: #ffffff;
+    color: #171E62;
+  }
+
+  .btn--white:hover {
+    background: rgba(255,255,255,0.92);
+    transform: translateY(-1px);
+  }
+
+  .btn--lg {
+    font-size: 18px;
+    padding: 20px 40px;
+  }
+
+  .btn--sm {
+    font-size: 14px;
+    padding: 11px 22px;
+  }
+
+  .btn--full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ===========================
+     SHARED LAYOUT
+  =========================== */
+  .container {
+    max-width: var(--max-hero);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .container--narrow {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pp-amber);
+    margin-bottom: 12px;
+  }
+
+  .section-headline {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--pp-navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    text-wrap: balance;
+  }
+
+  [data-theme="dark"] .section-headline {
+    color: var(--color-text);
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--color-body);
+    line-height: 1.65;
+    max-width: 580px;
+    margin-bottom: 40px;
+    text-wrap: pretty;
+  }
+
+  /* ===========================
+     SCROLL ANIMATIONS
+  =========================== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .btn {
+      transition: none;
+    }
+  }
+</style>
