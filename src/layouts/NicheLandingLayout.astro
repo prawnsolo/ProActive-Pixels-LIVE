@@ -48,6 +48,7 @@ const {
   <header class="nl-header">
     <div class="nl-header__inner">
       <a href="/" class="nl-logo" aria-label="ProActive Pixels home">
+        <img src="/favicon.svg" alt="" class="nl-logo__img" aria-hidden="true" />
         <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels"> Pixels</span>
       </a>
       <div class="nl-header-right">
@@ -285,6 +286,7 @@ const {
   <footer class="nl-footer">
     <div class="nl-footer__inner">
       <span class="nl-footer__logo">
+        <img src="/favicon.svg" alt="" class="nl-logo__img" aria-hidden="true" />
         <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels"> Pixels</span>
       </span>
       <div class="nl-footer__links">
@@ -325,6 +327,18 @@ const {
     font-weight: 700;
     letter-spacing: -0.02em;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nl-logo__img {
+    height: 28px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+  .nl-footer__logo .nl-logo__img {
+    height: 20px;
   }
   .logo-pro, .logo-pixels { color: var(--logo-main); transition: color 0.25s ease; }
   .logo-active { color: var(--logo-active); }
@@ -844,6 +858,9 @@ const {
     font-size: 18px;
     font-weight: 700;
     letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .nl-footer__links {
     display: flex;
