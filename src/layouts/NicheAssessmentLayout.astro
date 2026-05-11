@@ -7,6 +7,7 @@ export interface Props {
   nicheLabel: string;
   lossRange: string;
   nicheValue: string;
+  nicheOperator: string;
   objections?: Array<{ quote: string; answer: string }>;
 }
 
@@ -16,6 +17,7 @@ const {
   nicheLabel,
   lossRange,
   nicheValue,
+  nicheOperator,
   objections = [
     {
       quote: '"Is this actually for me?"',
@@ -67,8 +69,6 @@ const {
     <!-- HERO -->
     <section class="hero">
       <div class="hero__inner">
-
-        <span class="niche-chip">{nicheLabel}</span>
 
         <h1 class="hero__headline">
           <span class="hero__kicker">12&ensp;minutes</span>
@@ -124,7 +124,7 @@ const {
         <h2 class="why-free__heading">Why is this free?</h2>
 
         <p class="why-free__body">
-          Because we're early. We built the assessment and the report. We haven't run it for 100 local service businesses yet. We're running it for the first ones now, so we can measure what we said would happen against what actually happens, build the case studies, and earn the right to charge for it later.
+          Because we're early. We built the assessment and the report. We haven't run it for 100 {nicheOperator} yet. We're running it for the first ones now, so we can measure what we said would happen against what actually happens, build the case studies, and earn the right to charge for it later.
         </p>
 
         <p class="why-free__body">
@@ -390,19 +390,6 @@ const {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .niche-chip {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--pp-amber);
-    background: rgba(245, 166, 35, 0.12);
-    border: 1px solid rgba(245, 166, 35, 0.3);
-    padding: 5px 14px;
-    border-radius: var(--radius-sm);
-    margin-bottom: 28px;
   }
   .hero__headline {
     font-family: var(--font-body);
