@@ -9,8 +9,8 @@ export interface Props {
 }
 
 const {
-  title = "ProActive Pixels | AI & Automation for Local Service Businesses",
-  description = "We find the automation and AI opportunities in your business, implement the right solution, and maintain it. Most clients are live within 72 hours.",
+  title = "ProActive Pixels — Free Business Assessment for Local Service Businesses",
+  description = "Find out exactly where your business is leaking revenue. Free 12-minute voice assessment for local service businesses. Written report within 24 hours. No pitch, no obligation.",
   noindex = false,
   ogImage = "/images/og-default.jpg",
   ogType = "website",
@@ -78,275 +78,38 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
         } catch (e) {}
       })();
     </script>
+
+    <!-- =====================================================
+         GOOGLE ANALYTICS 4
+         TODO: Replace G-XXXXXXXXXX with your Measurement ID
+         Get yours: analytics.google.com -> Admin -> Data Streams -> Web -> Measurement ID
+         ===================================================== -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+
+    <!-- =====================================================
+         META PIXEL
+         TODO: Replace 0000000000000000 with your Pixel ID (15-16 digits)
+         Get yours: business.facebook.com -> Events Manager -> Pixels
+         ===================================================== -->
+    <!-- <script is:inline>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '0000000000000000');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=0000000000000000&ev=PageView&noscript=1" /></noscript> -->
   </head>
   <body>
     <slot />
   </body>
 </html>
-
-<style is:global>
-  /* ===========================
-     LIGHT MODE (default)
-  =========================== */
-  :root {
-    /* Backgrounds */
-    --color-bg: oklch(99.5% 0.006 265);
-    --color-bg-card: oklch(99.8% 0.004 265);
-    --color-bg-section: #f4f6fb;
-    --color-bg-dark: #171E62;
-    --color-input-bg: #ffffff;
-    --color-chip: #eef0fa;
-    --color-header-border: #e4e7f4;
-
-    /* Text — all navy-family */
-    --color-text: #171E62;
-    --color-text-light: #252F6E;
-    --color-body: #374070;
-    --color-muted: #5D6494;
-
-    /* Borders */
-    --color-border: #dde1f0;
-    --color-border-input: #171E62;
-
-    /* Brand palette */
-    --pp-navy: #171E62;
-    --pp-ocean: #1770B2;
-    --pp-sky: #40A5DD;
-    --pp-amber: #F5A623;
-    --color-error: #DC2626;
-
-    /* Logo */
-    --logo-main: #171E62;
-    --logo-active: #40A5DD;
-
-    /* Highlight / accent (dollar amounts, emphasis) */
-    --color-highlight: #40A5DD;
-
-    /* Fonts */
-    --font-body: 'DM Sans', system-ui, sans-serif;
-
-    /* Radii */
-    --radius-sm: 6px;
-    --radius-md: 12px;
-    --radius-lg: 12px;
-    --radius-pill: 999px;
-
-    /* Shadows — sky-blue tinted for CTA buttons */
-    --shadow-card: rgba(23, 30, 98, 0.08) 0px 4px 16px 0px;
-    --shadow-btn: rgba(64, 165, 221, 0.35) 0px 4px 14px 0px;
-    --shadow-btn-hover: rgba(64, 165, 221, 0.50) 0px 6px 20px 0px;
-
-    /* Layout */
-    --max-content: 680px;
-    --max-hero: 1100px;
-  }
-
-  /* ===========================
-     DARK MODE
-  =========================== */
-  [data-theme="dark"] {
-    --color-bg: #0e0e14;
-    --color-bg-card: #16161f;
-    --color-bg-section: #111119;
-    --color-bg-dark: #08091a;
-    --color-input-bg: #1c1c28;
-    --color-chip: #1e2038;
-    --color-header-border: #1e1e2e;
-
-    --color-text: #eef0f8;
-    --color-text-light: #e4e8f8;
-    --color-body: #cdd4ec;
-    --color-muted: #b0bada;
-
-    --color-border: #22243a;
-    --color-border-input: rgba(64, 165, 221, 0.5);
-
-    --pp-navy: #5a78d0;
-    --color-highlight: #40A5DD;
-
-    --logo-main: #eef0f8;
-    --logo-active: #40A5DD;
-
-    --shadow-card: rgba(0, 0, 0, 0.5) 0px 4px 24px 0px;
-    --shadow-btn: rgba(64, 165, 221, 0.28) 0px 4px 14px 0px;
-    --shadow-btn-hover: rgba(64, 165, 221, 0.45) 0px 6px 20px 0px;
-  }
-
-  /* ===========================
-     RESET & BASE
-  =========================== */
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-optical-sizing: auto;
-  }
-
-  body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    transition: background-color 0.25s ease, color 0.25s ease;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  /* ===========================
-     GLOBAL BUTTON SYSTEM
-     CTAs use Sky Blue (#40A5DD)
-  =========================== */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
-    padding: 17px 32px;
-    border-radius: var(--radius-pill);
-    letter-spacing: 0.01em;
-  }
-
-  .btn--primary {
-    background: var(--pp-sky);
-    color: #ffffff;
-    box-shadow: var(--shadow-btn);
-  }
-
-  .btn--primary:hover {
-    background: var(--pp-ocean);
-    box-shadow: var(--shadow-btn-hover);
-    transform: translateY(-1px);
-  }
-
-  .btn--primary:active {
-    transform: translateY(0);
-  }
-
-  .btn--ghost {
-    background: transparent;
-    color: var(--pp-sky);
-    border: 2px solid var(--pp-sky);
-  }
-
-  .btn--ghost:hover {
-    background: rgba(64, 165, 221, 0.08);
-  }
-
-  .btn--white {
-    background: #ffffff;
-    color: #171E62;
-  }
-
-  .btn--white:hover {
-    background: rgba(255,255,255,0.92);
-    transform: translateY(-1px);
-  }
-
-  .btn--lg {
-    font-size: 18px;
-    padding: 20px 40px;
-  }
-
-  .btn--sm {
-    font-size: 14px;
-    padding: 11px 22px;
-  }
-
-  .btn--full {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* ===========================
-     SHARED LAYOUT
-  =========================== */
-  .container {
-    max-width: var(--max-hero);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .container--narrow {
-    max-width: var(--max-content);
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--pp-amber);
-    margin-bottom: 12px;
-  }
-
-  .section-headline {
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--color-text);
-    letter-spacing: -0.02em;
-    margin-bottom: 16px;
-    text-wrap: balance;
-  }
-
-  .section-sub {
-    font-size: 17px;
-    color: var(--color-body);
-    line-height: 1.65;
-    max-width: 580px;
-    margin-bottom: 40px;
-    text-wrap: pretty;
-  }
-
-  /* ===========================
-     SCROLL ANIMATIONS
-  =========================== */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .fade-in-delay-1 { transition-delay: 0.1s; }
-  .fade-in-delay-2 { transition-delay: 0.2s; }
-  .fade-in-delay-3 { transition-delay: 0.3s; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .fade-in {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-    .btn {
-      transition: none;
-    }
-  }
-</style>
