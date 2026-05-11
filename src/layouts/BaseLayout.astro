@@ -3,13 +3,22 @@ export interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  ogImage?: string;
+  ogType?: string;
+  articlePublishedTime?: string;
 }
 
 const {
   title = "ProActive Pixels | AI & Automation for Local Service Businesses",
   description = "We find the automation and AI opportunities in your business, implement the right solution, and maintain it. Most clients are live within 72 hours.",
   noindex = false,
+  ogImage = "/images/og-default.jpg",
+  ogType = "website",
+  articlePublishedTime,
 } = Astro.props;
+
+const canonicalUrl = Astro.url.href;
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
 ---
 
 <!DOCTYPE html>
@@ -18,8 +27,31 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex" />}
+    {noindex
+      ? <meta name="robots" content="noindex,nofollow" />
+      : <meta name="robots" content="index,follow" />
+    }
     <title>{title}</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="ProActive Pixels" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />

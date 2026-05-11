@@ -1,0 +1,23 @@
+# ProActive Pixels
+
+> AI & Automation for Local Service Businesses — we find the revenue leaks, fix them fast, and keep them fixed.
+
+ProActive Pixels helps local service businesses (HVAC, plumbing, electrical, cleaning, landscaping, and similar trades) stop losing revenue to missed calls, slow follow-up, and operational gaps. We implement AI voice agents and business automation systems — most clients are live within 72 hours. We don't sell software subscriptions. We find the problem, build the solution, and maintain it.
+
+## Key Pages
+
+- [Home](https://proactivepixels.com/): Overview of services and how we work
+- [Services](https://proactivepixels.com/services/): Full breakdown of what we do — AI voice agents, automated follow-up sequences, lead capture, and ongoing maintenance
+- [Work](https://proactivepixels.com/work/): Case studies and real results from client engagements
+- [About](https://proactivepixels.com/about/): Background and philosophy — built by an operator, for operators
+- [Blog](https://proactivepixels.com/blog/): Insights on AI, automation, and operations for service businesses
+
+## Blog Posts
+
+- [After-Hours Calls: The Revenue Leak Most Service Businesses Ignore](https://proactivepixels.com/blog/after-hours-calls/)
+- [5 Signs Your Operation Is Ready for AI](https://proactivepixels.com/blog/five-signs-ready-for-ai/)
+- [The "Set It and Forget It" Automation Myth](https://proactivepixels.com/blog/set-it-and-forget-it-myth/)
+
+## Contact
+
+Email: solutions@proactivepixels.com

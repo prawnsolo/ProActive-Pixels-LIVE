@@ -13,9 +13,17 @@ export interface Props {
 }
 
 const { title, description, pubDate, readTime, category, heroEmoji = '📖' } = Astro.props;
+
+// Convert human-readable date (e.g. "April 15, 2026") to ISO 8601 for meta
+const pubDateISO = new Date(pubDate).toISOString();
 ---
 
-<BaseLayout title={`${title} | ProActive Pixels`} description={description}>
+<BaseLayout
+  title={`${title} | ProActive Pixels`}
+  description={description}
+  ogType="article"
+  articlePublishedTime={pubDateISO}
+>
   <Nav />
 
   <main class="blog-post-page">

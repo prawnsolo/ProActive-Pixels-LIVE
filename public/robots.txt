@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://proactivepixels.com/sitemap-index.xml
