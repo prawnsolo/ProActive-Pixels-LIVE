@@ -1,0 +1,63 @@
+---
+import NicheLandingLayout from '../layouts/NicheLandingLayout.astro';
+---
+
+<NicheLandingLayout
+  metaTitle="AI & Automation for Auto Repair Shops | ProActive Pixels"
+  metaDescription="Auto repair shops lose $20,000–$60,000 a year to missed appointment calls, slow service updates, and customers who never came back because nobody followed up. Get your free Leak Report in 12 minutes."
+  nicheLabel="For Auto Repair Shops"
+  heroHeadline="Your Service Writer Is Writing Up a Vehicle. The Phone Is Ringing. Nobody Is Picking It Up."
+  heroSub="Auto repair shops lose $20,000–$60,000 a year to missed appointment calls, customers who never got a status update, and repeat clients who quietly started going somewhere else. The audit finds exactly what yours is costing you."
+  formNicheValue="Auto repair"
+  leaks={[
+    {
+      title: "Missed Appointment Calls",
+      desc: "Your service writer is elbow-deep in a customer interaction. The phone rings four times and goes to voicemail. The caller hangs up and calls the shop around the corner. At $350 average ticket, eight missed calls a week is $145,000 a year.",
+      monthly: "$2,000 – $8,000",
+    },
+    {
+      title: "No Proactive Vehicle Status Updates",
+      desc: "They dropped off the car at 8am. It's 2pm. They haven't heard anything. They call. Now your service writer stops what they're doing to answer a status question. Automated text updates eliminate the call and the interruption.",
+      monthly: "$800 – $2,500",
+    },
+    {
+      title: "Repeat Customer Falloff",
+      desc: "They were in for an oil change 7 months ago. You haven't reached out since. They went to a quick-lube because they forgot your name. One automated 6-month service reminder would have brought them back.",
+      monthly: "$1,200 – $4,000",
+    },
+    {
+      title: "Declined Service Follow-Up",
+      desc: "You recommended brake pads. They said they'd think about it and come back. They never did. A follow-up text two weeks later asking if they got that taken care of recovers a significant percentage of declined services.",
+      monthly: "$600 – $2,000",
+    },
+  ]}
+  caseStudies={[
+    {
+      type: "Independent Auto Repair Shop, 8-Bay, Mid-South",
+      challenge: "Appointment calls came in while techs and the service writer were all heads-down. Calls rolled to voicemail and a portion never got returned same day.",
+      result: "AI receptionist answered calls during shop hours, collected vehicle and concern details, and scheduled appointments without pulling the service writer off the floor.",
+      metric: "31% reduction in missed calls, 14 additional appointments booked per week",
+    },
+    {
+      type: "Multi-Bay Repair Shop, Great Lakes Region",
+      challenge: "Customers dropped off vehicles and heard nothing until they called to ask. Service reminder dropoff was eroding repeat visit rates year over year.",
+      result: "Automated status update texts and service reminder sequences sent at 6 and 12 months brought lapsed customers back without any outbound calling by staff.",
+      metric: "Repeat visit rate up 26%, $31,000 in recovered service revenue over 90 days",
+    },
+  ]}
+  whyBody="Because we're early. We built the assessment and the report. We haven't run it for 100 auto repair shops yet. We're running it for the first ones now, so we can measure what we said would happen against what actually happens, build the case studies, and earn the right to charge for it later. In exchange for your 12 minutes, you get a written report that names what's costing you the most in your shop right now, with a dollar number next to each item."
+  objections={[
+    {
+      quote: '"We\'re a relationship shop — people come back because they trust us."',
+      answer: "They come back because they remember you. Most shops assume trust means retention. It doesn't — it means they'll call you back when they're reminded. The shops that win long-term relationships are the ones who show up in their customers' phones between visits.",
+    },
+    {
+      quote: '"We\'re already busy enough. We don\'t need more cars."',
+      answer: "More cars isn't the goal. Higher revenue per car, better repeat rates, and fewer calls your service writer has to drop everything to answer — that's the goal. The report shows you what the gap actually is in dollar terms.",
+    },
+    {
+      quote: '"I don\'t want to bother customers with texts."',
+      answer: "A text telling someone their car is ready isn't a bother — it's a service. A text reminding them their oil is due isn't spam — it's why they trust you. The difference is relevance and timing, which is exactly what the system controls.",
+    },
+  ]}
+/>

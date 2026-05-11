@@ -1,0 +1,63 @@
+---
+import NicheLandingLayout from '../layouts/NicheLandingLayout.astro';
+---
+
+<NicheLandingLayout
+  metaTitle="AI & Automation for Med Spas | ProActive Pixels"
+  metaDescription="Med spas lose $30,000–$80,000 a year to after-hours lead decay, membership lapse, and slow consultation follow-up. Get your free Leak Report in 12 minutes."
+  nicheLabel="For Med Spas & Aesthetic Practices"
+  heroHeadline="A Consultation Request Submitted at 8pm Is Gone by 9am. Your Competition Answered It at 8:02."
+  heroSub="Med spas lose $30,000–$80,000 a year to after-hours lead decay, membership lapse, and patients who booked elsewhere because nobody followed up within the hour. The audit finds exactly where yours is."
+  formNicheValue="Med spa / Aesthetics"
+  leaks={[
+    {
+      title: "After-Hours Lead Decay",
+      desc: "A prospective patient submits a consultation request at 7:30pm. Your front desk sees it the next morning. By then, 40% of those leads have already booked elsewhere. High-intent aesthetic patients do not wait — they book the first practice that responds.",
+      monthly: "$3,000 – $10,000",
+    },
+    {
+      title: "Membership and Package Lapse",
+      desc: "A monthly member's credit card expired. Nobody caught it. She meant to update it but never did. Three months later she's booking injections at a competitor. One automated billing retry and a text message would have kept her.",
+      monthly: "$2,000 – $6,000",
+    },
+    {
+      title: "Consultation No-Show Falloff",
+      desc: "You booked the consultation. They didn't show. No automated reminder went out, no confirmation text, no rebook sequence. A no-show without a rebook system just becomes a lost patient.",
+      monthly: "$1,500 – $5,000",
+    },
+    {
+      title: "Treatment Sequence Drop-Off",
+      desc: "They completed their first Botox appointment and loved it. Nobody reminded them at week 10 that they were due for a touch-up. By week 14 they booked with a med spa two miles away that sent them a text.",
+      monthly: "$1,000 – $3,500",
+    },
+  ]}
+  caseStudies={[
+    {
+      type: "Single-Location Med Spa, Suburban Market, Southeast",
+      challenge: "Consultation requests submitted through the website after 6pm sat until the next morning. By then, 40% of those leads had already booked elsewhere or gone cold.",
+      result: "Automated after-hours SMS follow-up engaged leads within 2 minutes of form submission and offered direct booking links. After-hours lead conversion tripled.",
+      metric: "After-hours lead conversion from 18% to 54%, +$26,000 in first 60 days",
+    },
+    {
+      type: "Membership-Based Med Spa, Mid-Atlantic",
+      challenge: "Membership lapse was running at 22% annually. No automated process existed to contact members approaching their renewal date.",
+      result: "Automated SMS sequences starting 30 days before renewal cut lapse rate to 9% in the first membership cycle after implementation.",
+      metric: "Lapse rate from 22% to 9%, $38,400 in membership revenue retained",
+    },
+  ]}
+  whyBody="Because we're early. We built the assessment and the report. We haven't run it for 100 med spas yet. We're running it for the first ones now, so we can measure what we said would happen against what actually happens, build the case studies, and earn the right to charge for it later. In exchange for your 12 minutes, you get a written report that names what's costing you the most in your practice right now, with a dollar number next to each item."
+  objections={[
+    {
+      quote: '"We have a patient coordinator who handles follow-up."',
+      answer: "During business hours, yes. But high-intent patients submit inquiries in the evening, on weekends, and during your busiest appointment windows. If your coordinator isn't responding within 5 minutes around the clock, you're losing patients you already earned.",
+    },
+    {
+      quote: '"Our clientele expects a personal touch — not automation."',
+      answer: "Receiving a personalized text within 2 minutes IS a personal touch. What your clientele actually hates is calling a practice and getting voicemail, or submitting a form and hearing nothing for 14 hours. Speed signals care.",
+    },
+    {
+      quote: '"We\'re already fully booked most weeks."',
+      answer: "Fully booked on services doesn't mean maximized. Membership retention, treatment sequence compliance, and upsell conversion are where med spas leave the most money — and none of those require an open appointment slot.",
+    },
+  ]}
+/>
