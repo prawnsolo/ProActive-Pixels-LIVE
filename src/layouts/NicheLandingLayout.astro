@@ -24,6 +24,7 @@ export interface Props {
     result: string;
     metric: string;
   }>;
+  heroDreamOutcome?: string;
 }
 
 const {
@@ -37,6 +38,7 @@ const {
   objections,
   formNicheValue,
   caseStudies,
+  heroDreamOutcome,
 } = Astro.props;
 ---
 
@@ -72,6 +74,11 @@ const {
         <span class="nl-niche-chip">{nicheLabel}</span>
         <h1 class="nl-hero__headline">{heroHeadline}</h1>
         <p class="nl-hero__sub">{heroSub}</p>
+        {heroDreamOutcome && (
+          <div class="nl-hero__dream">
+            <p class="nl-hero__dream-text">{heroDreamOutcome}</p>
+          </div>
+        )}
         <div class="nl-trust">
           <span class="nl-trust-item">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="7" fill="currentColor" opacity="0.2"/><path d="M4 7l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -410,6 +417,21 @@ const {
     line-height: 1.65;
     max-width: 600px;
     margin-bottom: 32px;
+    text-wrap: pretty;
+  }
+  .nl-hero__dream {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 18px 24px;
+    max-width: 580px;
+    margin-bottom: 32px;
+  }
+  .nl-hero__dream-text {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--color-body);
+    line-height: 1.7;
     text-wrap: pretty;
   }
   .nl-trust {
