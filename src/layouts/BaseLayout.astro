@@ -79,35 +79,27 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
       })();
     </script>
 
-    <!-- =====================================================
-         GOOGLE ANALYTICS 4
-         TODO: Replace G-XXXXXXXXXX with your Measurement ID
-         Get yours: analytics.google.com → Admin → Data Streams → Web → Measurement ID
-         ===================================================== -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics 4 — G-997YEV27FK -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-997YEV27FK"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script> -->
+      gtag('config', 'G-997YEV27FK');
+    </script>
 
-    <!-- =====================================================
-         META PIXEL
-         TODO: Replace 0000000000000000 with your Pixel ID (15-16 digits)
-         Get yours: business.facebook.com → Events Manager → Pixels
-         ===================================================== -->
-    <!-- <script is:inline>
+    <!-- Meta Pixel — 2463440090793871 -->
+    <script is:inline>
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
       t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
       document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '0000000000000000');
+      fbq('init', '2463440090793871');
       fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=0000000000000000&ev=PageView&noscript=1" /></noscript> -->
+      src="https://www.facebook.com/tr?id=2463440090793871&ev=PageView&noscript=1" /></noscript>
   </head>
   <body>
     <slot />
