@@ -230,6 +230,64 @@ import SiteFooter from '../components/SiteFooter.astro';
       </div>
     </section>
 
+    <!-- INDUSTRIES -->
+    <section class="section-industries">
+      <div class="container">
+        <div class="section-header fade-in">
+          <div class="section-label">Industries We Serve</div>
+          <h2 class="section-headline">We Know Your Business Before You Call.</h2>
+          <p class="section-sub">We go deep on a short list of industries. That means we already know where the leaks are — and exactly what they cost — before the first conversation.</p>
+        </div>
+        <div class="industries-grid">
+          <a href="/hvac/" class="industry-card fade-in">
+            <div class="industry-card__name">HVAC</div>
+            <p class="industry-card__desc">Emergency calls, seasonal surge handling & maintenance contract renewals</p>
+            <span class="industry-card__link">See the HVAC Leak Report →</span>
+          </a>
+          <a href="/plumbing/" class="industry-card fade-in fade-in-delay-1">
+            <div class="industry-card__name">Plumbing</div>
+            <p class="industry-card__desc">After-hours dispatch, quote follow-up & repeat customer retention</p>
+            <span class="industry-card__link">See the Plumbing Leak Report →</span>
+          </a>
+          <a href="/roofing/" class="industry-card fade-in fade-in-delay-2">
+            <div class="industry-card__name">Roofing</div>
+            <p class="industry-card__desc">Storm lead speed, estimate closing & insurance job coordination</p>
+            <span class="industry-card__link">See the Roofing Leak Report →</span>
+          </a>
+          <a href="/electrical/" class="industry-card fade-in">
+            <div class="industry-card__name">Electrical</div>
+            <p class="industry-card__desc">Emergency response time, commercial accounts & estimate follow-up</p>
+            <span class="industry-card__link">See the Electrical Leak Report →</span>
+          </a>
+          <a href="/cleaning/" class="industry-card fade-in fade-in-delay-1">
+            <div class="industry-card__name">Cleaning</div>
+            <p class="industry-card__desc">Booking call speed, recurring client retention & review generation</p>
+            <span class="industry-card__link">See the Cleaning Leak Report →</span>
+          </a>
+          <a href="/lawn-care/" class="industry-card fade-in fade-in-delay-2">
+            <div class="industry-card__name">Lawn Care</div>
+            <p class="industry-card__desc">Spring rush overflow, commercial bid speed & client reactivation</p>
+            <span class="industry-card__link">See the Lawn Care Leak Report →</span>
+          </a>
+          <a href="/pest-control/" class="industry-card fade-in">
+            <div class="industry-card__name">Pest Control</div>
+            <p class="industry-card__desc">Urgent infestation response, contract renewals & first-contact speed</p>
+            <span class="industry-card__link">See the Pest Control Leak Report →</span>
+          </a>
+          <a href="/med-spa/" class="industry-card fade-in fade-in-delay-1">
+            <div class="industry-card__name">Med Spa</div>
+            <p class="industry-card__desc">No-show prevention, client reactivation & revenue per visit</p>
+            <span class="industry-card__link">See the Med Spa Leak Report →</span>
+          </a>
+          <a href="/auto-repair/" class="industry-card fade-in fade-in-delay-2">
+            <div class="industry-card__name">Auto Repair</div>
+            <p class="industry-card__desc">Estimate follow-up, service interval reminders & after-hours calls</p>
+            <span class="industry-card__link">See the Auto Repair Leak Report →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA SECTION -->
     <section class="section-cta">
       <div class="container">
@@ -669,6 +727,64 @@ import SiteFooter from '../components/SiteFooter.astro';
     line-height: 1.5;
   }
 
+  /* INDUSTRIES */
+  .section-industries {
+    padding: 96px 0;
+    background: var(--color-bg);
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .industry-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 28px 28px 22px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .industry-card:hover {
+    border-color: var(--pp-amber);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+
+  .industry-card__name {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+
+  .industry-card__desc {
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .industry-card__link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--pp-amber);
+    margin-top: 10px;
+    transition: color 0.15s;
+  }
+
+  .industry-card:hover .industry-card__link {
+    color: var(--pp-sky);
+  }
+
   /* CTA */
   .section-cta {
     padding: 96px 0;
@@ -738,6 +854,9 @@ import SiteFooter from '../components/SiteFooter.astro';
       grid-column: 1;
       grid-row: 3;
     }
+    .industries-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (max-width: 640px) {
@@ -751,6 +870,9 @@ import SiteFooter from '../components/SiteFooter.astro';
     .hero-ctas .btn {
       width: 100%;
       justify-content: center;
+    }
+    .industries-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
