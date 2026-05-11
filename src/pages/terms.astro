@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+const year = new Date().getFullYear();
+---
+
+<BaseLayout
+  title="Terms of Service | ProActive Pixels"
+  description="Terms of Service for ProActive Pixels LLC — what you agree to when using proactivepixels.com or our free voice assessment service."
+>
+  <Nav />
+
+  <main class="terms-page">
+    <div class="container--narrow">
+      <div class="terms-header">
+        <h1 class="terms-title">Terms of Service</h1>
+        <p class="terms-date">Effective: May 4, 2026</p>
+      </div>
+
+      <div class="terms-body">
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing proactivepixels.com or booking any service we offer, you agree to these Terms of Service. If you do not agree, do not use the Site or our services.</p>
+
+        <h2>2. About Our Service</h2>
+        <p>ProActive Pixels offers AI consulting services for local service businesses. Our Phase 1 offering includes:</p>
+        <ul>
+          <li>A free 10&ndash;12 minute voice assessment call</li>
+          <li>A written assessment report delivered after the call</li>
+          <li>An optional free 20-minute strategy call</li>
+        </ul>
+        <p>Paid implementation services may be offered separately, governed by a separate agreement at the time of engagement.</p>
+
+        <h2>3. Free Assessment and Strategy Call Terms</h2>
+        <p>The free voice assessment and strategy call are provided at no cost and with no obligation. You are not required to purchase any service. We reserve the right to decline to provide an assessment to anyone who, in our sole judgment, is not a fit for our services.</p>
+
+        <h2>4. Recording and Use of Voice Calls</h2>
+        <p><strong>Voice assessment calls are recorded.</strong> We record calls for the purpose of producing the written assessment report and improving our service. By booking and attending a voice assessment, you consent to the recording. You may decline to participate at any time before or during the call.</p>
+
+        <h2>5. User Responsibilities</h2>
+        <p>When using our Site or services, you agree to:</p>
+        <ul>
+          <li>Provide accurate information when booking</li>
+          <li>Use the Site lawfully and respectfully</li>
+          <li>Not interfere with the Site&rsquo;s operation or attempt to gain unauthorized access</li>
+        </ul>
+
+        <h2>6. Intellectual Property</h2>
+        <p>The Site, our written assessment reports, and our methods, frameworks, and copy are owned by <strong>Proactive Pixels LLC</strong>. You retain ownership of your business information shared during the assessment.</p>
+        <p>You may use the assessment report internally for your business. You may not redistribute, repackage, or resell the report without our written permission.</p>
+
+        <h2>7. No Guarantee of Results</h2>
+        <p>Our assessments and strategy calls are informational. We do not guarantee revenue, lead generation, time savings, or any specific business outcome. Your results depend on factors outside our control, including your own implementation effort, your market, and your business circumstances.</p>
+
+        <h2>8. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, <strong>Proactive Pixels LLC</strong>, its owners, and its agents are not liable for any indirect, incidental, consequential, or punitive damages arising from your use of the Site or our services. Our total liability for any direct damages is limited to the amount you have paid us in the past twelve months, which for free services is zero dollars ($0).</p>
+
+        <h2>9. Governing Law</h2>
+        <p>These Terms are governed by the laws of the Commonwealth of Virginia, without regard to conflict of laws principles.</p>
+
+        <h2>10. Dispute Resolution</h2>
+        <p>We prefer to resolve disputes informally first. If you have a concern, please email <a href="mailto:jose@proactivepixels.com">jose@proactivepixels.com</a> before pursuing formal action. If we cannot resolve a dispute informally within 30 days, the dispute will be resolved by binding arbitration in Virginia, except that either party may seek injunctive relief in court.</p>
+
+        <h2>11. Modifications to These Terms</h2>
+        <p>We may update these Terms from time to time. The effective date at the top of this page reflects the most recent version. Continued use of the Site after changes constitutes acceptance.</p>
+
+        <h2>12. Termination</h2>
+        <p>We may terminate or suspend access to the Site or our services at any time, for any reason, without notice.</p>
+
+        <h2>13. Contact Us</h2>
+        <p>
+          <strong>Proactive Pixels LLC</strong><br />
+          8401 Mayland Drive, Suite S<br />
+          Richmond, VA 23294<br />
+          Email: <a href="mailto:jose@proactivepixels.com">jose@proactivepixels.com</a>
+        </p>
+
+        <p class="terms-footer">&copy; {year} ProActive Pixels LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .terms-page {
+    padding: 72px 0 96px;
+    background: var(--color-bg);
+  }
+
+  .terms-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .terms-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .terms-date {
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+
+  .terms-body h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+    margin: 40px 0 12px;
+  }
+
+  .terms-body h2:first-child {
+    margin-top: 0;
+  }
+
+  .terms-body p,
+  .terms-body ul {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-body);
+    margin-bottom: 16px;
+    max-width: 65ch;
+    text-wrap: pretty;
+  }
+
+  .terms-body ul {
+    padding-left: 1.5em;
+  }
+
+  .terms-body ul li {
+    margin-bottom: 6px;
+  }
+
+  .terms-body a {
+    color: var(--pp-sky);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .terms-body a:hover {
+    color: var(--pp-ocean);
+  }
+
+  .terms-footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+    font-size: 13px;
+    color: var(--color-muted);
+  }
+</style>
