@@ -285,18 +285,37 @@ const {
   <!-- ========================= FOOTER ========================= -->
   <footer class="nl-footer">
     <div class="nl-footer__inner">
-      <span class="nl-footer__logo">
-        <img src="/favicon.svg" alt="" class="nl-logo__img" aria-hidden="true" />
-        <span><span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels"> Pixels</span></span>
-      </span>
-      <div class="nl-footer__links">
-        <a href="/">Home</a>
-        <a href="/services">Services</a>
-        <a href="/about">About</a>
-        <a href="/blog">Blog</a>
-        <a href="/privacy">Privacy</a>
+      <div class="nl-footer__top">
+        <div class="nl-footer__brand">
+          <span class="nl-footer__logo">
+            <img src="/favicon.svg" alt="" class="nl-logo__img" aria-hidden="true" />
+            <span><span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels"> Pixels</span></span>
+          </span>
+          <p class="nl-footer__tagline">We find the leaks. We fix them. We keep them fixed.</p>
+        </div>
+        <div class="nl-footer__nav">
+          <div class="nl-footer__col">
+            <div class="nl-footer__col-label">Company</div>
+            <a href="/about">About</a>
+            <a href="/work">Work</a>
+            <a href="/blog">Blog</a>
+          </div>
+          <div class="nl-footer__col">
+            <div class="nl-footer__col-label">Services</div>
+            <a href="/services">What We Do</a>
+            <a href="/assessment">Free Leak Report</a>
+          </div>
+          <div class="nl-footer__col">
+            <div class="nl-footer__col-label">Contact</div>
+            <a href="mailto:solutions@proactivepixels.com">solutions@proactivepixels.com</a>
+            <a href="/assessment">Book a Call</a>
+          </div>
+        </div>
       </div>
-      <span class="nl-footer__copy">© 2026 ProActive Pixels</span>
+      <div class="nl-footer__bottom">
+        <span>© 2026 ProActive Pixels</span>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
     </div>
   </footer>
 
@@ -842,42 +861,91 @@ const {
   .nl-footer {
     background: var(--color-bg);
     border-top: 1px solid var(--color-border);
-    padding: 32px 24px;
+    padding: 56px 24px 32px;
   }
   .nl-footer__inner {
     max-width: var(--max-hero);
     margin: 0 auto;
+  }
+  .nl-footer__top {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    gap: 48px;
     flex-wrap: wrap;
-    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .nl-footer__brand {
+    display: flex;
+    flex-direction: column;
   }
   .nl-footer__logo {
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.02em;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    margin-bottom: 10px;
   }
-  .nl-footer__links {
+  .nl-footer__logo .nl-logo__img {
+    height: 20px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+  .nl-footer__tagline {
+    font-size: 14px;
+    color: var(--color-muted);
+    max-width: 220px;
+    line-height: 1.5;
+  }
+  .nl-footer__nav {
     display: flex;
-    gap: 20px;
+    gap: 48px;
     flex-wrap: wrap;
   }
-  .nl-footer__links a {
+  .nl-footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .nl-footer__col-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 4px;
+  }
+  .nl-footer__col a {
+    font-size: 14px;
+    color: var(--color-body);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nl-footer__col a:hover { color: var(--pp-navy); }
+  .nl-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
     font-size: 13px;
+    color: var(--color-muted);
+  }
+  .nl-footer__bottom a {
     color: var(--color-muted);
     text-decoration: none;
     transition: color 0.15s;
   }
-  .nl-footer__links a:hover { color: var(--pp-navy); }
-  .nl-footer__copy { font-size: 12px; color: var(--color-muted); }
+  .nl-footer__bottom a:hover { color: var(--pp-navy); }
 
   @media (max-width: 640px) {
-    .nl-footer__inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .nl-footer__top { flex-direction: column; gap: 32px; }
+    .nl-footer__nav { gap: 32px; }
     .nl-leaks__grid { grid-template-columns: 1fr; }
     .nl-form-card { padding: 32px 20px; }
     .nl-disclosure__phone { font-size: 28px; }
