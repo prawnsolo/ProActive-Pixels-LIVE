@@ -1,0 +1,853 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  metaTitle: string;
+  metaDescription: string;
+  nicheLabel: string;
+  heroHeadline: string;
+  heroSub: string;
+  leaks: Array<{
+    title: string;
+    desc: string;
+    monthly: string;
+  }>;
+  whyBody: string;
+  objections: Array<{
+    quote: string;
+    answer: string;
+  }>;
+  formNicheValue: string;
+}
+
+const {
+  metaTitle,
+  metaDescription,
+  nicheLabel,
+  heroHeadline,
+  heroSub,
+  leaks,
+  whyBody,
+  objections,
+  formNicheValue,
+} = Astro.props;
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+
+  <!-- ========================= HEADER ========================= -->
+  <header class="nl-header">
+    <div class="nl-header__inner">
+      <a href="/" class="nl-logo" aria-label="ProActive Pixels home">
+        <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels"> Pixels</span>
+      </a>
+      <div class="nl-header-right">
+        <a href="/assessment" class="btn btn--ghost btn--sm nl-header-cta">Get Your Free Leak Report</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+          <svg class="toggle-icon toggle-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <svg class="toggle-icon toggle-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========================= HERO ========================= -->
+    <section class="nl-hero">
+      <div class="nl-hero__inner">
+        <span class="nl-niche-chip">{nicheLabel}</span>
+        <h1 class="nl-hero__headline">{heroHeadline}</h1>
+        <p class="nl-hero__sub">{heroSub}</p>
+        <div class="nl-trust">
+          <span class="nl-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="7" fill="currentColor" opacity="0.2"/><path d="M4 7l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            No pitch
+          </span>
+          <span class="nl-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="7" fill="currentColor" opacity="0.2"/><path d="M4 7l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            No obligation
+          </span>
+          <span class="nl-trust-item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="7" fill="currentColor" opacity="0.2"/><path d="M4 7l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            You keep the report either way
+          </span>
+        </div>
+        <a href="#form" class="btn btn--primary btn--lg nl-hero__cta">
+          Show Me What My Business Is Losing
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3.75 9h10.5M9.75 4.5L14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ========================= LEAKS ========================= -->
+    <section class="nl-leaks">
+      <div class="nl-leaks__inner">
+        <p class="nl-leaks__kicker">The Revenue Leaks We Find Most Often</p>
+        <h2 class="nl-leaks__heading">Here's what's leaving your operation every month.</h2>
+        <div class="nl-leaks__grid">
+          {leaks.map((leak, i) => (
+            <div class={`nl-leak-card fade-in fade-in-delay-${(i % 3) + 1}`}>
+              <div class="nl-leak-card__number">{String(i + 1).padStart(2, '0')}</div>
+              <h3 class="nl-leak-card__title">{leak.title}</h3>
+              <p class="nl-leak-card__desc">{leak.desc}</p>
+              <div class="nl-leak-card__loss">
+                <span class="nl-leak-loss-label">Est. monthly impact</span>
+                <span class="nl-leak-loss-amount">{leak.monthly}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="nl-leaks__cta-row">
+          <a href="#form" class="btn btn--primary">
+            Find My Leaks — Free
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M3.75 9h10.5M9.75 4.5L14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= WHY FREE ========================= -->
+    <section class="nl-why">
+      <div class="nl-why__inner">
+        <h2 class="nl-why__heading">Why is this free?</h2>
+        <p class="nl-why__body" set:html={whyBody} />
+        <p class="nl-why__roi"><em>If even one of those turns out to be right, the 12 minutes was worth it.</em></p>
+        <p class="nl-why__closing">No pitch on the call. If you want to know what it would cost to fix something we found, ask. The report is yours to keep, share, or ignore. No follow-up unless you want one.</p>
+        <div class="nl-why__anchor">
+          <div class="nl-why__anchor-row">
+            <span class="nl-why__anchor-label">What a consultant charges for this</span>
+            <span class="nl-why__anchor-price">$1,500 – $3,000</span>
+          </div>
+          <div class="nl-why__anchor-row nl-why__anchor-row--you">
+            <span class="nl-why__anchor-label">What you pay</span>
+            <span class="nl-why__anchor-free">12 minutes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= OBJECTIONS ========================= -->
+    <section class="nl-objections">
+      <div class="nl-objections__inner">
+        <h2 class="nl-objections__heading">We've heard these.</h2>
+        {objections.map((item, i) => (
+          <div class={`nl-objection fade-in fade-in-delay-${(i % 3) + 1}`}>
+            <p class="nl-objection__quote">{item.quote}</p>
+            <p class="nl-objection__answer">{item.answer}</p>
+          </div>
+        ))}
+        <div class="nl-objections__cta fade-in fade-in-delay-3">
+          <a href="#form" class="btn btn--primary">
+            Show Me What My Business Is Losing
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M3.75 9h10.5M9.75 4.5L14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= FORM ========================= -->
+    <section class="nl-form-section" id="form">
+      <div class="nl-form-section__inner">
+        <div class="nl-form-card" id="form-card">
+          <div id="form-view">
+            <h2 class="nl-form-card__headline">Ready to see the number?</h2>
+            <p class="nl-form-card__sub">Three fields. We'll walk you through exactly what happens next.</p>
+
+            <form id="leak-form" novalidate data-niche={formNicheValue}>
+              <div class="form-field" id="field-name">
+                <label for="first-name" class="form-label">First Name</label>
+                <input type="text" id="first-name" name="first_name" class="form-input" placeholder="Your first name" autocomplete="given-name" required />
+                <span class="form-error" id="error-name">Please enter your first name.</span>
+              </div>
+
+              <div class="form-field" id="field-business">
+                <label for="business-type" class="form-label">Business Type</label>
+                <div class="select-wrap">
+                  <select id="business-type" name="niche" class="form-input form-select" required>
+                    <option value="" disabled>Select your industry</option>
+                    <option value="HVAC">HVAC</option>
+                    <option value="Plumbing">Plumbing</option>
+                    <option value="Roofing">Roofing</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Lawn care">Lawn Care</option>
+                    <option value="Cleaning">Cleaning Services</option>
+                    <option value="Pest control">Pest Control</option>
+                    <option value="Auto repair">Auto Repair</option>
+                    <option value="Med spa / Aesthetics">Med Spa / Aesthetics</option>
+                    <option value="Other / not listed">Other / Not Listed</option>
+                  </select>
+                  <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="form-error" id="error-business">Please select your business type.</span>
+              </div>
+
+              <div class="form-field" id="field-phone">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 000-0000" autocomplete="tel" required />
+                <span class="form-error" id="error-phone">Please enter a valid phone number.</span>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full form-submit" id="submit-btn">
+                <span id="btn-text">Show Me What My Business Is Losing</span>
+                <span id="btn-loading" style="display:none;">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="spin" aria-hidden="true">
+                    <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" stroke-dasharray="25 15" opacity="0.8"/>
+                  </svg>
+                  Submitting...
+                </span>
+                <svg id="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M3.75 9h10.5M9.75 4.5L14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <p class="form-privacy">Your information is never sold or shared. Ever.</p>
+              <p class="form-api-error" id="api-error" style="display:none;">Something went wrong. Please try again.</p>
+            </form>
+          </div>
+
+          <div id="disclosure-view" style="display:none;" aria-live="polite">
+            <div class="nl-disclosure">
+              <div class="nl-disclosure__icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                  <circle cx="20" cy="20" r="20" fill="#171E62" opacity="0.1"/>
+                  <path d="M12 20l6 6 10-12" stroke="#171E62" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="nl-disclosure__heading">One thing before you call.</h3>
+              <p class="nl-disclosure__body">You'll be speaking with <strong>Alex</strong>, our AI business analyst. Alex asks 8 focused questions about how your business runs, takes detailed notes, and hands everything directly to our team. We then build your personalized report within 24 hours.</p>
+              <p class="nl-disclosure__emphasis">No salesperson. No pitch. Just 12 minutes and you're done.</p>
+              <p class="nl-disclosure__cta-label">Ready? Call Alex now:</p>
+              <a href="tel:+15406000080" class="nl-disclosure__phone">(540) 600-0080</a>
+              <p class="nl-disclosure__hours">Available Mon–Fri 8am–8pm ET · Your report arrives within 24 hours of your call.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="nl-footer">
+    <div class="nl-footer__inner">
+      <span class="nl-footer__logo">
+        <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels"> Pixels</span>
+      </span>
+      <div class="nl-footer__links">
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/privacy">Privacy</a>
+      </div>
+      <span class="nl-footer__copy">© 2026 ProActive Pixels</span>
+    </div>
+  </footer>
+
+</BaseLayout>
+
+<style>
+  /* ===================== HEADER ===================== */
+  .nl-header {
+    padding: 18px 24px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-header-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+  .nl-header__inner {
+    max-width: var(--max-hero);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .nl-logo {
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .logo-pro, .logo-pixels { color: var(--logo-main); transition: color 0.25s ease; }
+  .logo-active { color: var(--logo-active); }
+  .nl-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nl-header-cta {
+    font-size: 13px;
+    padding: 9px 18px;
+  }
+  @media (max-width: 540px) { .nl-header-cta { display: none; } }
+
+  /* Theme toggle */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: var(--radius-pill);
+    transition: opacity 0.2s ease;
+  }
+  .theme-toggle:hover { opacity: 0.85; }
+  .toggle-icon--sun { color: #F0A020; transition: color 0.25s ease, opacity 0.25s ease; }
+  .theme-toggle.is-dark .toggle-icon--sun { color: var(--color-muted); opacity: 0.5; }
+  .toggle-icon--moon { color: var(--color-muted); opacity: 0.5; transition: color 0.25s ease, opacity 0.25s ease; }
+  .theme-toggle.is-dark .toggle-icon--moon { color: var(--pp-sky); opacity: 1; }
+  .toggle-track {
+    display: inline-flex;
+    align-items: center;
+    width: 46px;
+    height: 26px;
+    border-radius: 999px;
+    background: var(--pp-amber);
+    padding: 3px;
+    transition: background 0.25s ease;
+  }
+  .toggle-thumb {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #171E62;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .theme-toggle.is-dark .toggle-thumb { transform: translateX(20px); background: #ffffff; }
+
+  /* ===================== HERO ===================== */
+  .nl-hero {
+    padding: 80px 24px 96px;
+    text-align: center;
+    background: var(--color-bg);
+  }
+  .nl-hero__inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nl-niche-chip {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pp-amber);
+    background: rgba(245,166,35,0.12);
+    padding: 5px 14px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+  }
+  .nl-hero__headline {
+    font-size: clamp(26px, 4.5vw, 46px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    text-wrap: balance;
+    max-width: 720px;
+  }
+  .nl-hero__sub {
+    font-size: clamp(16px, 2vw, 19px);
+    color: var(--color-body);
+    line-height: 1.65;
+    max-width: 600px;
+    margin-bottom: 32px;
+    text-wrap: pretty;
+  }
+  .nl-trust {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .nl-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+  .nl-trust-item svg { color: var(--pp-sky); flex-shrink: 0; }
+  .nl-hero__cta { font-size: 17px; }
+
+  /* ===================== LEAKS ===================== */
+  .nl-leaks {
+    padding: 96px 24px;
+    background: var(--color-bg-section);
+  }
+  .nl-leaks__inner {
+    max-width: var(--max-hero);
+    margin: 0 auto;
+  }
+  .nl-leaks__kicker {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pp-amber);
+    margin-bottom: 12px;
+  }
+  .nl-leaks__heading {
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    max-width: 600px;
+    text-wrap: balance;
+  }
+  .nl-leaks__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 56px;
+  }
+  .nl-leak-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: var(--shadow-card);
+  }
+  .nl-leak-card__number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+  }
+  .nl-leak-card__title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .nl-leak-card__desc {
+    font-size: 15px;
+    color: var(--color-body);
+    line-height: 1.65;
+    flex: 1;
+    text-wrap: pretty;
+  }
+  .nl-leak-card__loss {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+  }
+  .nl-leak-loss-label {
+    font-size: 11px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nl-leak-loss-amount {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-highlight);
+  }
+  .nl-leaks__cta-row {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ===================== WHY FREE ===================== */
+  .nl-why {
+    padding: 80px 24px;
+    background: var(--color-bg);
+  }
+  .nl-why__inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .nl-why__heading {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    text-wrap: balance;
+  }
+  .nl-why__body {
+    font-size: 17px;
+    color: var(--color-body);
+    line-height: 1.75;
+    margin-bottom: 28px;
+    text-wrap: pretty;
+  }
+  .nl-why__roi {
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.55;
+    margin-bottom: 28px;
+    text-wrap: balance;
+  }
+  .nl-why__closing {
+    font-size: 16px;
+    color: var(--color-body);
+    line-height: 1.75;
+    margin-bottom: 32px;
+    text-wrap: pretty;
+  }
+  .nl-why__anchor {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+  }
+  .nl-why__anchor-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 0;
+  }
+  .nl-why__anchor-row + .nl-why__anchor-row { border-top: 1px solid var(--color-border); }
+  .nl-why__anchor-label { font-size: 14px; color: var(--color-muted); }
+  .nl-why__anchor-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-body);
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+  .nl-why__anchor-free {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--pp-sky);
+  }
+
+  /* ===================== OBJECTIONS ===================== */
+  .nl-objections {
+    padding: 80px 24px 100px;
+    background: var(--color-bg-section);
+  }
+  .nl-objections__inner {
+    max-width: var(--max-content);
+    margin: 0 auto;
+  }
+  .nl-objections__heading {
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+    margin-bottom: 40px;
+  }
+  .nl-objection {
+    padding-top: 36px;
+  }
+  .nl-objection + .nl-objection { border-top: 1px solid var(--color-border); }
+  .nl-objections__heading + .nl-objection { padding-top: 0; }
+  .nl-objection__quote {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .nl-objection__answer {
+    font-size: 16px;
+    color: var(--color-body);
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+  .nl-objections__cta {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* ===================== FORM ===================== */
+  .nl-form-section {
+    padding: 80px 24px;
+    background: var(--color-bg);
+  }
+  .nl-form-section__inner {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .nl-form-card {
+    background: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    padding: 48px 40px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-border);
+  }
+  .nl-form-card__headline {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .nl-form-card__sub {
+    font-size: 15px;
+    color: var(--color-muted);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .form-field { margin-bottom: 20px; }
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+  .form-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text);
+    background: var(--color-input-bg);
+    border: 1px solid var(--color-border-input);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-input:focus {
+    border-color: var(--pp-sky);
+    box-shadow: 0 0 0 3px rgba(64, 165, 221, 0.2);
+  }
+  .form-input.error { border-color: var(--color-error); box-shadow: 0 0 0 3px rgba(220,38,38,0.1); }
+  .form-error { display: none; font-size: 13px; color: var(--color-error); margin-top: 6px; }
+  .form-field.has-error .form-error { display: block; }
+  .select-wrap { position: relative; }
+  .form-select { cursor: pointer; padding-right: 40px; color: var(--color-text); }
+  .select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-muted);
+  }
+  .form-submit { margin-top: 10px; font-size: 16px; }
+  .form-privacy { text-align: center; font-size: 12px; color: var(--color-muted); margin-top: 14px; }
+  .form-api-error { text-align: center; font-size: 13px; color: var(--color-error); margin-top: 10px; }
+
+  /* Disclosure */
+  .nl-disclosure { text-align: center; animation: fadeUp 0.4s ease forwards; }
+  .nl-disclosure__icon { margin-bottom: 20px; display: flex; justify-content: center; }
+  .nl-disclosure__heading { font-size: 22px; font-weight: 700; color: var(--color-text); margin-bottom: 16px; letter-spacing: -0.01em; text-wrap: balance; }
+  .nl-disclosure__body { font-size: 16px; color: var(--color-body); line-height: 1.7; margin-bottom: 16px; text-wrap: pretty; }
+  .nl-disclosure__emphasis { font-size: 15px; font-weight: 600; color: var(--pp-navy); margin-bottom: 28px; }
+  .nl-disclosure__cta-label { font-size: 15px; color: var(--color-muted); margin-bottom: 10px; }
+  .nl-disclosure__phone {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--pp-navy);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    transition: color 0.2s ease;
+  }
+  .nl-disclosure__phone:hover { color: var(--pp-sky); }
+  .nl-disclosure__hours { font-size: 13px; color: var(--color-muted); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .spin { animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ===================== FOOTER ===================== */
+  .nl-footer {
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    padding: 32px 24px;
+  }
+  .nl-footer__inner {
+    max-width: var(--max-hero);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .nl-footer__logo {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .nl-footer__links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .nl-footer__links a {
+    font-size: 13px;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nl-footer__links a:hover { color: var(--pp-navy); }
+  .nl-footer__copy { font-size: 12px; color: var(--color-muted); }
+
+  @media (max-width: 640px) {
+    .nl-footer__inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .nl-leaks__grid { grid-template-columns: 1fr; }
+    .nl-form-card { padding: 32px 20px; }
+    .nl-disclosure__phone { font-size: 28px; }
+  }
+</style>
+
+<script define:vars={{ formNicheValue }}>
+  // Pre-select niche in dropdown
+  const select = document.getElementById('business-type');
+  if (select && formNicheValue) {
+    select.value = formNicheValue;
+  }
+
+  // Theme toggle
+  const toggle = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    const isDark = theme === 'dark';
+    if (isDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggle?.classList.add('is-dark');
+      toggle?.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      toggle?.classList.remove('is-dark');
+      toggle?.setAttribute('aria-label', 'Switch to dark mode');
+    }
+    try { localStorage.setItem('pp-theme', theme); } catch (e) {}
+  }
+  if (document.documentElement.getAttribute('data-theme') === 'dark') {
+    toggle?.classList.add('is-dark');
+    toggle?.setAttribute('aria-label', 'Switch to light mode');
+  }
+  toggle?.addEventListener('click', () => {
+    const isDark = toggle.classList.contains('is-dark');
+    applyTheme(isDark ? 'light' : 'dark');
+  });
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver(
+    (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); },
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+  // Form logic
+  const form = document.getElementById('leak-form');
+  const formView = document.getElementById('form-view');
+  const disclosureView = document.getElementById('disclosure-view');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnLoading = document.getElementById('btn-loading');
+  const btnArrow = document.getElementById('btn-arrow');
+  const apiError = document.getElementById('api-error');
+
+  function validateField(id, validator) {
+    const wrapper = document.getElementById(id);
+    const valid = validator();
+    if (!valid) { wrapper.classList.add('has-error'); }
+    else { wrapper.classList.remove('has-error'); }
+    return valid;
+  }
+  function isValidPhone(p) { return /^[\d\s\-\(\)\+]{7,15}$/.test(p.trim()); }
+  function resetButton() {
+    btnText.style.display = '';
+    btnArrow.style.display = '';
+    btnLoading.style.display = 'none';
+    submitBtn.disabled = false;
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const firstName = document.getElementById('first-name').value.trim();
+    const businessType = document.getElementById('business-type').value;
+    const phone = document.getElementById('phone').value.trim();
+
+    const nameOk = validateField('field-name', () => firstName.length > 0);
+    const bizOk = validateField('field-business', () => businessType !== '');
+    const phoneOk = validateField('field-phone', () => isValidPhone(phone));
+    if (!nameOk || !bizOk || !phoneOk) return;
+
+    apiError.style.display = 'none';
+    btnText.style.display = 'none';
+    btnArrow.style.display = 'none';
+    btnLoading.style.display = 'flex';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('https://proactivepixels-router.aqua-noriega.workers.dev/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ first_name: firstName, niche: businessType, phone }),
+      });
+      if (!res.ok) { resetButton(); apiError.style.display = 'block'; return; }
+
+      if (typeof window.gtag !== 'undefined') {
+        window.gtag('event', 'form_submit', { event_category: 'Lead', event_label: businessType });
+      }
+      if (typeof window.fbq !== 'undefined') {
+        window.fbq('track', 'Lead', { business_type: businessType });
+      }
+
+      formView.style.display = 'none';
+      disclosureView.style.display = 'block';
+      disclosureView.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      resetButton();
+      apiError.style.display = 'block';
+    }
+  });
+
+  document.getElementById('first-name')?.addEventListener('blur', () => {
+    validateField('field-name', () => document.getElementById('first-name').value.trim().length > 0);
+  });
+  document.getElementById('business-type')?.addEventListener('change', () => {
+    validateField('field-business', () => document.getElementById('business-type').value !== '');
+  });
+  document.getElementById('phone')?.addEventListener('blur', () => {
+    validateField('field-phone', () => isValidPhone(document.getElementById('phone').value.trim()));
+  });
+</script>
