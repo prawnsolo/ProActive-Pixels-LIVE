@@ -8,7 +8,8 @@ const { currentPage = '' } = Astro.props;
 <header class="site-nav">
   <div class="site-nav__inner">
     <a href="/" class="nav-logo" aria-label="ProActive Pixels home">
-      <span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels">Pixels</span>
+      <img src="/favicon.svg" alt="" class="nav-logo__img" aria-hidden="true" />
+      <span><span class="logo-pro">Pro</span><span class="logo-active">Active</span><span class="logo-pixels">Pixels</span></span>
     </a>
 
     <nav class="nav-links" aria-label="Main navigation">
@@ -90,6 +91,16 @@ const { currentPage = '' } = Astro.props;
     line-height: 1;
     text-decoration: none;
     user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-logo__img {
+    height: 28px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
   }
 
   .logo-pro,
