@@ -161,10 +161,10 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
     --radius-lg: 12px;
     --radius-pill: 999px;
 
-    /* Shadows — sky-blue tinted for CTA buttons */
+    /* Shadows — ocean-blue tinted for CTA buttons */
     --shadow-card: rgba(23, 30, 98, 0.08) 0px 4px 16px 0px;
-    --shadow-btn: rgba(64, 165, 221, 0.35) 0px 4px 14px 0px;
-    --shadow-btn-hover: rgba(64, 165, 221, 0.50) 0px 6px 20px 0px;
+    --shadow-btn: rgba(23, 112, 178, 0.35) 0px 4px 14px 0px;
+    --shadow-btn-hover: rgba(23, 112, 178, 0.50) 0px 6px 20px 0px;
 
     /* Layout */
     --max-content: 680px;
@@ -198,8 +198,8 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
     --logo-active: #40A5DD;
 
     --shadow-card: rgba(0, 0, 0, 0.5) 0px 4px 24px 0px;
-    --shadow-btn: rgba(64, 165, 221, 0.28) 0px 4px 14px 0px;
-    --shadow-btn-hover: rgba(64, 165, 221, 0.45) 0px 6px 20px 0px;
+    --shadow-btn: rgba(23, 112, 178, 0.28) 0px 4px 14px 0px;
+    --shadow-btn-hover: rgba(23, 112, 178, 0.45) 0px 6px 20px 0px;
   }
 
   /* ===========================
@@ -258,13 +258,13 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
   }
 
   .btn--primary {
-    background: var(--pp-sky);
+    background: var(--pp-ocean);
     color: #ffffff;
     box-shadow: var(--shadow-btn);
   }
 
   .btn--primary:hover {
-    background: var(--pp-ocean);
+    background: #125B8F;
     box-shadow: var(--shadow-btn-hover);
     transform: translateY(-1px);
   }
@@ -275,12 +275,12 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
 
   .btn--ghost {
     background: transparent;
-    color: var(--pp-sky);
-    border: 2px solid var(--pp-sky);
+    color: var(--pp-ocean);
+    border: 2px solid var(--pp-ocean);
   }
 
   .btn--ghost:hover {
-    background: rgba(64, 165, 221, 0.08);
+    background: rgba(23, 112, 178, 0.08);
   }
 
   .btn--white {
@@ -328,7 +328,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--pp-amber);
+    color: var(--pp-ocean);
     margin-bottom: 12px;
   }
 
