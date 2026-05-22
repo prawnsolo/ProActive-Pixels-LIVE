@@ -278,7 +278,7 @@
           var w3 = Math.cos(x*0.1-y*0.1+time*0.8);
           var norm = ((w1+w2+w3)/3+1)/2;
           var ci = Math.floor(norm*(chars.length-1));
-          ctx.fillStyle = 'rgba(0,0,0,' + (0.15+norm*0.5) + ')';
+          ctx.fillStyle = 'rgba(255,255,255,' + (0.06+norm*0.12) + ')';
           ctx.fillText(chars[ci], px, py);
         }
       }
