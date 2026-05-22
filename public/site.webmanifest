@@ -4,8 +4,8 @@
   "description": "Capacity Reviews for HIPAA-regulated nonprofits.",
   "start_url": "/",
   "display": "minimal-ui",
-  "background_color": "#f7f3ec",
-  "theme_color": "#f7f3ec",
+  "background_color": "#F4F7FB",
+  "theme_color": "#171E62",
   "icons": [
     {
       "src": "/favicon-192x192.png",
