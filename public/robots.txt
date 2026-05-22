@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Block any future admin or private paths
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
 Sitemap: https://proactivepixels.com/sitemap.xml
