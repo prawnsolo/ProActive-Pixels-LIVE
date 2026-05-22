@@ -1,0 +1,120 @@
+---
+---
+
+<section id="how-it-works">
+  <div class="how-bg-lines"></div>
+  <canvas id="howCanvas" aria-hidden="true"></canvas>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="how-header">
+      <div class="section-label section-label--dark">Process</div>
+      <h2 class="how-h2">
+        Three steps.<br>
+        <span class="how-h2-muted">We move at your pace.</span>
+      </h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-steps" id="howSteps">
+
+        <button class="how-step active" data-step="0">
+          <div class="how-step-inner">
+            <span class="how-step-num">I</span>
+            <div class="how-step-content">
+              <div class="how-step-title">Book the Capacity Review</div>
+              <div class="how-step-desc">It's a 12-minute call with Alex, our intake assistant. No forms. No prep. Schedule a time that works and show up.</div>
+              <div class="how-progress"><div class="how-progress-bar"></div></div>
+            </div>
+          </div>
+        </button>
+
+        <button class="how-step inactive" data-step="1">
+          <div class="how-step-inner">
+            <span class="how-step-num">II</span>
+            <div class="how-step-content">
+              <div class="how-step-title">Talk through your day</div>
+              <div class="how-step-desc">Alex asks about your workflows: intake, scheduling, follow-up, case notes, grant reporting. You describe what actually happens. Alex identifies where the hours go.</div>
+              <div class="how-progress"><div class="how-progress-bar"></div></div>
+            </div>
+          </div>
+        </button>
+
+        <button class="how-step inactive" data-step="2">
+          <div class="how-step-inner">
+            <span class="how-step-num">III</span>
+            <div class="how-step-content">
+              <div class="how-step-title">Receive your Operations Assessment</div>
+              <div class="how-step-desc">Within 24 hours, your Operations Assessment lands in your inbox. Your three biggest admin bottlenecks, ranked by recoverable hours. Specific findings. Clear next steps.</div>
+              <div class="how-progress"><div class="how-progress-bar"></div></div>
+            </div>
+          </div>
+        </button>
+
+      </div>
+
+      <!-- Report preview panel — direct link to /sample-report -->
+      <div>
+        <a href="/sample-report" target="_blank" rel="noopener noreferrer" class="report-preview-panel" aria-label="View sample Operations Assessment report">
+          <div class="report-panel-header">
+            <span class="report-panel-label">Sample Report</span>
+            <span class="report-panel-badge">Live Preview</span>
+          </div>
+          <div class="report-panel-body">
+            <div class="rp-cover">
+              <div class="rp-eyebrow">ProActive Pixels · Operations Assessment</div>
+              <div class="rp-headline">Operations</div>
+              <div class="rp-sub">Assessment</div>
+              <div class="rp-org">Piedmont Free Clinic · Charlottesville, Virginia · May 2026</div>
+            </div>
+            <div class="rp-finding-grid">
+              <div class="rp-cell"><span class="rp-value">390</span><span class="rp-label">Clinical staff hours lost annually</span></div>
+              <div class="rp-cell"><span class="rp-value">10 wks</span><span class="rp-label">Of capacity unrecovered</span></div>
+              <div class="rp-cell"><span class="rp-value">150+</span><span class="rp-label">More patients served</span></div>
+            </div>
+            <div class="rp-alert">
+              <div class="rp-alert-body">
+                <div class="rp-alert-title">Primary finding</div>
+                <div class="rp-alert-text">Your no-show rate is costing Piedmont Free Clinic 390 hours of clinical capacity a year. This is automatable in weeks, not months.</div>
+              </div>
+            </div>
+          </div>
+          <div class="report-panel-cta">
+            <span class="report-panel-cta-label">View full report</span>
+            <span class="report-panel-cta-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+/* How It Works — scroll-triggered step activation */
+(function() {
+  var steps = document.querySelectorAll('#howSteps .how-step');
+  if (!steps.length) return;
+  var container = document.getElementById('howSteps');
+  if (!container) return;
+  var n = steps.length;
+
+  function activate(i) {
+    var idx = Math.max(0, Math.min(n - 1, i));
+    steps.forEach(function(s, j) {
+      s.classList.toggle('active', j === idx);
+      s.classList.toggle('inactive', j !== idx);
+    });
+  }
+
+  steps.forEach(function(s, i) {
+    s.addEventListener('click', function() { activate(i); });
+  });
+
+  function onScroll() {
+    var rect = container.getBoundingClientRect();
+    var readLine = window.innerHeight * 0.45;
+    var p = (readLine - rect.top) / rect.height;
+    activate(p < 0 ? 0 : Math.min(Math.floor(p * n), n - 1));
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
