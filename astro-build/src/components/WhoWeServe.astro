@@ -1,0 +1,128 @@
+---
+---
+
+<section id="infrastructure">
+  <div class="container">
+    <div class="infra-grid">
+      <div>
+        <div class="section-label">Who We Serve</div>
+        <h2 class="section-h2 section-h2--spaced display">
+          Built for hard work<br>on tight budgets.
+        </h2>
+        <p class="section-body-lg">
+          We work with a specific set of HIPAA-regulated nonprofits. By the time we talk, we already know where your team is losing hours. The Capacity Review finds exactly how much.
+        </p>
+        <div class="infra-stats">
+          <div>
+            <div class="infra-stat-val display">10 hrs</div>
+            <div class="infra-stat-label">Reclaimed per week per workflow, on average</div>
+          </div>
+          <div>
+            <div class="infra-stat-val display">24hr</div>
+            <div class="infra-stat-label">Your Operations Assessment, no exceptions</div>
+          </div>
+          <div>
+            <div class="infra-stat-val display">100%</div>
+            <div class="infra-stat-label">HIPAA-compliant tools, every deployment</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="capability-table">
+          <div class="cap-header">
+            <span class="cap-header-label">Organizations We Serve</span>
+            <span class="cap-status"><span class="cap-status-dot"></span>Accepting new clients</span>
+          </div>
+          <div id="capRows">
+            <div class="cap-row active">
+              <div class="cap-row-left"><div class="cap-dot"></div><div>
+                <div class="cap-name">Free Clinics</div>
+                <div class="cap-sub">Volunteer clinical staff, grant-dependent</div>
+              </div></div>
+              <div class="cap-badge">HIPAA</div>
+            </div>
+            <div class="cap-row inactive">
+              <div class="cap-row-left"><div class="cap-dot"></div><div>
+                <div class="cap-name">Community Health Centers</div>
+                <div class="cap-sub">Federally funded, HRSA-governed</div>
+              </div></div>
+              <div class="cap-badge">HIPAA · BAA</div>
+            </div>
+            <div class="cap-row inactive">
+              <div class="cap-row-left"><div class="cap-dot"></div><div>
+                <div class="cap-name">Behavioral Health Orgs</div>
+                <div class="cap-sub">Mental health and counseling services</div>
+              </div></div>
+              <div class="cap-badge">HIPAA</div>
+            </div>
+            <div class="cap-row inactive">
+              <div class="cap-row-left"><div class="cap-dot"></div><div>
+                <div class="cap-name">Substance Use Treatment</div>
+                <div class="cap-sub">Residential and outpatient programs</div>
+              </div></div>
+              <div class="cap-badge">HIPAA · 42 CFR Pt. 2</div>
+            </div>
+            <div class="cap-row inactive">
+              <div class="cap-row-left"><div class="cap-dot"></div><div>
+                <div class="cap-name">Mental Health Nonprofits</div>
+                <div class="cap-sub">Counseling centers, peer support</div>
+              </div></div>
+              <div class="cap-badge">HIPAA</div>
+            </div>
+            <div class="cap-row inactive">
+              <div class="cap-row-left"><div class="cap-dot"></div><div>
+                <div class="cap-name">Hospice &amp; Home Health</div>
+                <div class="cap-sub">Care coordination, home visit programs</div>
+              </div></div>
+              <div class="cap-badge">HIPAA</div>
+            </div>
+            <div class="cap-row inactive">
+              <div class="cap-row-left"><div class="cap-dot"></div><div>
+                <div class="cap-name">FQHCs</div>
+                <div class="cap-sub">Federally Qualified Health Centers</div>
+              </div></div>
+              <div class="cap-badge">HIPAA · UDS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+(function() {
+  var rows = document.querySelectorAll('#capRows .cap-row');
+  if (!rows.length) return;
+  var active = 0;
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function activate(i) {
+    rows.forEach(function(r, idx) {
+      r.classList.toggle('active', idx === i);
+      r.classList.toggle('inactive', idx !== i);
+    });
+    active = i;
+  }
+
+  function cycle() { activate((active + 1) % rows.length); }
+
+  rows.forEach(function(r, i) {
+    /* a11y: make rows keyboard-accessible */
+    r.setAttribute('role', 'button');
+    r.setAttribute('tabindex', '0');
+    function select() {
+      clearInterval(timer);
+      activate(i);
+      if (!prefersReduced) timer = setInterval(cycle, 4000);
+    }
+    r.addEventListener('click', select);
+    r.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); }
+    });
+  });
+
+  var timer;
+  if (!prefersReduced) timer = setInterval(cycle, 4000);
+})();
+</script>
