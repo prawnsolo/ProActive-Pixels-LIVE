@@ -34,55 +34,112 @@
             <span class="cap-status"><span class="cap-status-dot"></span>Accepting new clients</span>
           </div>
           <div id="capRows">
-            <div class="cap-row active">
-              <div class="cap-row-left"><div class="cap-dot"></div><div>
-                <div class="cap-name">Free Clinics</div>
-                <div class="cap-sub">Volunteer clinical staff, grant-dependent</div>
-              </div></div>
-              <div class="cap-badge">HIPAA</div>
+
+            <!-- ── PRIMARY TIER ── -->
+            <div class="cap-row cap-row--primary active">
+              <div class="cap-row-left">
+                <div class="cap-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                </div>
+                <div>
+                  <div class="cap-name">Free Clinics</div>
+                  <div class="cap-sub">Volunteer clinical staff, grant-dependent</div>
+                </div>
+              </div>
+              <div class="cap-badges">
+                <div class="cap-badge cap-badge--core">Core</div>
+                <div class="cap-badge">HIPAA</div>
+              </div>
             </div>
-            <div class="cap-row inactive">
-              <div class="cap-row-left"><div class="cap-dot"></div><div>
-                <div class="cap-name">Community Health Centers</div>
-                <div class="cap-sub">Federally funded, HRSA-governed</div>
-              </div></div>
+
+            <div class="cap-row cap-row--primary inactive">
+              <div class="cap-row-left">
+                <div class="cap-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                </div>
+                <div>
+                  <div class="cap-name">Behavioral Health Orgs</div>
+                  <div class="cap-sub">Mental health and counseling services</div>
+                </div>
+              </div>
+              <div class="cap-badges">
+                <div class="cap-badge cap-badge--core">Core</div>
+                <div class="cap-badge">HIPAA</div>
+              </div>
+            </div>
+
+            <div class="cap-row cap-row--primary inactive">
+              <div class="cap-row-left">
+                <div class="cap-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+                </div>
+                <div>
+                  <div class="cap-name">Substance Use Treatment</div>
+                  <div class="cap-sub">Residential and outpatient programs</div>
+                </div>
+              </div>
+              <div class="cap-badges">
+                <div class="cap-badge cap-badge--core">Core</div>
+                <div class="cap-badge">HIPAA · 42 CFR Pt. 2</div>
+              </div>
+            </div>
+
+            <!-- ── TIER DIVIDER ── -->
+            <div class="cap-tier-divider">Also serve</div>
+
+            <!-- ── SECONDARY TIER ── -->
+            <div class="cap-row cap-row--secondary inactive">
+              <div class="cap-row-left">
+                <div class="cap-icon cap-icon--dim">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <div>
+                  <div class="cap-name">Community Health Centers</div>
+                  <div class="cap-sub">Federally funded, HRSA-governed</div>
+                </div>
+              </div>
               <div class="cap-badge">HIPAA · BAA</div>
             </div>
-            <div class="cap-row inactive">
-              <div class="cap-row-left"><div class="cap-dot"></div><div>
-                <div class="cap-name">Behavioral Health Orgs</div>
-                <div class="cap-sub">Mental health and counseling services</div>
-              </div></div>
+
+            <div class="cap-row cap-row--secondary inactive">
+              <div class="cap-row-left">
+                <div class="cap-icon cap-icon--dim">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div>
+                  <div class="cap-name">Mental Health Nonprofits</div>
+                  <div class="cap-sub">Counseling centers, peer support</div>
+                </div>
+              </div>
               <div class="cap-badge">HIPAA</div>
             </div>
-            <div class="cap-row inactive">
-              <div class="cap-row-left"><div class="cap-dot"></div><div>
-                <div class="cap-name">Substance Use Treatment</div>
-                <div class="cap-sub">Residential and outpatient programs</div>
-              </div></div>
-              <div class="cap-badge">HIPAA · 42 CFR Pt. 2</div>
-            </div>
-            <div class="cap-row inactive">
-              <div class="cap-row-left"><div class="cap-dot"></div><div>
-                <div class="cap-name">Mental Health Nonprofits</div>
-                <div class="cap-sub">Counseling centers, peer support</div>
-              </div></div>
+
+            <div class="cap-row cap-row--secondary inactive">
+              <div class="cap-row-left">
+                <div class="cap-icon cap-icon--dim">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+                </div>
+                <div>
+                  <div class="cap-name">Hospice &amp; Home Health</div>
+                  <div class="cap-sub">Care coordination, home visit programs</div>
+                </div>
+              </div>
               <div class="cap-badge">HIPAA</div>
             </div>
-            <div class="cap-row inactive">
-              <div class="cap-row-left"><div class="cap-dot"></div><div>
-                <div class="cap-name">Hospice &amp; Home Health</div>
-                <div class="cap-sub">Care coordination, home visit programs</div>
-              </div></div>
-              <div class="cap-badge">HIPAA</div>
-            </div>
-            <div class="cap-row inactive">
-              <div class="cap-row-left"><div class="cap-dot"></div><div>
-                <div class="cap-name">FQHCs</div>
-                <div class="cap-sub">Federally Qualified Health Centers</div>
-              </div></div>
+
+            <div class="cap-row cap-row--secondary inactive">
+              <div class="cap-row-left">
+                <div class="cap-icon cap-icon--dim">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div>
+                  <div class="cap-name">FQHCs</div>
+                  <div class="cap-sub">Federally Qualified Health Centers</div>
+                </div>
+              </div>
               <div class="cap-badge">HIPAA · UDS</div>
             </div>
+
           </div>
         </div>
       </div>
@@ -108,7 +165,6 @@
   function cycle() { activate((active + 1) % rows.length); }
 
   rows.forEach(function(r, i) {
-    /* a11y: make rows keyboard-accessible */
     r.setAttribute('role', 'button');
     r.setAttribute('tabindex', '0');
     function select() {
