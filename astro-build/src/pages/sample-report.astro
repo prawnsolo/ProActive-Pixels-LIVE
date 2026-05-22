@@ -1,0 +1,1321 @@
+---
+// sample-report.astro — standalone page, no shared nav/footer
+// Uses its own visual identity (Cormorant Garamond, forest-green palette)
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operations Assessment: Piedmont Free Clinic | ProActive Pixels</title>
+<meta name="description" content="Sample Operations Assessment from ProActive Pixels. See how we identify admin bottlenecks and recoverable capacity for HIPAA-regulated nonprofits." />
+<link rel="canonical" href="https://proactivepixels.com/sample-report" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Operations Assessment: Piedmont Free Clinic | ProActive Pixels" />
+<meta property="og:description" content="Sample Operations Assessment from ProActive Pixels. 390 clinical hours lost annually to no-shows — and how to get them back." />
+<meta property="og:url" content="https://proactivepixels.com/sample-report" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ProActive Pixels" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── DESIGN TOKENS (OKLCH) ── */
+:root {
+  /* Forest green — committed palette anchor */
+  --forest:        oklch(28% 0.08 152);
+  --forest-mid:    oklch(35% 0.09 152);
+  --moss:          oklch(44% 0.10 152);
+  --sage:          oklch(62% 0.10 152);
+  --sage-pale:     oklch(92% 0.03 152);
+
+  /* Warm cream — never white */
+  --cream:         oklch(97% 0.008 80);
+  --cream-deep:    oklch(93% 0.012 80);
+  --ink:           oklch(18% 0.015 80);
+  --ink-muted:     oklch(45% 0.018 80);
+  --ink-faint:     oklch(68% 0.014 80);
+
+  /* Gold — healthcare trust signal */
+  --gold:          oklch(72% 0.12 78);
+  --gold-pale:     oklch(94% 0.04 78);
+
+  /* Alert */
+  --red:           oklch(52% 0.15 25);
+  --red-pale:      oklch(96% 0.02 25);
+
+  /* Border */
+  --border:        oklch(88% 0.012 80);
+  --border-strong: oklch(78% 0.018 80);
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+}
+
+body {
+  background: var(--cream-deep);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── BACK BAR ── */
+.back-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: oklch(18% 0.015 80 / .92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0 24px;
+  border-bottom: 1px solid oklch(98% 0.005 80 / .08);
+}
+
+.back-bar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(72% 0.008 80);
+  text-decoration: none;
+  padding: 14px 0;
+  transition: color 0.2s;
+}
+
+.back-bar a:hover { color: oklch(88% 0.008 80); }
+
+.back-bar a svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ── PAGE WRAPPER ── */
+.report-page {
+  padding: 40px 24px 80px;
+}
+
+/* ── OUTER SHELL ── */
+.report-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--cream);
+  box-shadow: 0 0 0 1px var(--border), 0 32px 80px oklch(0% 0 0 / .08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── COVER ── */
+.cover {
+  background: var(--forest);
+  padding: 64px 64px 56px;
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Grain overlay on cover */
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+/* Diagonal geometric accent */
+.cover::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 320px;
+  height: 320px;
+  border: 1px solid oklch(100% 0 0 / .06);
+  transform: rotate(22deg);
+  pointer-events: none;
+}
+
+.cover-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .35);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cover-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--sage);
+}
+
+.cover-body {
+  position: relative;
+  z-index: 1;
+}
+
+.cover-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: oklch(97% 0.008 80);
+  margin-bottom: 8px;
+  text-wrap: balance;
+}
+
+.cover-sub {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--sage);
+}
+
+.cover-meta {
+  margin-top: 36px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.cover-org {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: oklch(100% 0 0 / .55);
+}
+
+.cover-date {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .40);
+}
+
+/* ── SECTION SCAFFOLDING ── */
+.section {
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child { border-bottom: none; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--sage);
+}
+
+.section-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 56ch;
+  text-wrap: balance;
+}
+
+.section-h2 em {
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+.section-body {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ink-muted);
+  max-width: 62ch;
+  margin-top: 16px;
+  text-wrap: pretty;
+}
+
+/* ── EXECUTIVE SUMMARY ── */
+.summary-section {
+  background: var(--forest);
+  padding: 56px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.summary-section .section-label {
+  color: var(--sage);
+}
+
+.summary-section .section-label::before { background: var(--sage); }
+
+.summary-lede {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: oklch(97% 0.008 80);
+  max-width: 52ch;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+  text-wrap: balance;
+}
+
+.summary-lede em {
+  font-style: italic;
+  color: var(--sage);
+}
+
+.summary-body {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: oklch(100% 0 0 / .68);
+  max-width: 60ch;
+  position: relative;
+  z-index: 1;
+}
+
+.summary-body p { text-wrap: pretty; }
+.summary-body p + p { margin-top: 12px; }
+
+/* ── PRIMARY FINDING — THE HERO SECTION ── */
+.finding-section {
+  background: var(--cream-deep);
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.finding-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+.finding-cell {
+  background: var(--cream);
+  padding: 36px 32px;
+  position: relative;
+  transition: background 0.25s;
+}
+
+.finding-cell:hover { background: oklch(96% 0.01 152); }
+
+.finding-cell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--sage);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.finding-cell:hover::before { transform: scaleX(1); }
+
+.finding-value {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--forest);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.finding-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.finding-sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  line-height: 1.5;
+  display: block;
+}
+
+/* ── ALERT BOX ── */
+.alert {
+  margin-top: 24px;
+  border: 1.5px solid oklch(70% 0.10 25);
+}
+
+.alert-body {
+  padding: 20px 24px;
+  background: var(--red-pale);
+}
+
+.alert-headline {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.alert-text {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+/* ── COST BREAKDOWN ── */
+.cost-section {
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cost-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 40px;
+}
+
+.metric-block {
+  padding: 28px;
+  border: 1px solid var(--border);
+  background: var(--cream);
+  position: relative;
+}
+
+.metric-block::after {
+  content: attr(data-num);
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--border);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+}
+
+.metric-value {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--forest);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.metric-sub {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+
+.cost-note {
+  margin-top: 28px;
+  padding: 20px 24px;
+  border: 1px solid var(--border-strong);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.75;
+}
+
+/* ── RECOMMENDED SOLUTION ── */
+.solution-section {
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.solution-intro {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink-muted);
+  max-width: 60ch;
+  margin-top: 16px;
+  margin-bottom: 40px;
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: var(--sage-pale); }
+
+.check-mark {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--forest);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.check-mark svg {
+  width: 10px;
+  height: 10px;
+  stroke: var(--cream);
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.check-text {
+  font-size: 0.9375rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.check-text strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Impact stats — dark strip */
+.impact-strip {
+  background: var(--forest);
+  margin: 0 -64px;
+  padding: 40px 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.impact-cell {
+  padding: 28px 32px;
+  border-right: 1px solid oklch(100% 0 0 / .08);
+  position: relative;
+  z-index: 1;
+}
+
+.impact-cell:last-child { border-right: none; }
+
+.impact-value {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--sage);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.impact-label {
+  font-size: 0.825rem;
+  color: oklch(100% 0 0 / .68);
+  line-height: 1.5;
+}
+
+.impact-label strong {
+  color: oklch(100% 0 0 / .8);
+  font-weight: 500;
+}
+
+/* ── ADDITIONAL OPPORTUNITIES ── */
+.opps-section {
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.opp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 36px;
+  border: 1px solid var(--border);
+}
+
+.opp-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.opp-item:last-child { border-bottom: none; }
+.opp-item:hover { background: var(--cream-deep); }
+
+.opp-num {
+  background: var(--forest-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: oklch(100% 0 0 / .35);
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+}
+
+.opp-body {
+  padding: 20px 24px;
+}
+
+.opp-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.opp-desc {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.opp-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.opp-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.opp-meta span::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sage);
+  flex-shrink: 0;
+}
+
+/* ── PACE SECTION ── */
+.pace-section {
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.pace-left .section-h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+
+.pace-body {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: var(--ink-muted);
+  margin-top: 16px;
+}
+
+.pace-body p { text-wrap: pretty; }
+.pace-body p + p { margin-top: 12px; }
+
+.phase-table {
+  border: 1px solid var(--border);
+  width: 100%;
+}
+
+.phase-row {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.phase-row:last-child { border-bottom: none; }
+
+.phase-num {
+  background: var(--cream-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--moss);
+  border-right: 1px solid var(--border);
+  padding: 16px 0;
+}
+
+.phase-body {
+  padding: 14px 16px;
+}
+
+.phase-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.phase-time {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.phase-desc {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+/* ── SECURITY ── */
+.security-section {
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+  background: var(--cream-deep);
+}
+
+.cert-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  margin-bottom: 36px;
+}
+
+.cert {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  color: var(--ink-muted);
+  background: var(--cream);
+}
+
+.cert.hipaa {
+  border-color: oklch(72% 0.12 78 / .5);
+  color: oklch(50% 0.10 78);
+  background: var(--gold-pale);
+}
+
+.sec-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.sec-cell {
+  background: var(--cream);
+  padding: 24px;
+}
+
+/* HIPAA lead card — full-width, dark background */
+.sec-cell--lead {
+  background: var(--forest);
+  padding: 32px;
+}
+
+.sec-cell--lead .sec-title {
+  color: oklch(97% 0.008 80);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.sec-cell--lead .sec-desc {
+  color: oklch(100% 0 0 / .65);
+  font-size: 0.875rem;
+}
+
+/* Subordinate three-cell row */
+.sec-sub {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+
+.sec-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.sec-desc {
+  font-size: 0.825rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 600px) {
+  .sec-sub { grid-template-columns: 1fr; }
+}
+
+/* ── NEXT STEPS ── */
+.next-section {
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.step-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.step-num {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--border-strong);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+  padding-top: 2px;
+}
+
+.step-body {}
+
+.step-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.step-desc {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+}
+
+/* ── CONTACT FOOTER ── */
+.contact-footer {
+  background: var(--ink);
+  padding: 40px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.contact-brand {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: oklch(97% 0.008 80);
+  position: relative;
+  z-index: 1;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-links a {
+  font-size: 0.825rem;
+  color: oklch(100% 0 0 / .4);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-family: var(--font-mono);
+}
+
+.contact-links a:hover { color: oklch(100% 0 0 / .75); }
+
+.contact-note {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .2);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 680px) {
+  .cover, .section, .summary-section, .finding-section,
+  .cost-section, .solution-section, .opps-section,
+  .next-section, .security-section, .contact-footer { padding: 40px 28px; }
+  .impact-strip { margin: 0 -28px; padding: 32px 28px; }
+  .finding-grid { grid-template-columns: 1fr; }
+  .cost-layout { grid-template-columns: 1fr; }
+  .pace-section { grid-template-columns: 1fr; gap: 36px; }
+  .sec-grid { grid-template-columns: 1fr; }
+  .impact-strip { grid-template-columns: 1fr; }
+  .impact-cell { border-right: none; border-bottom: 1px solid oklch(100% 0 0 / .08); }
+  .impact-cell:last-child { border-bottom: none; }
+  .contact-footer { flex-direction: column; align-items: flex-start; }
+  .report-page { padding: 24px 12px 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- BACK TO SITE -->
+<nav class="back-bar" aria-label="Back to ProActive Pixels">
+  <a href="/">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    ProActive Pixels
+  </a>
+</nav>
+
+<div class="report-page">
+<div class="report-shell">
+
+  <!-- COVER -->
+  <div class="cover animate-in">
+    <div class="cover-eyebrow">ProActive Pixels &nbsp;·&nbsp; Operations Assessment</div>
+    <div class="cover-body">
+      <div class="cover-headline">Operations</div>
+      <div class="cover-sub">Assessment</div>
+      <div class="cover-meta">
+        <div class="cover-org">Piedmont Free Clinic &nbsp;·&nbsp; Charlottesville, Virginia</div>
+        <div class="cover-date">May 2026 &nbsp;·&nbsp; Confidential</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="summary-section animate-in" style="animation-delay:.1s">
+    <div class="section-label">Executive Summary</div>
+    <div class="summary-lede">390 hours of clinical capacity. Lost every year to a problem <em>that can be automated.</em></div>
+    <div class="summary-body">
+      <p>Piedmont Free Clinic sees approximately 30 patients per day. At a 7% no-show rate, that is roughly 2 missed appointments daily. Each one represents 45 minutes of clinical staff preparation time that never resulted in care.</p>
+      <p>That is 390 hours per year. Ten full work weeks. This assessment identifies appointment reminder automation as your highest-impact, lowest-risk starting point. Three additional workflows where automation can reclaim hours and redirect them to the patients on your waitlist are covered in the sections that follow.</p>
+    </div>
+  </div>
+
+  <!-- PRIMARY FINDING -->
+  <div class="finding-section animate-in" style="animation-delay:.15s">
+    <div class="section-label">Primary Finding</div>
+    <h2 class="section-h2">Your no-show problem <em>by the numbers.</em></h2>
+
+    <div class="finding-grid">
+      <div class="finding-cell">
+        <span class="finding-value">390</span>
+        <span class="finding-label">Clinical staff hours lost to no-shows annually</span>
+        <span class="finding-sub">Based on 2 no-shows/day at 45 min prep time per appointment</span>
+      </div>
+      <div class="finding-cell">
+        <span class="finding-value">10 wks</span>
+        <span class="finding-label">Of full-time staff capacity unrecovered each year</span>
+        <span class="finding-sub">Equivalent to a part-time coordinator's annual contribution</span>
+      </div>
+      <div class="finding-cell">
+        <span class="finding-value">7%</span>
+        <span class="finding-label">Average no-show rate at free and community clinics</span>
+        <span class="finding-sub">Compared to 5–8% across all outpatient specialties nationally</span>
+      </div>
+    </div>
+
+    <div class="alert">
+      <div class="alert-body">
+        <div class="alert-headline">This is a conservative estimate.</div>
+        <div class="alert-text">Free clinics serving uninsured and underserved populations consistently see no-show rates above 7% due to transportation barriers, work schedule conflicts, and limited rescheduling access. Your actual figure may be higher. The automation addresses the root cause: patients who forget, not patients who cannot attend.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COST BREAKDOWN -->
+  <div class="cost-section animate-in" style="animation-delay:.2s">
+    <div class="section-label">Cost Breakdown</div>
+    <h2 class="section-h2">What each no-show <em>actually costs</em> your clinic.</h2>
+    <div class="cost-layout">
+      <div class="metric-block" data-num="01">
+        <div class="metric-value">45 min</div>
+        <div class="metric-label">Staff prep time per appointment</div>
+        <div class="metric-sub">Chart review · room setup · intake prep</div>
+      </div>
+      <div class="metric-block" data-num="02">
+        <div class="metric-value">$14.40</div>
+        <div class="metric-label">Direct cost per no-show</div>
+        <div class="metric-sub">At $19.20/hr blended staff rate</div>
+      </div>
+      <div class="metric-block" data-num="03">
+        <div class="metric-value">2/day</div>
+        <div class="metric-label">Average missed appointments</div>
+        <div class="metric-sub">At 7% no-show rate, 30 patients/day</div>
+      </div>
+      <div class="metric-block" data-num="04">
+        <div class="metric-value">$5,616</div>
+        <div class="metric-label">Annual cost of no-shows</div>
+        <div class="metric-sub">Direct staff time only, not overhead or lost waitlist capacity</div>
+      </div>
+    </div>
+    <div class="cost-note">
+      The $5,616 figure covers direct staff time only. It does not include the overhead cost of each unfilled slot, the lost opportunity of a waitlisted patient who could have been seen, or the downstream health impact of delayed care for someone managing a chronic condition.
+    </div>
+  </div>
+
+  <!-- SOLUTION -->
+  <div class="solution-section animate-in" style="animation-delay:.25s">
+    <div class="section-label">Recommended Solution: Priority 1</div>
+    <h2 class="section-h2">Automated appointment reminders with two-way confirmation.</h2>
+    <p class="solution-intro">Every patient scheduled receives an automated reminder 48 hours before their appointment, followed by a 24-hour confirmation request. If they confirm, the slot is locked. If they do not respond or cancel, the slot opens for waitlist backfill automatically. Your staff doesn't touch the phone.</p>
+
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-mark"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="check-text"><strong>Front desk staff stops spending 2+ hours daily</strong> on manual confirmation calls</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="check-text"><strong>No-show rates typically drop to the 2–3% range</strong> at clinics using automated reminder systems</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="check-text"><strong>Waitlisted patients receive automatic outreach</strong> when a slot opens</div>
+      </div>
+      <div class="check-item">
+        <div class="check-mark"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+        <div class="check-text"><strong>Your coordinator sees real-time appointment status</strong> without touching the phone</div>
+      </div>
+    </div>
+
+    <div class="impact-strip">
+      <div class="impact-cell">
+        <div class="impact-value">270 hrs</div>
+        <div class="impact-label"><strong>Staff hours reclaimed annually</strong><br/>Reduction from 390 to ~120 hrs at 2% no-show rate</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-value">150+</div>
+        <div class="impact-label"><strong>Additional patients served per year</strong><br/>From waitlist backfill of recovered slots</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-value">$3,900</div>
+        <div class="impact-label"><strong>In direct staff cost recovered</strong><br/>Conservative estimate at blended rate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADDITIONAL OPPORTUNITIES -->
+  <div class="opps-section animate-in" style="animation-delay:.3s">
+    <div class="section-label">Additional Automation Opportunities</div>
+    <h2 class="section-h2">Three more workflows consuming staff time.</h2>
+    <div class="opp-list">
+      <div class="opp-item">
+        <div class="opp-num">02</div>
+        <div class="opp-body">
+          <div class="opp-title">Patient Intake and Eligibility Screening</div>
+          <div class="opp-desc">Forms completed by hand, re-entered into your system, reviewed for errors. Every new patient costs 45–60 minutes of staff time before they have seen a provider.</div>
+          <div class="opp-meta">
+            <span>8–12 hrs/week saved</span>
+            <span>Complexity: Medium</span>
+            <span>HIPAA compliant</span>
+          </div>
+        </div>
+      </div>
+      <div class="opp-item">
+        <div class="opp-num">03</div>
+        <div class="opp-body">
+          <div class="opp-title">Follow-Up Care Instructions and Referral Coordination</div>
+          <div class="opp-desc">Patients leaving with referrals depend on staff to manually communicate next steps. Missed follow-ups are a leading cause of condition escalation in underserved populations.</div>
+          <div class="opp-meta">
+            <span>4–6 hrs/week saved</span>
+            <span>Complexity: Low</span>
+            <span>HIPAA compliant</span>
+          </div>
+        </div>
+      </div>
+      <div class="opp-item">
+        <div class="opp-num">04</div>
+        <div class="opp-body">
+          <div class="opp-title">Volunteer Coordinator Communications</div>
+          <div class="opp-desc">Shift confirmations, hour tracking, and schedule changes handled through a chain of texts and spreadsheets. When a volunteer does not respond, the follow-up chain starts over.</div>
+          <div class="opp-meta">
+            <span>3–4 hrs/week saved</span>
+            <span>Complexity: Low</span>
+            <span>HIPAA: N/A</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUR PACE -->
+  <div class="pace-section animate-in" style="animation-delay:.35s">
+    <div class="pace-left">
+      <div class="section-label">Our Approach</div>
+      <h2 class="section-h2" style="font-size:clamp(1.5rem,3vw,2.2rem)">We move at your pace. Not ours.</h2>
+      <div class="pace-body">
+        <p>Most nonprofits do not move on 72-hour timelines. Budget approvals take time. Staff buy-in takes time. We know this.</p>
+        <p>Our model is built around one workflow first. We build it, test it with your team, and prove the result before any conversation about what comes next. You are never committed to more than the next step.</p>
+      </div>
+    </div>
+    <div class="phase-table">
+      <div class="phase-row">
+        <div class="phase-num">I</div>
+        <div class="phase-body">
+          <div class="phase-time">Week 1–2</div>
+          <div class="phase-title">Assessment review and internal alignment</div>
+          <div class="phase-desc">We answer questions, meet your team, confirm the right starting point.</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-num">II</div>
+        <div class="phase-body">
+          <div class="phase-time">Week 2–4</div>
+          <div class="phase-title">Build and test</div>
+          <div class="phase-desc">Configure, run in a test environment, walk staff through it before anything goes live.</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-num">III</div>
+        <div class="phase-body">
+          <div class="phase-time">Week 4–6</div>
+          <div class="phase-title">Go live</div>
+          <div class="phase-desc">The automation runs. Your team monitors results. We handle everything in the background.</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-num">IV</div>
+        <div class="phase-body">
+          <div class="phase-time">Month 3+</div>
+          <div class="phase-title">Review and expand</div>
+          <div class="phase-desc">We review results together. If the numbers are there, we discuss the next workflow. No pressure.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="security-section animate-in" style="animation-delay:.4s">
+    <div class="section-label">Security and Compliance</div>
+    <h2 class="section-h2">Built for healthcare nonprofits from day one.</h2>
+    <div class="cert-row">
+      <span class="cert hipaa">HIPAA</span>
+      <span class="cert hipaa">BAA-Ready</span>
+      <span class="cert">SOC 2</span>
+      <span class="cert">GDPR</span>
+      <span class="cert">CCPA</span>
+    </div>
+    <div class="sec-grid">
+      <div class="sec-cell sec-cell--lead">
+        <div class="sec-title">HIPAA Compliant</div>
+        <div class="sec-desc">BAA available. All patient-facing automations built to HIPAA standards. Patient data stays inside your compliance perimeter.</div>
+      </div>
+      <div class="sec-sub">
+        <div class="sec-cell">
+          <div class="sec-title">End-to-End Encryption</div>
+          <div class="sec-desc">All data encrypted at rest and in transit. Built to the standards your compliance officer will ask about first.</div>
+        </div>
+        <div class="sec-cell">
+          <div class="sec-title">No Data Selling. Ever.</div>
+          <div class="sec-desc">Your patient data belongs to Piedmont Free Clinic. We never aggregate, sell, or share it under any circumstances.</div>
+        </div>
+        <div class="sec-cell">
+          <div class="sec-title">Compliance-First Stack</div>
+          <div class="sec-desc">Every tool vetted for enterprise-grade security before it touches your workflows. If it does not meet the bar, it does not get used.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="next-section animate-in" style="animation-delay:.45s">
+    <div class="section-label">Next Steps</div>
+    <h2 class="section-h2">This assessment is yours. Here is what happens if you want to go further.</h2>
+    <p class="section-body">You are under no obligation to do anything with this document. Share it with your board, your operations team, or your funders. It stands alone.</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Reply with questions or pushback</div>
+          <div class="step-desc">We will answer directly. No upsell, no calendar link, no automated follow-up sequence.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Schedule a 30-minute working session</div>
+          <div class="step-desc">With whoever owns operations or technology decisions at Piedmont Free Clinic. We bring the numbers. You bring the context we are missing.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">We confirm the right first workflow</div>
+          <div class="step-desc">Agree on a timeline that fits your budget cycle and move at your pace. One workflow, proven, before any conversation about what comes next.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT FOOTER -->
+  <div class="contact-footer">
+    <div class="contact-brand">ProActive Pixels</div>
+    <div class="contact-note">Prepared May 2026 · Confidential</div>
+    <div class="contact-links">
+      <a href="mailto:solutions@proactivepixels.com">solutions@proactivepixels.com</a>
+      <a href="tel:+15406000080">(540) 600-0080</a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script is:inline>
+(function() {
+  var animEls = document.querySelectorAll('.animate-in');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    animEls.forEach(function(el) { el.style.animationPlayState = 'running'; });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.style.animationPlayState = 'running';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  animEls.forEach(function(el) {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>
