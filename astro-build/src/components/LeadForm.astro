@@ -1,0 +1,244 @@
+---
+---
+
+<section id="assessment">
+  <div class="container">
+    <div class="assess-grid">
+      <div>
+        <div class="section-label">Capacity Review</div>
+        <h2 class="section-h2 section-h2--tight display">
+          You're 12 minutes away<br>from knowing exactly<br>where your capacity goes.
+        </h2>
+        <p class="assess-intro">Three questions to get started. Then a 12-minute call with Alex. Your Operations Assessment arrives within 24 hours.</p>
+        <div class="assess-value-list">
+          <div class="assess-value-item"><div class="assess-check">✓</div><span>Which tasks are consuming the most staff time</span></div>
+          <div class="assess-value-item"><div class="assess-check">✓</div><span>Which ones can be addressed with automation</span></div>
+          <div class="assess-value-item"><div class="assess-check">✓</div><span>How much of that time could go back to direct client work</span></div>
+          <div class="assess-value-item"><div class="assess-check">✓</div><span>Where your team should start for the most immediate relief</span></div>
+        </div>
+        <div class="assess-zero-risk">
+          No consultant fees. No follow-up implementation call unless you request one. Just a clear picture of where your team's hours are going, in writing within 24 hours.
+        </div>
+        <div class="assess-qualifier">
+          <div class="assess-qualifier-label">The Capacity Review works best for</div>
+          <div class="assess-qualifier-list">
+            <div class="assess-qualifier-item">Organizations with at least 5 paid staff</div>
+            <div class="assess-qualifier-item">Active client or patient volume, not pre-launch</div>
+            <div class="assess-qualifier-item">At least one workflow your team does manually every week</div>
+            <div class="assess-qualifier-item">Someone on the call who knows how operations actually work</div>
+          </div>
+          <p class="assess-qualifier-note">If you are pre-launch or under 5 staff, the Capacity Review will not have much to surface yet. Come back when you are running.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="quiz-wrap">
+          <div class="quiz-header-bar">
+            <div>
+              <div class="quiz-header-title">Capacity Review</div>
+              <div class="quiz-header-sub">NO COST · 12 MINUTES · NO PREP REQUIRED</div>
+            </div>
+            <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progress-fill"></div></div>
+          </div>
+          <div class="quiz-body">
+
+            <!-- Q1 -->
+            <div class="quiz-step active" id="q1">
+              <p class="quiz-step-label">Question 1 of 3</p>
+              <p class="quiz-question display">What type of organization are you?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-val="health" onclick="window.pick(this,1)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M12 8v8M8 12h8"></path></svg></span>
+                  <div><span class="quiz-option-text">Health-focused nonprofit</span><span class="quiz-option-sub">Free clinic, community health, behavioral health</span></div>
+                </button>
+                <button class="quiz-option" data-val="social" onclick="window.pick(this,1)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+                  <div><span class="quiz-option-text">Social services nonprofit</span><span class="quiz-option-sub">Housing, food banks, workforce development</span></div>
+                </button>
+                <button class="quiz-option" data-val="education" onclick="window.pick(this,1)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></span>
+                  <div><span class="quiz-option-text">Education or youth services</span><span class="quiz-option-sub">Schools, mentorship, after-school programs</span></div>
+                </button>
+                <button class="quiz-option" data-val="other" onclick="window.pick(this,1)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 22V12"></path><path d="M12 12C12 7 7 4 2 5c0 5 3 9 10 7"></path><path d="M12 12c0-5 5-8 10-7 0 5-3 9-10 7"></path></svg></span>
+                  <div><span class="quiz-option-text">Other nonprofit</span><span class="quiz-option-sub">Arts, environment, advocacy, faith-based</span></div>
+                </button>
+              </div>
+              <div class="quiz-nav"><button class="btn-next" id="n1" onclick="window.nextQ(1)">Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-step" id="q2">
+              <p class="quiz-step-label">Question 2 of 3</p>
+              <p class="quiz-question display">Where does your team lose the most time?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-val="intake" onclick="window.pick(this,2)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span>
+                  <div><span class="quiz-option-text">Client intake and paperwork</span><span class="quiz-option-sub">Forms, eligibility, data entry, onboarding</span></div>
+                </button>
+                <button class="quiz-option" data-val="scheduling" onclick="window.pick(this,2)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
+                  <div><span class="quiz-option-text">Scheduling and communications</span><span class="quiz-option-sub">Appointments, reminders, no-show follow-up</span></div>
+                </button>
+                <button class="quiz-option" data-val="reporting" onclick="window.pick(this,2)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg></span>
+                  <div><span class="quiz-option-text">Reporting and data collection</span><span class="quiz-option-sub">Grant reports, outcome tracking, compliance</span></div>
+                </button>
+                <button class="quiz-option" data-val="volunteers" onclick="window.pick(this,2)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 1 0-16 0"></path></svg></span>
+                  <div><span class="quiz-option-text">Volunteer or donor management</span><span class="quiz-option-sub">Coordination, acknowledgment, retention</span></div>
+                </button>
+              </div>
+              <div class="quiz-nav"><button class="btn-next" id="n2" onclick="window.nextQ(2)">Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-step" id="q3">
+              <p class="quiz-step-label">Question 3 of 3</p>
+              <p class="quiz-question display">What is your role in decisions like this?</p>
+              <div class="quiz-options">
+                <button class="quiz-option" data-val="ed" onclick="window.pick(this,3)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="3" y1="22" x2="21" y2="22"></line><line x1="6" y1="18" x2="6" y2="11"></line><line x1="10" y1="18" x2="10" y2="11"></line><line x1="14" y1="18" x2="14" y2="11"></line><line x1="18" y1="18" x2="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg></span>
+                  <div><span class="quiz-option-text">Executive Director or CEO</span><span class="quiz-option-sub">I have final authority on budget and vendor decisions</span></div>
+                </button>
+                <button class="quiz-option" data-val="ops" onclick="window.pick(this,3)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span>
+                  <div><span class="quiz-option-text">Operations or Program Manager</span><span class="quiz-option-sub">I lead the evaluation and present to leadership</span></div>
+                </button>
+                <button class="quiz-option" data-val="board" onclick="window.pick(this,3)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span>
+                  <div><span class="quiz-option-text">Board Member</span><span class="quiz-option-sub">I participate in or approve major decisions</span></div>
+                </button>
+                <button class="quiz-option" data-val="staff" onclick="window.pick(this,3)">
+                  <span class="quiz-option-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8"></path><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg></span>
+                  <div><span class="quiz-option-text">Staff — someone else decides</span><span class="quiz-option-sub">I am exploring this for my organization</span></div>
+                </button>
+              </div>
+              <div class="quiz-nav"><button class="btn-next" id="n3" onclick="window.nextQ(3)">Continue <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button></div>
+            </div>
+
+            <!-- FORM -->
+            <div class="quiz-step" id="q4">
+              <p class="quiz-step-label">Last step</p>
+              <p class="quiz-question display">Where should we send your Operations Assessment?</p>
+              <div class="form-group"><label for="f-name">Your name</label><input type="text" id="f-name" placeholder="First name"></div>
+              <div class="form-group"><label for="f-org">Organization name</label><input type="text" id="f-org" placeholder="Your nonprofit's name"></div>
+              <div class="form-group"><label for="f-role">Your role</label><input type="text" id="f-role" placeholder="Executive Director, Operations Manager..."></div>
+              <div class="form-group"><label for="f-phone">Phone number</label><input type="tel" id="f-phone" placeholder="(555) 000-0000"></div>
+              <div class="form-group">
+                <label for="f-size">How many full-time staff does your organization have?</label>
+                <div class="select-wrap">
+                  <select id="f-size">
+                    <option value="" disabled selected>Select a range</option>
+                    <option value="under5">Under 5</option>
+                    <option value="5to15">5 – 15</option>
+                    <option value="15to50">15 – 50</option>
+                    <option value="50plus">50+</option>
+                  </select>
+                </div>
+              </div>
+              <button class="form-submit" onclick="window.submitForm()">
+                Start My Capacity Review
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+              </button>
+              <p class="form-disclaimer">Your information is never sold or shared. Ever.</p>
+            </div>
+
+            <!-- REVEAL -->
+            <div class="quiz-step" id="q5">
+              <div class="reveal-inner">
+                <div class="reveal-check">✓</div>
+                <h3 class="display" id="reveal-name">You're ready.</h3>
+                <p id="reveal-message">Call Alex at the number below. Eight focused questions about how your organization runs. Your Operations Assessment lands in your inbox within 24 hours.</p>
+                <a href="tel:+15406000080" class="phone-number display">(540) 600-0080</a>
+                <span class="phone-meta">MON–FRI · 8AM–8PM ET</span>
+                <div class="alex-card">
+                  <div class="alex-avatar">
+                    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"></path></svg>
+                  </div>
+                  <div class="alex-info">
+                    <strong>You'll be speaking with Alex</strong>
+                    <span id="alex-sub">8 focused questions. No salesperson. Your Operations Assessment within 24 hours.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+/* ─── QUIZ WIDGET FUNCTIONS ─── */
+/* Answers stored per step */
+var _quizAnswers = { 1: null, 2: null, 3: null };
+
+/* pick(el, step) — called by quiz option onclick handlers */
+window.pick = function(el, step) {
+  /* Deselect siblings in this step */
+  var parent = el.closest('.quiz-options');
+  if (parent) {
+    parent.querySelectorAll('.quiz-option').forEach(function(opt) {
+      opt.classList.remove('selected');
+    });
+  }
+  el.classList.add('selected');
+  _quizAnswers[step] = el.getAttribute('data-val');
+  /* Enable the Next button for this step */
+  var nextBtn = document.getElementById('n' + step);
+  if (nextBtn) nextBtn.classList.add('on');
+};
+
+/* nextQ(currentStep) — advance to next step and update progress */
+window.nextQ = function(currentStep) {
+  var current = document.getElementById('q' + currentStep);
+  var next = document.getElementById('q' + (currentStep + 1));
+  if (!current || !next) return;
+  current.classList.remove('active');
+  next.classList.add('active');
+  /* Update progress fill: 4 steps total (q1–q4), last step is q4 (form) */
+  var progressFill = document.getElementById('progress-fill');
+  if (progressFill) {
+    var pct = Math.round((currentStep / 4) * 100);
+    progressFill.style.transform = 'scaleX(' + (pct / 100) + ')';
+  }
+};
+
+/* submitForm() — collect form data, show reveal state */
+window.submitForm = function() {
+  var name = (document.getElementById('f-name') || {}).value || '';
+  var org  = (document.getElementById('f-org') || {}).value || '';
+  var role = (document.getElementById('f-role') || {}).value || '';
+
+  /* Show q5 reveal state */
+  var q4 = document.getElementById('q4');
+  var q5 = document.getElementById('q5');
+  if (q4) q4.classList.remove('active');
+  if (q5) q5.classList.add('active');
+
+  /* Update progress to 100% */
+  var progressFill = document.getElementById('progress-fill');
+  if (progressFill) progressFill.style.transform = 'scaleX(1)';
+
+  /* Personalize reveal text */
+  var revealName = document.getElementById('reveal-name');
+  var revealMsg  = document.getElementById('reveal-message');
+  var alexSub    = document.getElementById('alex-sub');
+
+  var firstName = name.split(' ')[0];
+
+  if (revealName && firstName) {
+    revealName.textContent = firstName + ', you’re ready.';
+  }
+  if (revealMsg) {
+    var orgText = org ? ' at ' + org : '';
+    revealMsg.textContent = 'Call Alex at the number below. Eight focused questions about how your team' + orgText + ' operates. Your Operations Assessment lands in your inbox within 24 hours.';
+  }
+  if (alexSub && role) {
+    alexSub.textContent = role + ' — 8 focused questions about your workflows. No salesperson. Your Operations Assessment within 24 hours.';
+  }
+};
+</script>
