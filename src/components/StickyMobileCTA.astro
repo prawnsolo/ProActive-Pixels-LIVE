@@ -1,0 +1,28 @@
+---
+---
+
+<div class="sticky-mobile-cta" id="stickyMobileCta" aria-hidden="true">
+  <a href="#assessment" aria-label="Get Your Capacity Review">
+    Get Your Capacity Review
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+  </a>
+</div>
+
+<script is:inline>
+(function() {
+  var bar = document.getElementById('stickyMobileCta');
+  if (!bar) return;
+  /* Only active on mobile (CSS hides on ≥769px, but skip listener too) */
+  var ticking = false;
+  function update() {
+    var show = window.scrollY > 80;
+    bar.classList.toggle('visible', show);
+    bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+    ticking = false;
+  }
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
+})();
+</script>
