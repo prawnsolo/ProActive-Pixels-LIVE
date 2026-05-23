@@ -101,7 +101,8 @@
   if (iframe) iframe.addEventListener('load', scaleReportPreview);
   /* Run immediately and again after fonts/paint settle */
   scaleReportPreview();
-  setTimeout(scaleReportPreview, 300);
+  setTimeout(scaleReportPreview, 150);
+  setTimeout(scaleReportPreview, 600);
 })();
 
 /* How It Works — scroll-triggered step activation */
