@@ -613,7 +613,7 @@ body.nav-open .mobile-nav-overlay { display:flex; }
   border-bottom:1px solid oklch(97% 0.007 78 / .10);
 }
 .integration-item--lead:hover { background:oklch(22% 0.014 78); }
-.integration-item--lead .integration-name { color:var(--fg-dark); font-size:var(--text-lg); }
+.integration-item--lead .integration-name { color:var(--green-bright); font-size:var(--text-lg); }
 .integration-item--lead .integration-cat { color:var(--fg-dark-muted); }
 .integration-item--lead .integration-compliance { color:var(--green-bright); margin-top:0; }
 .integration-name { font-size:var(--text-base); font-weight:500; }
@@ -642,7 +642,7 @@ body.nav-open .mobile-nav-overlay { display:flex; }
   background:var(--brand-navy); color:#fff;
   border-color:var(--brand-navy); padding:32px;
 }
-.sec-feature--lead .sec-title { color:var(--bg); font-size:var(--text-xl); }
+.sec-feature--lead .sec-title { color:var(--fg-dark); font-size:var(--text-xl); }
 .sec-feature--lead .sec-desc { color:oklch(84% 0.010 78); }
 .sec-feature--lead .sec-icon { border-color:oklch(97% 0.007 78 / .20); color:var(--bg); }
 .sec-feature--lead:hover { border-color:oklch(49% 0.12 244); }
