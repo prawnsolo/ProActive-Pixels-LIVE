@@ -426,16 +426,22 @@ body.nav-open .mobile-nav-overlay { display:flex; }
 /* ── REPORT IFRAME WRAPPER ── */
 .report-iframe-wrapper {
   width: 100%;
+  max-width: 100%;
   overflow: hidden;
   position: relative;
   border-radius: 3px;
   background: oklch(94% 0.008 252); /* subtle bg while loading */
+  contain: layout style;    /* prevents 900px iframe from bleeding into parent layout */
+  min-height: 220px;        /* fallback before JS fires */
 }
 
 .report-iframe {
   display: block;
+  position: absolute;     /* out of layout flow — 900px won't push parent */
+  top: 0;
+  left: 0;
   border: none;
-  pointer-events: none; /* clicks pass through to the <a> CTA below */
+  pointer-events: none;
   transform-origin: top left;
   /* width/height/transform set by JS */
 }
