@@ -374,7 +374,7 @@ body.nav-open .mobile-nav-overlay { display:flex; }
 
 .feature-desc { font-size:var(--text-lg); color:var(--text-muted); line-height:var(--lh-body); max-width:68ch; }
 .feature-visual { display:flex; justify-content:flex-end; }
-.feature-visual svg { width:192px; height:160px; color:var(--fg); }
+.feature-visual svg { width:192px; height:160px; color:var(--green); transition:color .4s ease; }
 
 /* ─── HOW IT WORKS ─── */
 #how-it-works { background:var(--fg); color:var(--fg-dark); padding:var(--s-section) 0; position:relative; overflow:hidden; }
