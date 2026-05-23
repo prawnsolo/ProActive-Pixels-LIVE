@@ -1,6 +1,6 @@
 ---
 // sample-report.astro — standalone page, no shared nav/footer
-// Uses its own visual identity (Cormorant Garamond, forest-green palette)
+// Uses ProActive Pixels brand identity (Instrument Serif, Satoshi, blue/navy palette)
 ---
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="Operations Assessment: Piedmont Free Clinic | ProActive Pixels" />
-<meta property="og:description" content="Sample Operations Assessment from ProActive Pixels. 390 clinical hours lost annually to no-shows — and how to get them back." />
+<meta property="og:description" content="Sample Operations Assessment from ProActive Pixels. 390 clinical hours lost annually to no-shows, and how to recover them." />
 <meta property="og:url" content="https://proactivepixels.com/sample-report" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ProActive Pixels" />
@@ -24,8 +24,12 @@
 <link rel="icon" type="image/png" href="/favicon.png" />
 
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600&display=swap" rel="stylesheet">
 
 <style>
 /* ── RESET ── */
@@ -34,34 +38,34 @@ html { scroll-behavior: smooth; }
 
 /* ── DESIGN TOKENS (OKLCH) ── */
 :root {
-  /* Forest green — committed palette anchor */
-  --forest:        oklch(28% 0.08 152);
-  --forest-mid:    oklch(35% 0.09 152);
-  --moss:          oklch(44% 0.10 152);
-  --sage:          oklch(62% 0.10 152);
-  --sage-pale:     oklch(92% 0.03 152);
+  /* PP Brand blue/navy palette (variable names preserved for compatibility) */
+  --forest:        #171E62;                          /* Brand navy — cover + key accents */
+  --forest-mid:    oklch(30% 0.10 244);              /* Deep navy mid */
+  --moss:          oklch(49% 0.12 244);              /* Cornflower Ocean #1770B2 */
+  --sage:          oklch(67% 0.10 228);              /* Fresh Sky #40A5DD */
+  --sage-pale:     oklch(95% 0.015 252);             /* Sky pale */
 
-  /* Warm cream — never white */
-  --cream:         oklch(97% 0.008 80);
-  --cream-deep:    oklch(93% 0.012 80);
-  --ink:           oklch(18% 0.015 80);
-  --ink-muted:     oklch(45% 0.018 80);
-  --ink-faint:     oklch(68% 0.014 80);
+  /* Cool porcelain surface */
+  --cream:         oklch(97.5% 0.006 252);           /* Porcelain #F4F7FB */
+  --cream-deep:    oklch(94% 0.008 252);             /* Slightly deeper cool surface */
+  --ink:           oklch(18% 0.012 78);
+  --ink-muted:     oklch(46% 0.018 78);
+  --ink-faint:     oklch(62% 0.014 78);
 
   /* Gold — healthcare trust signal */
   --gold:          oklch(72% 0.12 78);
-  --gold-pale:     oklch(94% 0.04 78);
+  --gold-pale:     oklch(95% 0.04 78);
 
   /* Alert */
   --red:           oklch(52% 0.15 25);
   --red-pale:      oklch(96% 0.02 25);
 
   /* Border */
-  --border:        oklch(88% 0.012 80);
-  --border-strong: oklch(78% 0.018 80);
+  --border:        oklch(89% 0.008 252);
+  --border-strong: oklch(81% 0.010 252);
 
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans:  'Satoshi', system-ui, sans-serif;
   --font-mono:  'JetBrains Mono', monospace;
 }
 
@@ -72,6 +76,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
 }
 
 /* ── BACK BAR ── */
@@ -79,7 +84,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: oklch(18% 0.015 80 / .92);
+  background: rgba(23, 30, 98, 0.94);
   backdrop-filter: blur(8px) saturate(160%);
   -webkit-backdrop-filter: blur(8px) saturate(160%);
   padding: 0 24px;
@@ -169,7 +174,7 @@ body {
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
 }
 .cover-eyebrow::before {
@@ -178,6 +183,7 @@ body {
   width: 24px;
   height: 1px;
   background: var(--sage);
+  margin-top: 4px;
 }
 
 .cover-body {
@@ -191,7 +197,7 @@ body {
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  color: oklch(97% 0.008 80);
+  color: oklch(98% 0.004 252);
   margin-bottom: 8px;
   text-wrap: balance;
 }
@@ -310,7 +316,7 @@ body {
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.01em;
-  color: oklch(97% 0.008 80);
+  color: oklch(98% 0.004 252);
   max-width: 52ch;
   margin-bottom: 24px;
   position: relative;
@@ -358,7 +364,7 @@ body {
   transition: background 0.25s;
 }
 
-.finding-cell:hover { background: oklch(96% 0.01 152); }
+.finding-cell:hover { background: oklch(95% 0.012 252); }
 
 .finding-cell::before {
   content: '';
@@ -376,6 +382,7 @@ body {
 
 .finding-value {
   font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
   font-size: clamp(2.8rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1;
@@ -448,6 +455,7 @@ body {
   border: 1px solid var(--border);
   background: var(--cream);
   position: relative;
+  overflow: hidden;
 }
 
 .metric-block::after {
@@ -456,7 +464,7 @@ body {
   bottom: 16px;
   right: 20px;
   font-family: var(--font-serif);
-  font-size: 4rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: var(--border);
   line-height: 1;
@@ -466,6 +474,7 @@ body {
 
 .metric-value {
   font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -486,6 +495,7 @@ body {
   font-size: 0.65rem;
   color: var(--ink-faint);
   letter-spacing: 0.04em;
+  padding-right: 2.8rem;
 }
 
 .cost-note {
@@ -505,6 +515,7 @@ body {
 
 .solution-intro {
   font-size: 1.05rem;
+  text-wrap: pretty;
   line-height: 1.8;
   color: var(--ink-muted);
   max-width: 60ch;
@@ -595,6 +606,7 @@ body {
 
 .impact-value {
   font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -646,8 +658,8 @@ body {
   font-family: var(--font-serif);
   font-size: 1.4rem;
   font-weight: 600;
-  color: oklch(100% 0 0 / .35);
-  border-right: 1px solid var(--border);
+  color: oklch(100% 0 0 / .55);
+  border-right: 1px solid oklch(100% 0 0 / .08);
   padding: 24px 0;
 }
 
@@ -821,7 +833,7 @@ body {
 }
 
 .sec-cell--lead .sec-title {
-  color: oklch(97% 0.008 80);
+  color: oklch(98% 0.004 252);
   font-size: 1rem;
   margin-bottom: 8px;
 }
@@ -854,6 +866,170 @@ body {
 
 @media (max-width: 600px) {
   .sec-sub { grid-template-columns: 1fr; }
+}
+
+/* ── PROPOSED TOOLS ── */
+.tools-section {
+  padding: 56px 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tools-intro {
+  font-size: 1.0rem;
+  text-wrap: pretty;
+  line-height: 1.75;
+  color: var(--ink-muted);
+  max-width: 68ch;
+  margin-top: 16px;
+  margin-bottom: 36px;
+}
+
+.tools-grid {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.tools-grid-header {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 1.2fr;
+  gap: 0;
+  background: var(--forest);
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: oklch(100% 0 0 / .65);
+}
+
+.tool-row {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 1.2fr;
+  gap: 0;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+.tool-row:last-child { border-bottom: none; }
+.tool-row:nth-child(even) { background: var(--cream-deep); }
+
+.tool-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tool-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
+  font-weight: 400;
+}
+
+.tool-workflow {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  padding-right: 16px;
+}
+
+.hipaa-badge {
+  display: inline-block;
+  background: var(--sky-pale);
+  color: var(--moss);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 3px;
+}
+
+.hipaa-na {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tool-cost {
+  font-family: var(--font-serif);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+
+.cost-unit {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.tools-summary {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.tools-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  gap: 24px;
+}
+
+.tools-summary-row:last-child { border-bottom: none; }
+
+.tools-summary-label {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.tools-summary-value {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.tools-summary-roi {
+  background: var(--sky-pale);
+}
+
+.roi-value {
+  color: var(--moss);
+}
+
+.tools-footnote {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .tools-grid-header { display: none; }
+  .tool-row { grid-template-columns: 1fr; gap: 8px; padding: 16px 16px; }
+  .tool-cost { text-align: left; }
+  .tools-summary-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .tools-summary-value { white-space: normal; text-align: left; }
 }
 
 /* ── NEXT STEPS ── */
@@ -903,7 +1079,7 @@ body {
 
 /* ── CONTACT FOOTER ── */
 .contact-footer {
-  background: var(--ink);
+  background: var(--forest);
   padding: 40px 64px;
   display: flex;
   align-items: center;
@@ -923,39 +1099,61 @@ body {
 }
 
 .contact-brand {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: oklch(97% 0.008 80);
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: oklch(100% 0 0);
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
+.contact-brand-logo {
+  width: 24px;
+  height: 24px;
+  display: block;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.logo-name-pro,
+.logo-name-pixels { color: oklch(100% 0 0); }
+.logo-name-active  { color: var(--sage); }
 
 .contact-links {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 4px;
+  gap: 8px;
   position: relative;
   z-index: 1;
 }
 
 .contact-links a {
-  font-size: 0.825rem;
-  color: oklch(100% 0 0 / .4);
+  font-size: 0.9rem;
+  color: oklch(100% 0 0 / .8);
   text-decoration: none;
   transition: color 0.2s;
   font-family: var(--font-mono);
 }
 
-.contact-links a:hover { color: oklch(100% 0 0 / .75); }
+.contact-links a:hover { color: oklch(100% 0 0); }
+
+.contact-linkedin {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
 .contact-note {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: oklch(100% 0 0 / .2);
+  color: oklch(100% 0 0 / .55);
   position: relative;
   z-index: 1;
 }
@@ -1172,50 +1370,56 @@ body {
     </div>
   </div>
 
-  <!-- OUR PACE -->
-  <div class="pace-section animate-in" style="animation-delay:.35s">
-    <div class="pace-left">
-      <div class="section-label">Our Approach</div>
-      <h2 class="section-h2" style="font-size:clamp(1.5rem,3vw,2.2rem)">We move at your pace. Not ours.</h2>
-      <div class="pace-body">
-        <p>Most nonprofits do not move on 72-hour timelines. Budget approvals take time. Staff buy-in takes time. We know this.</p>
-        <p>Our model is built around one workflow first. We build it, test it with your team, and prove the result before any conversation about what comes next. You are never committed to more than the next step.</p>
+
+  <!-- PROPOSED TOOLS -->
+  <div class="tools-section animate-in" style="animation-delay:.33s">
+    <div class="section-label">Proposed Tools &amp; Monthly Investment</div>
+    <h2 class="section-h2">Platforms that fit each workflow.</h2>
+    <p class="tools-intro">Every platform listed below carries an executed Business Associate Agreement (BAA) for HIPAA compliance. Each is a prebuilt, subscription-based service. Monthly subscription costs are paid directly to each vendor by your organization.</p>
+
+    <div class="tools-grid">
+      <div class="tools-grid-header">
+        <span>Tool</span>
+        <span>Workflow Addressed</span>
+        <span>HIPAA</span>
+        <span>Monthly Cost</span>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-name">GoHighLevel<span class="tool-tag">Primary Platform</span></div>
+        <div class="tool-workflow">Appointment reminders · waitlist backfill · follow-up sequences · intake forms</div>
+        <div class="tool-hipaa"><span class="hipaa-badge">BAA Available</span></div>
+        <div class="tool-cost">$97 <span class="cost-unit">/mo</span></div>
+      </div>
+
+      <div class="tool-row">
+        <div class="tool-name">JotForm Enterprise<span class="tool-tag">Intake Forms</span></div>
+        <div class="tool-workflow">Digital patient intake · eligibility screening · consent collection · e-signature</div>
+        <div class="tool-hipaa"><span class="hipaa-badge">BAA Available</span></div>
+        <div class="tool-cost">$79 <span class="cost-unit">/mo</span></div>
+      </div>
+
+    </div>
+
+    <div class="tools-summary">
+      <div class="tools-summary-row">
+        <span class="tools-summary-label">Total monthly platform cost</span>
+        <span class="tools-summary-value">$176 <span class="cost-unit">/mo · $2,112/yr</span></span>
+      </div>
+      <div class="tools-summary-row">
+        <span class="tools-summary-label">Estimated staff hours recovered weekly</span>
+        <span class="tools-summary-value">15–22 hrs <span class="cost-unit">/week</span></span>
+      </div>
+      <div class="tools-summary-row">
+        <span class="tools-summary-label">Annual value at blended staff rate ($19.20/hr)</span>
+        <span class="tools-summary-value">$14,976–$21,965 <span class="cost-unit">/yr</span></span>
+      </div>
+      <div class="tools-summary-row tools-summary-roi">
+        <span class="tools-summary-label">Net annual ROI after platform costs</span>
+        <span class="tools-summary-value roi-value">$12,864–$19,853</span>
       </div>
     </div>
-    <div class="phase-table">
-      <div class="phase-row">
-        <div class="phase-num">I</div>
-        <div class="phase-body">
-          <div class="phase-time">Week 1–2</div>
-          <div class="phase-title">Assessment review and internal alignment</div>
-          <div class="phase-desc">We answer questions, meet your team, confirm the right starting point.</div>
-        </div>
-      </div>
-      <div class="phase-row">
-        <div class="phase-num">II</div>
-        <div class="phase-body">
-          <div class="phase-time">Week 2–4</div>
-          <div class="phase-title">Build and test</div>
-          <div class="phase-desc">Configure, run in a test environment, walk staff through it before anything goes live.</div>
-        </div>
-      </div>
-      <div class="phase-row">
-        <div class="phase-num">III</div>
-        <div class="phase-body">
-          <div class="phase-time">Week 4–6</div>
-          <div class="phase-title">Go live</div>
-          <div class="phase-desc">The automation runs. Your team monitors results. We handle everything in the background.</div>
-        </div>
-      </div>
-      <div class="phase-row">
-        <div class="phase-num">IV</div>
-        <div class="phase-body">
-          <div class="phase-time">Month 3+</div>
-          <div class="phase-title">Review and expand</div>
-          <div class="phase-desc">We review results together. If the numbers are there, we discuss the next workflow. No pressure.</div>
-        </div>
-      </div>
-    </div>
+    <p class="tools-footnote">Platform costs are estimates based on published pricing as of May 2026. Actual pricing may vary by contract tier. ProActive Pixels does not receive referral fees from any recommended platform.</p>
   </div>
 
   <!-- SECURITY -->
@@ -1241,11 +1445,57 @@ body {
         </div>
         <div class="sec-cell">
           <div class="sec-title">No Data Selling. Ever.</div>
-          <div class="sec-desc">Your patient data belongs to Piedmont Free Clinic. We never aggregate, sell, or share it under any circumstances.</div>
+          <div class="sec-desc">Patient data belongs to the organization. It is never aggregated, sold, or shared under any circumstances.</div>
         </div>
         <div class="sec-cell">
           <div class="sec-title">Compliance-First Stack</div>
           <div class="sec-desc">Every tool vetted for enterprise-grade security before it touches your workflows. If it does not meet the bar, it does not get used.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUR PACE -->
+  <div class="pace-section animate-in" style="animation-delay:.35s">
+    <div class="pace-left">
+      <div class="section-label">Implementation Timeline</div>
+      <h2 class="section-h2" style="font-size:clamp(1.5rem,3vw,2.2rem)">Move at your pace.</h2>
+      <div class="pace-body">
+        <p>Most nonprofits do not move on 72-hour timelines. Budget approvals take time. Staff buy-in takes time.</p>
+        <p>The approach is one workflow first: configured and tested with your team, with results confirmed before any conversation about what comes next. No commitment beyond the current step.</p>
+      </div>
+    </div>
+    <div class="phase-table">
+      <div class="phase-row">
+        <div class="phase-num">I</div>
+        <div class="phase-body">
+          <div class="phase-time">Week 1–2</div>
+          <div class="phase-title">Assessment review and internal alignment</div>
+          <div class="phase-desc">Questions answered, team briefed, starting point confirmed.</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-num">II</div>
+        <div class="phase-body">
+          <div class="phase-time">Week 2–4</div>
+          <div class="phase-title">Configure and test</div>
+          <div class="phase-desc">Configure, run in a test environment, walk staff through it before anything goes live.</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-num">III</div>
+        <div class="phase-body">
+          <div class="phase-time">Week 4–6</div>
+          <div class="phase-title">Go live</div>
+          <div class="phase-desc">The automation runs. Your team monitors results. Configuration support is available throughout.</div>
+        </div>
+      </div>
+      <div class="phase-row">
+        <div class="phase-num">IV</div>
+        <div class="phase-body">
+          <div class="phase-time">Month 3+</div>
+          <div class="phase-title">Review and expand</div>
+          <div class="phase-desc">Review results. If the numbers hold, consider the next workflow. No pressure.</div>
         </div>
       </div>
     </div>
@@ -1284,11 +1534,18 @@ body {
 
   <!-- CONTACT FOOTER -->
   <div class="contact-footer">
-    <div class="contact-brand">ProActive Pixels</div>
+    <div class="contact-brand">
+      <img src="https://proactivepixels.com/favicon.svg" alt="" class="contact-brand-logo" aria-hidden="true" width="24" height="24">
+      <span><span class="logo-name-pro">Pro</span><span class="logo-name-active">Active</span><span class="logo-name-pixels"> Pixels</span></span>
+    </div>
     <div class="contact-note">Prepared May 2026 · Confidential</div>
     <div class="contact-links">
       <a href="mailto:solutions@proactivepixels.com">solutions@proactivepixels.com</a>
-      <a href="tel:+15406000080">(540) 600-0080</a>
+      <a href="https://proactivepixels.com" target="_blank" rel="noopener noreferrer">proactivepixels.com</a>
+      <a href="https://www.linkedin.com/in/jose-noriega-206b6a304" target="_blank" rel="noopener noreferrer" class="contact-linkedin">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        Jose Noriega, Founder
+      </a>
     </div>
   </div>
 
