@@ -920,7 +920,7 @@ body.nav-open .mobile-nav-overlay { display:flex; }
 /* ─── REVEAL (IntersectionObserver scroll entrances) ─── */
 .reveal {
   opacity:0; transform:translateY(18px);
-  transition:opacity .6s ease-out, transform .6s cubic-bezier(0.16,1,0.3,1);
+  transition:opacity .4s ease-out, transform .4s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.revealed { opacity:1; transform:none; }
 
