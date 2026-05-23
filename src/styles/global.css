@@ -206,6 +206,18 @@ p { text-wrap: pretty; }
 .btn-pill-outline:hover { background:oklch(18% 0.012 78 / .04); }
 .btn-pill-outline:active { transform:scale(0.97); }
 
+/* Hero "See how it works" — frosted glass variant */
+.hero-ctas .btn-pill-outline {
+  background:oklch(97.5% 0.006 252 / .65);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid oklch(18% 0.012 78 / .12);
+  box-shadow:0 4px 24px oklch(18% 0.012 78 / .08), 0 1px 0 oklch(97% 0.007 78 / .60) inset;
+}
+.hero-ctas .btn-pill-outline:hover {
+  background:oklch(97.5% 0.006 252 / .85);
+}
+
 /* Mobile nav */
 .nav-hamburger {
   display:none;
@@ -277,7 +289,7 @@ body.nav-open .mobile-nav-overlay { display:flex; }
   letter-spacing:-.02em; margin-bottom:48px;
   text-wrap:balance; animation:fadeUp 1s cubic-bezier(0.16,1,0.3,1) .1s both; max-width:900px;
 }
-.hero-headline em { font-style:italic; color:var(--text-muted); }
+.hero-headline em { font-style:italic; color:var(--green-bright); }
 
 .hero-body {
   display:grid; grid-template-columns:1fr 1fr; gap:var(--s-section);
