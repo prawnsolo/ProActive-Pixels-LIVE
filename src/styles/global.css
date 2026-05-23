@@ -414,6 +414,14 @@ body.nav-open .mobile-nav-overlay { display:flex; }
 .how-progress-bar { height:100%; background:var(--fg-dark); width:100%; transform:scaleX(0); transform-origin:left; transition:transform .4s cubic-bezier(0.16,1,0.3,1); }
 .how-step.active .how-progress-bar { transform:scaleX(1); }
 
+/* ── REPORT PANEL FRAME (white mat separating dark card from dark section bg) ── */
+.report-panel-frame {
+  background: oklch(97.5% 0.006 252);   /* PP porcelain — same as landing page surface */
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 0 0 1px oklch(89% 0.008 252), 0 12px 40px oklch(0% 0 0 / .22);
+}
+
 /* ── REPORT PREVIEW PANEL ── */
 .report-preview-panel {
   display:block; /* anchor tag */
