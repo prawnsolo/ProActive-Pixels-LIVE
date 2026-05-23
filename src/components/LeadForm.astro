@@ -121,10 +121,11 @@
             <div class="quiz-step" id="q4">
               <p class="quiz-step-label">Last step</p>
               <p class="quiz-question display">Where should we send your Operations Assessment?</p>
-              <div class="form-group"><label for="f-name">Your name</label><input type="text" id="f-name" placeholder="First name"></div>
-              <div class="form-group"><label for="f-org">Organization name</label><input type="text" id="f-org" placeholder="Your nonprofit's name"></div>
-              <div class="form-group"><label for="f-role">Your role</label><input type="text" id="f-role" placeholder="Executive Director, Operations Manager..."></div>
-              <div class="form-group"><label for="f-phone">Phone number</label><input type="tel" id="f-phone" placeholder="(555) 000-0000"></div>
+              <div class="form-group"><label for="f-name">Your name</label><input type="text" id="f-name" placeholder="First name" autocomplete="given-name"></div>
+              <div class="form-group"><label for="f-org">Organization name</label><input type="text" id="f-org" placeholder="Your nonprofit's name" autocomplete="organization"></div>
+              <div class="form-group"><label for="f-role">Your role</label><input type="text" id="f-role" placeholder="Executive Director, Operations Manager..." autocomplete="organization-title"></div>
+              <div class="form-group"><label for="f-email">Email address</label><input type="email" id="f-email" placeholder="you@yourorg.org" autocomplete="email"></div>
+              <div class="form-group"><label for="f-phone">Phone number</label><input type="tel" id="f-phone" placeholder="(555) 000-0000" autocomplete="tel"></div>
               <div class="form-group">
                 <label for="f-size">How many full-time staff does your organization have?</label>
                 <div class="select-wrap">
@@ -137,11 +138,25 @@
                   </select>
                 </div>
               </div>
-              <button class="form-submit" onclick="window.submitForm()">
-                Start My Capacity Review
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+              <button class="form-submit" id="form-submit-btn" onclick="window.submitForm()">
+                <span id="submit-btn-text">Start My Capacity Review</span>
+                <svg id="submit-btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                <svg id="submit-btn-spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" style="display:none;"><circle cx="12" cy="12" r="9" stroke-dasharray="28 8" opacity="0.9" class="spinner-ring"/></svg>
               </button>
-              <p class="form-disclaimer">Your information is never sold or shared. Ever.</p>
+              <p id="form-error-msg" style="display:none;font-size:13px;color:#c0392b;text-align:center;margin-top:10px;line-height:1.6;">
+                Something went wrong. Please try again or reach us at <a href="mailto:solutions@proactivepixels.com" style="color:inherit;text-decoration:underline;">solutions@proactivepixels.com</a>.
+              </p>
+              <p class="form-disclaimer">This form collects no patient data — your name, organization, email, and phone only. Handled under HIPAA-aligned data practices. Never sold or shared.</p>
+            </div>
+
+            <!-- SOFT DISQUALIFIER — shown for under-5 submissions -->
+            <div class="quiz-step" id="q-disqualify">
+              <div class="reveal-inner">
+                <div class="reveal-check reveal-check--neutral">→</div>
+                <h3 class="display">Come back when you're running.</h3>
+                <p style="color:var(--color-body);line-height:1.75;margin-bottom:20px;">The Capacity Review is built to surface admin bottlenecks in active operations. With fewer than five staff, there's not much to surface yet. Come back when you have workflows, volume, and a team carrying them.</p>
+                <p style="font-size:14px;color:var(--color-body);">Questions in the meantime? <a href="mailto:solutions@proactivepixels.com" style="color:var(--color-text);text-decoration:underline;">solutions@proactivepixels.com</a></p>
+              </div>
             </div>
 
             <!-- REVEAL -->
@@ -152,6 +167,7 @@
                 <p id="reveal-message">Call Alex at the number below. Eight focused questions about how your organization runs. Your Operations Assessment lands in your inbox within 24 hours.</p>
                 <a href="tel:+15406000080" class="phone-number display">(540) 600-0080</a>
                 <span class="phone-meta">MON–FRI · 8AM–8PM ET</span>
+                <p class="reveal-recording-note">This call will be recorded for quality review and report preparation.</p>
                 <div class="alex-card">
                   <div class="alex-avatar">
                     <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"></path></svg>
@@ -171,14 +187,28 @@
   </div>
 </section>
 
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner-ring { animation: spin 0.75s linear infinite; transform-origin: center; }
+  .reveal-check--neutral {
+    background: oklch(92% 0.01 78);
+    color: oklch(40% 0.02 78);
+    font-size: 20px;
+  }
+  .reveal-recording-note {
+    font-size: 12px;
+    color: var(--color-body, #666);
+    margin: 8px 0 20px;
+    opacity: 0.75;
+  }
+</style>
+
 <script is:inline>
-/* ─── QUIZ WIDGET FUNCTIONS ─── */
-/* Answers stored per step */
+/* ─── QUIZ WIDGET ─── */
 var _quizAnswers = { 1: null, 2: null, 3: null };
 
 /* pick(el, step) — called by quiz option onclick handlers */
 window.pick = function(el, step) {
-  /* Deselect siblings in this step */
   var parent = el.closest('.quiz-options');
   if (parent) {
     parent.querySelectorAll('.quiz-option').forEach(function(opt) {
@@ -187,58 +217,159 @@ window.pick = function(el, step) {
   }
   el.classList.add('selected');
   _quizAnswers[step] = el.getAttribute('data-val');
-  /* Enable the Next button for this step */
   var nextBtn = document.getElementById('n' + step);
   if (nextBtn) nextBtn.classList.add('on');
 };
 
-/* nextQ(currentStep) — advance to next step and update progress */
+/* nextQ(currentStep) — advance to next step and update progress bar */
 window.nextQ = function(currentStep) {
   var current = document.getElementById('q' + currentStep);
-  var next = document.getElementById('q' + (currentStep + 1));
+  var next    = document.getElementById('q' + (currentStep + 1));
   if (!current || !next) return;
   current.classList.remove('active');
   next.classList.add('active');
-  /* Update progress fill: 4 steps total (q1–q4), last step is q4 (form) */
   var progressFill = document.getElementById('progress-fill');
   if (progressFill) {
-    var pct = Math.round((currentStep / 4) * 100);
-    progressFill.style.width = pct + '%';
+    progressFill.style.width = Math.round((currentStep / 4) * 100) + '%';
   }
 };
 
-/* submitForm() — collect form data, show reveal state */
+/* submitForm() — validate, post to Worker, handle all states */
 window.submitForm = function() {
-  var name = (document.getElementById('f-name') || {}).value || '';
-  var org  = (document.getElementById('f-org') || {}).value || '';
-  var role = (document.getElementById('f-role') || {}).value || '';
+  var nameEl    = document.getElementById('f-name');
+  var orgEl     = document.getElementById('f-org');
+  var roleEl    = document.getElementById('f-role');
+  var emailEl   = document.getElementById('f-email');
+  var phoneEl   = document.getElementById('f-phone');
+  var sizeEl    = document.getElementById('f-size');
 
-  /* Show q5 reveal state */
+  var name  = nameEl  ? nameEl.value.trim()  : '';
+  var org   = orgEl   ? orgEl.value.trim()   : '';
+  var role  = roleEl  ? roleEl.value.trim()  : '';
+  var email = emailEl ? emailEl.value.trim() : '';
+  var phone = phoneEl ? phoneEl.value.trim() : '';
+  var size  = sizeEl  ? sizeEl.value         : '';
+
+  /* Clear previous field errors */
+  ['f-name', 'f-org', 'f-email', 'f-phone'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.style.outline = ''; el.style.outlineOffset = ''; }
+  });
+  var errMsg = document.getElementById('form-error-msg');
+  if (errMsg) errMsg.style.display = 'none';
+
+  /* Validate required fields */
+  var valid = true;
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!name)                            { markErr('f-name');  valid = false; }
+  if (!org)                             { markErr('f-org');   valid = false; }
+  if (!email || !emailRe.test(email))   { markErr('f-email'); valid = false; }
+  if (!phone || phone.replace(/\D/g, '').length < 10) { markErr('f-phone'); valid = false; }
+  if (!valid) return;
+
+  /* Soft disqualifier — under 5 staff */
+  if (size === 'under5') {
+    var q4el = document.getElementById('q4');
+    var qdEl = document.getElementById('q-disqualify');
+    if (q4el) q4el.classList.remove('active');
+    if (qdEl) qdEl.classList.add('active');
+    var pf = document.getElementById('progress-fill');
+    if (pf) pf.style.width = '100%';
+    return;
+  }
+
+  /* Loading state */
+  var btn       = document.getElementById('form-submit-btn');
+  var btnText   = document.getElementById('submit-btn-text');
+  var btnArrow  = document.getElementById('submit-btn-arrow');
+  var btnSpinner = document.getElementById('submit-btn-spinner');
+  if (btn)        btn.disabled = true;
+  if (btnText)    btnText.textContent = 'Sending…';
+  if (btnArrow)   btnArrow.style.display = 'none';
+  if (btnSpinner) btnSpinner.style.display = 'inline-block';
+
+  /* Build payload — send all quiz answers + form fields */
+  var payload = {
+    first_name:    name,
+    org_name:      org,
+    role:          role  || 'not provided',
+    email:         email,
+    phone:         phone,
+    staff_size:    size  || 'not provided',
+    niche:         _quizAnswers[1] || 'unknown',
+    biggest_drain: _quizAnswers[2] || 'unknown',
+    contact_role:  _quizAnswers[3] || 'unknown'
+  };
+
+  /* POST to Cloudflare Worker */
+  fetch('https://proactivepixels-router.aqua-noriega.workers.dev/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) {
+    return res.json().then(function(d) { return { ok: res.ok, data: d }; });
+  })
+  .then(function(r) {
+    if (!r.ok || r.data.error) throw new Error(r.data.error || 'server error');
+    showReveal(name, org, email, role);
+  })
+  .catch(function() {
+    /* Reset button state */
+    if (btn)        btn.disabled = false;
+    if (btnText)    btnText.textContent = 'Start My Capacity Review';
+    if (btnArrow)   btnArrow.style.display = '';
+    if (btnSpinner) btnSpinner.style.display = 'none';
+    /* Show submission error */
+    if (errMsg) errMsg.style.display = 'block';
+  });
+};
+
+/* markErr — highlight a required field that failed validation */
+function markErr(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.style.outline = '2px solid #c0392b';
+    el.style.outlineOffset = '1px';
+  }
+}
+
+/* escHtml — prevent XSS in innerHTML assignments */
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/* showReveal — transition to q5 and personalize the reveal text */
+function showReveal(name, org, email, role) {
   var q4 = document.getElementById('q4');
   var q5 = document.getElementById('q5');
   if (q4) q4.classList.remove('active');
   if (q5) q5.classList.add('active');
 
-  /* Update progress to 100% */
-  var progressFill = document.getElementById('progress-fill');
-  if (progressFill) progressFill.style.width = '100%';
+  var pf = document.getElementById('progress-fill');
+  if (pf) pf.style.width = '100%';
 
-  /* Personalize reveal text */
+  var firstName  = (name.split(' ')[0]) || name;
   var revealName = document.getElementById('reveal-name');
   var revealMsg  = document.getElementById('reveal-message');
   var alexSub    = document.getElementById('alex-sub');
-
-  var firstName = name.split(' ')[0];
 
   if (revealName && firstName) {
     revealName.textContent = firstName + ', you’re ready.';
   }
   if (revealMsg) {
-    var orgText = org ? ' at ' + org : '';
-    revealMsg.textContent = 'Call Alex at the number below. Eight focused questions about how your team' + orgText + ' operates. Your Operations Assessment lands in your inbox within 24 hours.';
+    var orgText = org ? ' at ' + escHtml(org) : '';
+    revealMsg.innerHTML =
+      'Call Alex at the number below. Eight focused questions about how your team' +
+      orgText + ' operates. Your Operations Assessment lands in ' +
+      '<strong>' + escHtml(email) + '</strong> within 24 hours.';
   }
   if (alexSub && role) {
-    alexSub.textContent = role + ' — 8 focused questions about your workflows. No salesperson. Your Operations Assessment within 24 hours.';
+    alexSub.textContent = escHtml(role) + ' — 8 focused questions about your workflows. No salesperson. Your Operations Assessment within 24 hours.';
   }
-};
+}
 </script>
