@@ -315,6 +315,14 @@
   add('#cta .cta-h2');
   add('#cta .cta-desc');
 
+  /* Additions — features header, how-it-works header, CTA bullets, cert badges, integrations */
+  add('#features .section-label');
+  add('#features .section-h2');
+  add('#how-it-works .how-h2');
+  add('.cta-bullets li', 50);
+  add('.cert-badges .cert-badge', 50);
+  add('.integrations-grid .integration-item', 60);
+
   var io = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (!e.isIntersecting) return;
@@ -331,5 +339,41 @@
   }, { rootMargin: '0px 0px -60px 0px', threshold: 0.12 });
 
   all.forEach(function(el) { io.observe(el); });
+})();
+</script>
+
+<!-- ─── METRICS COUNTER ─── -->
+<script is:inline>
+(function() {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+
+  document.querySelectorAll('.infra-stat-val').forEach(function(el) {
+    var text = el.textContent.trim();
+    var match = text.match(/^(\d+)(.*)/);
+    if (!match) return;
+
+    var target  = parseInt(match[1], 10);
+    var suffix  = match[2];
+    var duration = 1400;
+    var started = false;
+
+    var obs = new IntersectionObserver(function(entries) {
+      if (!entries[0].isIntersecting || started) return;
+      started = true;
+      obs.unobserve(el);
+
+      var start = performance.now();
+      function tick(now) {
+        var progress = Math.min((now - start) / duration, 1);
+        var eased    = 1 - Math.pow(1 - progress, 3); /* ease-out cubic */
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }, { threshold: 0.6 });
+
+    obs.observe(el);
+  });
 })();
 </script>
