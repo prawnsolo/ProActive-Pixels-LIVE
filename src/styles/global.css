@@ -422,6 +422,24 @@ body.nav-open .mobile-nav-overlay { display:flex; }
   box-shadow: 0 0 0 1px oklch(89% 0.008 252), 0 12px 40px oklch(0% 0 0 / .22);
 }
 
+
+/* ── REPORT IFRAME WRAPPER ── */
+.report-iframe-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 3px;
+  background: oklch(94% 0.008 252); /* subtle bg while loading */
+}
+
+.report-iframe {
+  display: block;
+  border: none;
+  pointer-events: none; /* clicks pass through to the <a> CTA below */
+  transform-origin: top left;
+  /* width/height/transform set by JS */
+}
+
 /* ── REPORT PREVIEW PANEL ── */
 .report-preview-panel {
   display:block; /* anchor tag */
