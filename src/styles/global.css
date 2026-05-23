@@ -158,8 +158,11 @@ p { text-wrap: pretty; }
   #nav, #nav .nav-inner, #nav .nav-inner::before { transition:none; }
 }
 
-.nav-logo { font-family:var(--font-serif); font-size:1.5rem; }
-#nav.scrolled .nav-logo { font-size:1.2rem; }
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-logo-mark { height:28px; width:auto; display:block; transition:height .3s ease-out; }
+.nav-logo-text { font-family:var(--font-serif); font-size:1.5rem; line-height:1; }
+#nav.scrolled .nav-logo-mark { height:22px; }
+#nav.scrolled .nav-logo-text { font-size:1.2rem; }
 .nav-links { display:flex; gap:48px; }
 
 .nav-links a {
