@@ -927,7 +927,7 @@ body.nav-open .mobile-nav-overlay { display:flex; }
 .sticky-mobile-cta.visible { transform:translateY(0); }
 .sticky-mobile-cta a {
   display:inline-flex; align-items:center; gap:8px;
-  color:var(--bg); font-size:var(--text-base); font-weight:500;
+  color:oklch(97% 0.006 252); font-size:var(--text-base); font-weight:500;
   background:none; border:none; font-family:var(--font-sans);
   width:100%; justify-content:center; max-width:360px;
 }
