@@ -550,7 +550,7 @@ body.nav-open .mobile-nav-overlay { display:flex; }
 .cap-name { font-weight:500; font-size:var(--text-base); }
 .cap-sub { font-size:var(--text-sm); color:var(--text-muted); margin-top:2px; }
 .cap-badge { font-family:var(--font-mono); font-size:var(--text-xs); letter-spacing:.04em; color:var(--text-muted); border:1px solid var(--border); padding:2px 8px; }
-.cap-badges { display:flex; gap:6px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+.cap-badges { display:flex; gap:6px; align-items:center; flex-wrap:nowrap; justify-content:flex-end; min-width:100px; flex-shrink:0; }
 .cap-badge--core { background:var(--green-pale); border-color:oklch(80% 0.08 244); color:var(--green); font-weight:500; }
 .cap-icon { width:32px; height:32px; flex-shrink:0; display:flex; align-items:center; justify-content:center; border:1px solid var(--border-mid); color:var(--green); border-radius:var(--r-sm); }
 .cap-icon--dim { color:var(--text-faint); border-color:var(--border); }
