@@ -53,35 +53,26 @@
       <!-- Report preview panel — direct link to /sample-report -->
       <div>
         <div class="report-panel-frame">
-        <a href="/sample-report" target="_blank" rel="noopener noreferrer" class="report-preview-panel" aria-label="View sample Operations Assessment report">
           <div class="report-panel-header">
             <span class="report-panel-label">Sample Report</span>
             <span class="report-panel-badge">Live Preview</span>
           </div>
-          <div class="report-panel-body">
-            <div class="rp-cover">
-              <div class="rp-eyebrow">ProActive Pixels · Operations Assessment</div>
-              <div class="rp-headline">Operations</div>
-              <div class="rp-sub">Assessment</div>
-              <div class="rp-org">Piedmont Free Clinic · Charlottesville, Virginia · May 2026</div>
-            </div>
-            <div class="rp-finding-grid">
-              <div class="rp-cell"><span class="rp-value">390</span><span class="rp-label">Clinical staff hours lost annually</span></div>
-              <div class="rp-cell"><span class="rp-value">10 wks</span><span class="rp-label">Of capacity unrecovered</span></div>
-              <div class="rp-cell"><span class="rp-value">150+</span><span class="rp-label">More patients served</span></div>
-            </div>
-            <div class="rp-alert">
-              <div class="rp-alert-body">
-                <div class="rp-alert-title">Primary finding</div>
-                <div class="rp-alert-text">Your no-show rate is costing Piedmont Free Clinic 390 hours of clinical capacity a year. This is automatable in weeks, not months.</div>
-              </div>
-            </div>
+          <div class="report-iframe-wrapper" id="reportIframeWrapper">
+            <iframe
+              id="reportIframe"
+              src="/sample-report"
+              class="report-iframe"
+              scrolling="no"
+              tabindex="-1"
+              loading="lazy"
+              title="Sample Operations Assessment"
+              aria-hidden="true"
+            ></iframe>
           </div>
-          <div class="report-panel-cta">
+          <a href="/sample-report" target="_blank" rel="noopener noreferrer" class="report-panel-cta" aria-label="View full sample Operations Assessment">
             <span class="report-panel-cta-label">View full report</span>
             <span class="report-panel-cta-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg></span>
-          </div>
-        </a>
+          </a>
         </div>
       </div>
     </div>
@@ -89,6 +80,30 @@
 </section>
 
 <script is:inline>
+/* ── REPORT IFRAME SCALING ── */
+(function() {
+  function scaleReportPreview() {
+    var wrapper = document.getElementById('reportIframeWrapper');
+    var iframe  = document.getElementById('reportIframe');
+    if (!wrapper || !iframe) return;
+    var containerW = wrapper.offsetWidth;
+    var reportW    = 900; /* matches .report-shell max-width */
+    var scale      = containerW / reportW;
+    var showPx     = 680; /* px of report to show at 1× */
+    iframe.style.width          = reportW + 'px';
+    iframe.style.height         = showPx  + 'px';
+    iframe.style.transform      = 'scale(' + scale + ')';
+    iframe.style.transformOrigin = 'top left';
+    wrapper.style.height        = Math.round(showPx * scale) + 'px';
+  }
+  window.addEventListener('resize', scaleReportPreview);
+  var iframe = document.getElementById('reportIframe');
+  if (iframe) iframe.addEventListener('load', scaleReportPreview);
+  /* Run immediately and again after fonts/paint settle */
+  scaleReportPreview();
+  setTimeout(scaleReportPreview, 300);
+})();
+
 /* How It Works — scroll-triggered step activation */
 (function() {
   var steps = document.querySelectorAll('#howSteps .how-step');
