@@ -61,6 +61,9 @@ html { scroll-behavior: smooth; }
   --status-green-bright:oklch(74% 0.12 228);
   --status-green-vivid: oklch(82% 0.14 225);
   --brand-navy:  #171E62;           /* Deep Navy: footer + CTAs */
+
+  /* Color scheme — tells browser to style native UI for both modes */
+  color-scheme: light dark;
 }
 
 body {
@@ -925,3 +928,63 @@ body.nav-open .mobile-nav-overlay { display:flex; }
 #howCanvas { position:absolute; inset:0; pointer-events:none; opacity:.22; }
 
 /* (prefers-reduced-motion handled at top of file) */
+
+/* ─── DARK MODE (OS preference) ─────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    /* Surfaces */
+    --bg:           oklch(14% 0.012 250);
+    --bg-subtle:    oklch(18% 0.012 250);
+
+    /* Text — flip fg; fg-dark stays (used on explicitly dark sections) */
+    --fg:           oklch(94% 0.006 78);
+    --text-muted:   oklch(65% 0.014 78);
+    --text-faint:   oklch(50% 0.010 78);
+    --text-nav:     oklch(72% 0.012 78);
+
+    /* Brand blues — lighter for dark backgrounds, reduced chroma */
+    --green:        oklch(62% 0.10 244);
+    --green-mid:    oklch(68% 0.09 244);
+    --green-bright: oklch(72% 0.09 228);
+    --green-pale:   oklch(20% 0.025 252);
+
+    /* Gold */
+    --gold-pale:    oklch(20% 0.030 78);
+
+    /* Borders */
+    --border:       oklch(28% 0.010 252);
+    --border-mid:   oklch(35% 0.012 252);
+  }
+
+  /* Nav glassmorphism — dark variant */
+  #nav.scrolled .nav-inner::before {
+    background: oklch(14% 0.012 250 / .88);
+    border-color: oklch(94% 0.006 78 / .10);
+    box-shadow: 0 4px 24px oklch(0% 0 0 / .40),
+                0 1px 0 oklch(94% 0.006 78 / .05) inset;
+  }
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+    #nav.scrolled .nav-inner::before { background: oklch(14% 0.012 250 / .97); }
+  }
+
+  /* Body noise — slightly more visible on dark */
+  body::after { opacity: .05; }
+
+  /* Capability table active row — subtle light on dark */
+  .cap-row.active { background: oklch(94% 0.006 78 / .04); }
+
+  /* CTA spotlight — adjust for dark canvas */
+  .cta-spotlight { opacity: .10; }
+
+  /* Feature visual SVG — lighter blue reads better on dark */
+  .feature-visual svg { color: var(--green-bright); }
+
+  /* Security feature hover — invert for dark */
+  .sec-feature:hover .sec-icon {
+    background: oklch(94% 0.006 78 / .12);
+    color: var(--fg);
+  }
+}
+/* ─────────────────────────────────────────────────────────────────────────── */
