@@ -22,6 +22,30 @@ const {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- ═══ ANALYTICS PII GUARD ════════════════════════════════════
+    Wraps dataLayer.push to strip known PII fields before any GTM tag
+    can read them. Runs before GTM loads so the wrapper is in place
+    from the first push. Protects the Capacity Review form intake.
+    Fields covered: email, phone, first_name, org_name, name.
+  ══════════════════════════════════════════════════════════════════ -->
+  <script>
+  (function() {
+    var dl = window.dataLayer = window.dataLayer || [];
+    var _pii = ['email', 'phone', 'first_name', 'org_name', 'name'];
+    var _orig = dl.push.bind(dl);
+    dl.push = function() {
+      var args = Array.prototype.slice.call(arguments);
+      args.forEach(function(ev) {
+        if (ev && typeof ev === 'object' && !Array.isArray(ev)) {
+          _pii.forEach(function(k) { delete ev[k]; });
+        }
+      });
+      return _orig.apply(null, args);
+    };
+  })();
+  </script>
+  <!-- ═══ END ANALYTICS PII GUARD ═════════════════════════════════ -->
+
   <!-- ═══ GOOGLE TAG MANAGER ═══════════════════════════════════════
     Replace GTM-NB4ZPLTL with your GTM Container ID.
     Get it at: https://tagmanager.google.com
