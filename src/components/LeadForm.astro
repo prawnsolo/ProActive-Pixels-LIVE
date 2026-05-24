@@ -232,6 +232,12 @@ window.nextQ = function(currentStep) {
   if (progressFill) {
     progressFill.style.width = Math.round((currentStep / 4) * 100) + '%';
   }
+  /* Suppress Meta Pixel automatic event detection while form fields are visible.
+     Restored in showReveal() and the disqualifier path once fields leave the DOM. */
+  if (currentStep === 3 && typeof window.fbq === 'function') {
+    window._fbqGuard = window.fbq;
+    window.fbq = function() {};
+  }
 };
 
 /* submitForm() — validate, post to Worker, handle all states */
@@ -275,6 +281,8 @@ window.submitForm = function() {
     if (qdEl) qdEl.classList.add('active');
     var pf = document.getElementById('progress-fill');
     if (pf) pf.style.width = '100%';
+    /* Restore Meta Pixel — form fields are leaving the DOM */
+    if (window._fbqGuard) { window.fbq = window._fbqGuard; delete window._fbqGuard; }
     return;
   }
 
@@ -345,6 +353,9 @@ function escHtml(s) {
 
 /* showReveal — transition to q5 and personalize the reveal text */
 function showReveal(name, org, email, role) {
+  /* Restore Meta Pixel — form fields are leaving the DOM */
+  if (window._fbqGuard) { window.fbq = window._fbqGuard; delete window._fbqGuard; }
+
   var q4 = document.getElementById('q4');
   var q5 = document.getElementById('q5');
   if (q4) q4.classList.remove('active');
