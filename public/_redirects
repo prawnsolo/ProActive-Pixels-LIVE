@@ -7,3 +7,13 @@
 /work/         /    301
 /about         /    301
 /about/        /    301
+
+# blog removed 2026-05-25
+/blog                              /    301
+/blog/                             /    301
+/blog/after-hours-calls            /    301
+/blog/after-hours-calls/           /    301
+/blog/five-signs-ready-for-ai      /    301
+/blog/five-signs-ready-for-ai/     /    301
+/blog/set-it-and-forget-it-myth    /    301
+/blog/set-it-and-forget-it-myth/   /    301
