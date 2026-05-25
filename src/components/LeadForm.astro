@@ -36,7 +36,7 @@
           <div class="quiz-header-bar">
             <div>
               <div class="quiz-header-title">Capacity Review</div>
-              <div class="quiz-header-sub">NO COST · 12 MINUTES · NO PREP REQUIRED</div>
+              <div class="quiz-header-sub">12 MINUTES · NO PREP REQUIRED</div>
             </div>
             <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progress-fill"></div></div>
           </div>
@@ -164,19 +164,11 @@
               <div class="reveal-inner">
                 <div class="reveal-check">✓</div>
                 <h3 class="display" id="reveal-name">You're ready.</h3>
-                <p id="reveal-message">Call Alex at the number below. Eight focused questions about how your organization runs. Your Operations Assessment lands in your inbox within 24 hours.</p>
+                <p id="reveal-message">Call Alex. Eight focused questions about how your team operates. Your Operations Assessment lands in your inbox within 24 hours.</p>
                 <a href="tel:+15406000080" class="phone-number display">(540) 600-0080</a>
                 <span class="phone-meta">MON–FRI · 8AM–8PM ET</span>
-                <p class="reveal-recording-note">This call will be recorded for quality review and report preparation.</p>
-                <div class="alex-card">
-                  <div class="alex-avatar">
-                    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"></path></svg>
-                  </div>
-                  <div class="alex-info">
-                    <strong>You'll be speaking with Alex</strong>
-                    <span id="alex-sub">8 focused questions. No salesperson. Your Operations Assessment within 24 hours.</span>
-                  </div>
-                </div>
+                <p class="reveal-recording-note">Calls are recorded for your report. Nothing shared beyond that.</p>
+
               </div>
             </div>
 
@@ -375,7 +367,7 @@ function showReveal(name, org, email, role) {
   if (revealMsg) {
     var orgText = org ? ' at ' + escHtml(org) : '';
     revealMsg.innerHTML =
-      'Call Alex at the number below. Eight focused questions about how your team' +
+      'Call Alex. Eight focused questions about how your team' +
       orgText + ' operates. Your Operations Assessment lands in ' +
       '<strong>' + escHtml(email) + '</strong> within 24 hours.';
   }
