@@ -164,10 +164,10 @@
               <div class="reveal-inner">
                 <div class="reveal-check">✓</div>
                 <h3 class="display" id="reveal-name">You're ready.</h3>
-                <p id="reveal-message">Call Alex. Eight focused questions about how your team operates. Your Operations Assessment lands in your inbox within 24 hours.</p>
+                <p id="reveal-message">Call Alex. A few focused questions about how your team operates. Your Operations Assessment lands in your inbox within 24 hours.</p>
                 <a href="tel:+15406000080" class="phone-number display">(540) 600-0080</a>
                 <span class="phone-meta">MON–FRI · 8AM–8PM ET</span>
-                <p class="reveal-recording-note">Calls are recorded for your report. Nothing shared beyond that.</p>
+                <p class="reveal-recording-note">We record calls for your report. Keep it to workflows and staff processes — no patient names, records, or case details. Alex won't ask for them.</p>
 
               </div>
             </div>
@@ -367,12 +367,9 @@ function showReveal(name, org, email, role) {
   if (revealMsg) {
     var orgText = org ? ' at ' + escHtml(org) : '';
     revealMsg.innerHTML =
-      'Call Alex. Eight focused questions about how your team' +
+      'Call Alex. A few focused questions about how your team' +
       orgText + ' operates. Your Operations Assessment lands in ' +
       '<strong>' + escHtml(email) + '</strong> within 24 hours.';
-  }
-  if (alexSub && role) {
-    alexSub.textContent = escHtml(role) + ' — 8 focused questions about your workflows. No salesperson. Your Operations Assessment within 24 hours.';
   }
 }
 </script>
