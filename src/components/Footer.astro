@@ -100,7 +100,10 @@
       }
       points.sort(function (a, b) { return a.z - b.z; });
       points.forEach(function (p) {
-        ctx.fillStyle = 'rgba(0,0,0,' + (0.2 + (p.z + 1) * 0.4) + ')';
+        var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        ctx.fillStyle = isDark
+          ? 'rgba(248,245,240,' + (0.2 + (p.z + 1) * 0.4) + ')'
+          : 'rgba(0,0,0,' + (0.2 + (p.z + 1) * 0.4) + ')';
         ctx.fillText(p.ch, p.x, p.y);
       });
       time += 0.005;
@@ -378,3 +381,4 @@
   });
 })();
 </script>
+
