@@ -60,11 +60,10 @@
           <div class="report-iframe-wrapper" id="reportIframeWrapper">
             <iframe
               id="reportIframe"
-              src="/sample-report"
+              data-src="/sample-report"
               class="report-iframe"
               scrolling="no"
               tabindex="-1"
-              loading="lazy"
               title="Sample Operations Assessment"
               aria-hidden="true"
             ></iframe>
@@ -103,6 +102,22 @@
   scaleReportPreview();
   setTimeout(scaleReportPreview, 150);
   setTimeout(scaleReportPreview, 600);
+})();
+
+/* ── DEFER IFRAME — load /sample-report only when panel scrolls into view ── */
+(function() {
+  var wrapper = document.getElementById('reportIframeWrapper');
+  var iframe  = document.getElementById('reportIframe');
+  if (!wrapper || !iframe) return;
+  if (!('IntersectionObserver' in window)) {
+    iframe.src = iframe.dataset.src; return;
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    if (!entries[0].isIntersecting) return;
+    iframe.src = iframe.dataset.src;
+    obs.disconnect();
+  }, { rootMargin: '200px 0px' });
+  obs.observe(wrapper);
 })();
 
 /* How It Works — scroll-triggered step activation */

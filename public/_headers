@@ -20,3 +20,15 @@
 
 /images/*
   Cache-Control: public, max-age=2592000
+
+/trans-logo.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/trans-logo.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/og-image.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/logo-mark.png
+  Cache-Control: public, max-age=31536000, immutable

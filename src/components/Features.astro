@@ -141,3 +141,17 @@
     </div>
   </div>
 </section>
+
+<script is:inline>
+/* Pause SMIL animations on feature SVGs when scrolled out of view — reduces mobile background work */
+(function() {
+  if (!('IntersectionObserver' in window)) return;
+  document.querySelectorAll('#featuresList .feature-visual svg').forEach(function(svg) {
+    svg.pauseAnimations();
+    var obs = new IntersectionObserver(function(entries) {
+      entries[0].isIntersecting ? svg.unpauseAnimations() : svg.pauseAnimations();
+    }, { rootMargin: '100px' });
+    obs.observe(svg);
+  });
+})();
+</script>

@@ -64,6 +64,7 @@
     if (!ctx) return;
     var chars = '░▒▓█▀▄▌▐│─┤├┴┬╭╮╰╯';
     var time = 0;
+    var rafId = null;
     function resize() {
       var dpr = window.devicePixelRatio || 1;
       var rect = canvas.getBoundingClientRect();
@@ -107,9 +108,15 @@
         ctx.fillText(p.ch, p.x, p.y);
       });
       time += 0.005;
-      requestAnimationFrame(render);
+      rafId = requestAnimationFrame(render);
     }
-    render();
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { if (!rafId) render(); }
+        else { cancelAnimationFrame(rafId); rafId = null; }
+      }, { rootMargin: '50px' });
+      obs.observe(canvas);
+    } else { render(); }
   })();
 
   /* ── TETRAHEDRON (CTA section) ── */
@@ -120,6 +127,7 @@
     if (!ctx) return;
     var chars = '░▒▓█▀▄▌▐│─┤├┴┬╭╮╰╯';
     var time = 0;
+    var rafId = null;
     var vertices = [
       { x: 0,      y: 1,      z: 0    },
       { x: -0.943, y: -0.333, z: -0.5 },
@@ -176,9 +184,15 @@
         ctx.fillText(p.ch, p.x, p.y);
       });
       time += 0.015;
-      requestAnimationFrame(render);
+      rafId = requestAnimationFrame(render);
     }
-    render();
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { if (!rafId) render(); }
+        else { cancelAnimationFrame(rafId); rafId = null; }
+      }, { rootMargin: '50px' });
+      obs.observe(canvas);
+    } else { render(); }
   })();
 
   /* ── HOW IT WORKS ambient particle field ── */
@@ -190,6 +204,7 @@
     var chars = '·∘○◯◌';
     var pts = [];
     var W = 0, H = 0;
+    var rafId = null;
     function resize() {
       var dpr = window.devicePixelRatio || 1;
       var rect = canvas.getBoundingClientRect();
@@ -230,9 +245,15 @@
         ctx.fillStyle = 'rgba(240,235,224,' + a + ')';
         ctx.fillText(chars[ci], p.x, p.y);
       });
-      requestAnimationFrame(render);
+      rafId = requestAnimationFrame(render);
     }
-    render();
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { if (!rafId) render(); }
+        else { cancelAnimationFrame(rafId); rafId = null; }
+      }, { rootMargin: '50px' });
+      obs.observe(canvas);
+    } else { render(); }
   })();
 
   /* ── WAVE (footer accent) ── */
@@ -243,6 +264,7 @@
     if (!ctx) return;
     var chars = '·∘○◯◌●◉';
     var time = 0;
+    var rafId = null;
     function resize() {
       var dpr = window.devicePixelRatio || 1;
       var rect = canvas.getBoundingClientRect();
@@ -274,9 +296,15 @@
         }
       }
       time += 0.03;
-      requestAnimationFrame(render);
+      rafId = requestAnimationFrame(render);
     }
-    render();
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { if (!rafId) render(); }
+        else { cancelAnimationFrame(rafId); rafId = null; }
+      }, { rootMargin: '50px' });
+      obs.observe(canvas);
+    } else { render(); }
   })();
 
 })();
