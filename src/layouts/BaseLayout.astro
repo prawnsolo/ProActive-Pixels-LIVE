@@ -103,12 +103,36 @@ const {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.fontshare.com">
-  <!-- Preload Instrument Serif WOFF2 (Latin) — starts the LCP font download immediately,
-       before the font CSS is fetched/parsed, cutting ~600-1200 ms off LCP -->
-  <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/instrumentserif/v5/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7M.woff2" crossorigin>
-  <!-- Non-blocking font loading — eliminates ~1,950 ms of render-blocking requests -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <!-- Instrument Serif: self-hosted — eliminates external round trip for the LCP font.
+       Preloads start the WOFF2 download immediately alongside the HTML. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-serif-latin-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-serif-latin-italic.woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'Instrument Serif';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/instrument-serif-latin-normal.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                     U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Instrument Serif';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/fonts/instrument-serif-latin-italic.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                     U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
+  <!-- JetBrains Mono: non-blocking (code/mono only, not LCP-critical) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+  <!-- Satoshi: non-blocking via Fontshare (body font) -->
   <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600&display=swap" onload="this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600&display=swap"></noscript>
 
