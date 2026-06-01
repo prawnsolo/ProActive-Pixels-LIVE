@@ -1,0 +1,1226 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import libraryData from '../data/questionnaire-library.json';
+
+const TIERS = {
+  lite:       { label: 'Lite',        desc: 'Low-risk vendor — limited data access, no system connectivity',        color: '#1770B2', qs: '22–30 questions' },
+  standard:   { label: 'Standard',    desc: 'Medium-risk vendor — stores data, supports key operations',            color: '#2A88CC', qs: '45–65 questions' },
+  hipaa_full: { label: 'HIPAA Full',  desc: 'High-risk vendor — PHI access or privileged system access',           color: '#C9A84C', qs: '70–95 questions' },
+};
+---
+
+<BaseLayout
+  title="Vendor Security Questionnaire Builder | ProActive Pixels"
+  description="Build a right-sized vendor security questionnaire in minutes. Auto-scores risk, adds HIPAA branching, and generates a print-ready document based on SIG, CAIQ, and HIPAA frameworks."
+  canonical="https://proactivepixels.com/vendor-security"
+>
+  <Nav />
+
+  <!-- ══ PAGE HERO ═════════════════════════════════════════════════════════ -->
+  <section class="vs-hero" id="vs-top">
+    <div class="container">
+      <div class="vs-hero-inner">
+        <p class="section-label">Vendor Risk Management</p>
+        <h1 class="vs-headline display">Build a vendor security<br><em>questionnaire that fits</em></h1>
+        <p class="vs-subhead">Right-sized for nonprofits. Grounded in SIG, CSA CAIQ, and HIPAA frameworks.<br>Answer five questions and get a questionnaire you can send today.</p>
+
+        <div class="vs-how-strip">
+          <div class="vs-how-item">
+            <span class="vs-how-num mono">01</span>
+            <span class="vs-how-text">Describe your org and the vendor</span>
+          </div>
+          <div class="vs-how-arrow" aria-hidden="true">→</div>
+          <div class="vs-how-item">
+            <span class="vs-how-num mono">02</span>
+            <span class="vs-how-text">Risk score calculated automatically</span>
+          </div>
+          <div class="vs-how-arrow" aria-hidden="true">→</div>
+          <div class="vs-how-item">
+            <span class="vs-how-num mono">03</span>
+            <span class="vs-how-text">Preview and export your questionnaire</span>
+          </div>
+        </div>
+
+        <div class="vs-trust-strip">
+          <span class="vs-trust-item mono">SIG / SIGLite</span>
+          <span class="vs-trust-dot" aria-hidden="true">·</span>
+          <span class="vs-trust-item mono">CSA CAIQ</span>
+          <span class="vs-trust-dot" aria-hidden="true">·</span>
+          <span class="vs-trust-item mono">VSA Lite</span>
+          <span class="vs-trust-dot" aria-hidden="true">·</span>
+          <span class="vs-trust-item mono">HIPAA Security Rule</span>
+        </div>
+
+        <div class="vs-phi-notice">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Do not enter protected health information (PHI) or patient data into this tool.
+        </div>
+
+        <a href="#vs-builder" class="btn-pill btn-pill--lg vs-start-btn">
+          Start the Builder
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TIER EXPLAINER ════════════════════════════════════════════════════ -->
+  <section class="vs-tiers">
+    <div class="container">
+      <p class="section-label centered">Risk Tiers</p>
+      <div class="vs-tier-cards">
+        {Object.entries(TIERS).map(([key, t]) => (
+          <div class={`vs-tier-card vs-tier-card--${key}`}>
+            <span class="vs-tier-badge mono">{t.label}</span>
+            <p class="vs-tier-desc">{t.desc}</p>
+            <span class="vs-tier-qs mono">{t.qs}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WIZARD ════════════════════════════════════════════════════════════ -->
+  <section class="vs-builder-section" id="vs-builder">
+    <div class="container">
+      <div class="vs-builder-wrap">
+
+        <div class="quiz-wrap" id="vsQuiz" role="form" aria-label="Vendor security questionnaire builder">
+
+          <!-- Header Bar -->
+          <div class="quiz-header-bar">
+            <div>
+              <p class="quiz-header-title">Questionnaire Builder</p>
+              <p class="quiz-header-sub" id="vsStepLabel">Step 1 of 5 — Organization Context</p>
+            </div>
+            <div class="quiz-progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" aria-label="Builder progress">
+              <div class="quiz-progress-fill" id="vsProgressFill" style="transform:scaleX(0.20)"></div>
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div class="quiz-body">
+
+            <!-- ── STEP 1: Organization Context ── -->
+            <div class="quiz-step active" id="vs-step-1" data-step="1">
+              <p class="quiz-step-label">Step 1 of 5</p>
+              <h2 class="quiz-question display">Tell us about your organization and this review</h2>
+              <p class="vs-step-intro">This information will appear on the cover page of the questionnaire you send to the vendor.</p>
+
+              <div class="vs-form-grid">
+                <div class="form-group">
+                  <label for="vsOrgName">Organization name <span class="vs-required" aria-label="required">*</span></label>
+                  <input type="text" id="vsOrgName" name="org_name" placeholder="Community Health Center of the Valley" autocomplete="organization" required>
+                </div>
+                <div class="form-group">
+                  <label for="vsContactName">Your name <span class="vs-required" aria-label="required">*</span></label>
+                  <input type="text" id="vsContactName" name="contact_name" placeholder="Jane Smith" autocomplete="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="vsEmail">Your email <span class="vs-required" aria-label="required">*</span></label>
+                  <input type="email" id="vsEmail" name="email" placeholder="jane@org.org" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="vsReviewDate">Requested vendor response date</label>
+                  <input type="date" id="vsReviewDate" name="review_date">
+                </div>
+              </div>
+
+              <p class="quiz-step-label" style="margin-top:24px;margin-bottom:10px;">What type of review is this?</p>
+              <div class="quiz-options" id="vsAssessmentType" role="radiogroup" aria-label="Assessment type">
+                <button class="quiz-option" data-group="assessment_type" data-value="new_vendor" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>
+                  <span><span class="quiz-option-text">New vendor review</span><span class="quiz-option-sub">Evaluating a vendor for the first time</span></span>
+                </button>
+                <button class="quiz-option" data-group="assessment_type" data-value="renewal" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span>
+                  <span><span class="quiz-option-text">Contract renewal</span><span class="quiz-option-sub">Re-evaluating an existing vendor at renewal</span></span>
+                </button>
+                <button class="quiz-option" data-group="assessment_type" data-value="periodic" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+                  <span><span class="quiz-option-text">Periodic reassessment</span><span class="quiz-option-sub">Scheduled annual or routine review</span></span>
+                </button>
+              </div>
+
+              <div class="quiz-nav">
+                <button class="btn-next" id="vsNext1" type="button" aria-label="Go to step 2">
+                  Next: Vendor Profile
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ── STEP 2: Vendor Profile ── -->
+            <div class="quiz-step" id="vs-step-2" data-step="2">
+              <p class="quiz-step-label">Step 2 of 5</p>
+              <h2 class="quiz-question display">Tell us about the vendor</h2>
+
+              <div class="form-group" style="margin-bottom:20px;">
+                <label for="vsVendorName">Vendor name <span class="vs-required" aria-label="required">*</span></label>
+                <input type="text" id="vsVendorName" name="vendor_name" placeholder="Acme Software Inc." required>
+              </div>
+
+              <p class="quiz-step-label" style="margin-bottom:10px;">What best describes this vendor's role?</p>
+              <div class="quiz-options" id="vsVendorCategory" role="radiogroup" aria-label="Vendor category" style="margin-bottom:20px;">
+                <button class="quiz-option" data-group="vendor_category" data-value="software_saas" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+                  <span><span class="quiz-option-text">Software / SaaS platform</span></span>
+                </button>
+                <button class="quiz-option" data-group="vendor_category" data-value="it_services" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
+                  <span><span class="quiz-option-text">IT services or managed services</span></span>
+                </button>
+                <button class="quiz-option" data-group="vendor_category" data-value="billing_rcm" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span>
+                  <span><span class="quiz-option-text">Billing or revenue cycle management</span></span>
+                </button>
+                <button class="quiz-option" data-group="vendor_category" data-value="ehr_clinical" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+                  <span><span class="quiz-option-text">EHR-related or clinical software</span></span>
+                </button>
+                <button class="quiz-option" data-group="vendor_category" data-value="consultant" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                  <span><span class="quiz-option-text">Consulting / advisory / staffing</span></span>
+                </button>
+                <button class="quiz-option" data-group="vendor_category" data-value="other" type="button">
+                  <span class="quiz-option-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+                  <span><span class="quiz-option-text">Other</span></span>
+                </button>
+              </div>
+
+              <p class="quiz-step-label" style="margin-bottom:10px;">How is the service delivered?</p>
+              <div class="quiz-options" id="vsDeployment" role="radiogroup" aria-label="Deployment type" style="margin-bottom:20px;">
+                <button class="quiz-option" data-group="deployment" data-value="cloud" type="button">
+                  <span><span class="quiz-option-text">Cloud-based / SaaS</span><span class="quiz-option-sub">Hosted externally; accessed via browser or API</span></span>
+                </button>
+                <button class="quiz-option" data-group="deployment" data-value="on_premises" type="button">
+                  <span><span class="quiz-option-text">On-premises software</span><span class="quiz-option-sub">Installed and runs on your own infrastructure</span></span>
+                </button>
+                <button class="quiz-option" data-group="deployment" data-value="service_only" type="button">
+                  <span><span class="quiz-option-text">Service-only (no software component)</span><span class="quiz-option-sub">Human-delivered service; no software to install or access</span></span>
+                </button>
+                <button class="quiz-option" data-group="deployment" data-value="hybrid" type="button">
+                  <span><span class="quiz-option-text">Hybrid (cloud + on-premises)</span></span>
+                </button>
+              </div>
+
+              <p class="quiz-step-label" style="margin-bottom:10px;">Will this vendor store your organization's data on their systems?</p>
+              <div class="quiz-options vs-yn-options" id="vsStoresData" role="radiogroup" aria-label="Vendor data storage">
+                <button class="quiz-option" data-group="stores_data" data-value="yes" type="button">
+                  <span><span class="quiz-option-text">Yes — they will store our data</span></span>
+                </button>
+                <button class="quiz-option" data-group="stores_data" data-value="no" type="button">
+                  <span><span class="quiz-option-text">No — no data storage on their side</span></span>
+                </button>
+                <button class="quiz-option" data-group="stores_data" data-value="unsure" type="button">
+                  <span><span class="quiz-option-text">Not sure yet</span></span>
+                </button>
+              </div>
+
+              <p class="quiz-step-label" style="margin-top:16px;margin-bottom:10px;">Will this vendor connect to your internal systems or network?</p>
+              <div class="quiz-options vs-yn-options" id="vsConnectsInternal" role="radiogroup" aria-label="Internal system connectivity">
+                <button class="quiz-option" data-group="connects_internal" data-value="yes" type="button">
+                  <span><span class="quiz-option-text">Yes — direct connection, VPN, or API integration</span></span>
+                </button>
+                <button class="quiz-option" data-group="connects_internal" data-value="no" type="button">
+                  <span><span class="quiz-option-text">No — standalone, no system integration</span></span>
+                </button>
+                <button class="quiz-option" data-group="connects_internal" data-value="unsure" type="button">
+                  <span><span class="quiz-option-text">Not sure yet</span></span>
+                </button>
+              </div>
+
+              <div class="quiz-nav">
+                <button class="vs-btn-back" id="vsBack2" type="button">← Back</button>
+                <button class="btn-next" id="vsNext2" type="button">
+                  Next: Data & HIPAA
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ── STEP 3: Data & HIPAA Triggers ── -->
+            <div class="quiz-step" id="vs-step-3" data-step="3">
+              <p class="quiz-step-label">Step 3 of 5</p>
+              <h2 class="quiz-question display">What data will this vendor handle?</h2>
+              <p class="vs-step-intro">These answers determine whether HIPAA-specific review applies.</p>
+
+              <!-- HIPAA Warning Banner — shown conditionally -->
+              <div class="vs-hipaa-banner" id="vsHipaaBanner" role="alert" aria-live="polite" hidden>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <div>
+                  <strong>HIPAA review required.</strong> Vendors that create, receive, maintain, or transmit protected health information (PHI) generally require a Business Associate Agreement (BAA) and a more comprehensive security review. Confirm BAA requirements with your compliance or legal team before sharing PHI with this vendor.
+                </div>
+              </div>
+
+              <p class="quiz-step-label" style="margin-bottom:10px;">Will this vendor create, receive, maintain, transmit, or otherwise access protected health information (PHI)?</p>
+              <div class="vs-tooltip-anchor">
+                <span class="vs-tooltip-trigger">What counts as PHI?</span>
+                <span class="vs-tooltip-body" role="tooltip">PHI includes any individually identifiable health information in any format — names, dates, addresses, diagnoses, treatment records, billing codes, or health plan numbers — when tied to a patient or plan member.</span>
+              </div>
+              <div class="quiz-options vs-yn-options" id="vsPhiAccess" role="radiogroup" aria-label="PHI access" style="margin-top:10px;">
+                <button class="quiz-option" data-group="phi_access" data-value="yes" type="button">
+                  <span><span class="quiz-option-text">Yes — they will have access to PHI</span></span>
+                </button>
+                <button class="quiz-option" data-group="phi_access" data-value="no" type="button">
+                  <span><span class="quiz-option-text">No — no PHI involved</span></span>
+                </button>
+                <button class="quiz-option" data-group="phi_access" data-value="unsure" type="button">
+                  <span><span class="quiz-option-text">Not sure — treat as yes to be safe</span></span>
+                </button>
+              </div>
+
+              <p class="quiz-step-label" style="margin-top:20px;margin-bottom:10px;">Is a Business Associate Agreement (BAA) expected or required for this vendor?</p>
+              <div class="vs-tooltip-anchor">
+                <span class="vs-tooltip-trigger">What is a BAA?</span>
+                <span class="vs-tooltip-body" role="tooltip">A Business Associate Agreement is a legally binding contract required by HIPAA between a Covered Entity (your org) and any vendor (Business Associate) that handles PHI on your behalf. Without a BAA, sharing PHI with a vendor may be a HIPAA violation.</span>
+              </div>
+              <div class="quiz-options vs-yn-options" id="vsBaaExpected" role="radiogroup" aria-label="BAA expected" style="margin-top:10px;">
+                <button class="quiz-option" data-group="baa_expected" data-value="yes" type="button"><span><span class="quiz-option-text">Yes</span></span></button>
+                <button class="quiz-option" data-group="baa_expected" data-value="no" type="button"><span><span class="quiz-option-text">No</span></span></button>
+                <button class="quiz-option" data-group="baa_expected" data-value="unsure" type="button"><span><span class="quiz-option-text">Need to confirm</span></span></button>
+              </div>
+
+              <p class="quiz-step-label" style="margin-top:20px;margin-bottom:10px;">Does this vendor use subcontractors or subprocessors that may also access your data?</p>
+              <div class="quiz-options vs-yn-options" id="vsHasSubcontractors" role="radiogroup" aria-label="Subcontractors">
+                <button class="quiz-option" data-group="has_subcontractors" data-value="yes" type="button"><span><span class="quiz-option-text">Yes</span></span></button>
+                <button class="quiz-option" data-group="has_subcontractors" data-value="no" type="button"><span><span class="quiz-option-text">No</span></span></button>
+                <button class="quiz-option" data-group="has_subcontractors" data-value="unsure" type="button"><span><span class="quiz-option-text">Not sure</span></span></button>
+              </div>
+
+              <p class="quiz-step-label" style="margin-top:20px;margin-bottom:10px;">Does this vendor handle regulated financial, donor, employee, or student data?</p>
+              <div class="quiz-options vs-yn-options" id="vsRegulatedFinancial" role="radiogroup" aria-label="Regulated financial data">
+                <button class="quiz-option" data-group="regulated_financial" data-value="yes" type="button"><span><span class="quiz-option-text">Yes</span></span></button>
+                <button class="quiz-option" data-group="regulated_financial" data-value="no" type="button"><span><span class="quiz-option-text">No</span></span></button>
+                <button class="quiz-option" data-group="regulated_financial" data-value="unsure" type="button"><span><span class="quiz-option-text">Not sure</span></span></button>
+              </div>
+
+              <div class="quiz-nav">
+                <button class="vs-btn-back" id="vsBack3" type="button">← Back</button>
+                <button class="btn-next" id="vsNext3" type="button">
+                  Next: Security Depth
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ── STEP 4: Security Depth ── -->
+            <div class="quiz-step" id="vs-step-4" data-step="4">
+              <p class="quiz-step-label">Step 4 of 5</p>
+              <h2 class="quiz-question display">How critical is this vendor to your operations?</h2>
+
+              <p class="quiz-step-label" style="margin-bottom:10px;">Is this vendor operationally critical — would your team be unable to deliver services without them?</p>
+              <div class="quiz-options vs-yn-options" id="vsOpCritical" role="radiogroup" aria-label="Operational criticality">
+                <button class="quiz-option" data-group="operationally_critical" data-value="yes" type="button"><span><span class="quiz-option-text">Yes — essential to daily operations</span></span></button>
+                <button class="quiz-option" data-group="operationally_critical" data-value="no" type="button"><span><span class="quiz-option-text">No — non-essential or easily replaceable</span></span></button>
+                <button class="quiz-option" data-group="operationally_critical" data-value="partial" type="button"><span><span class="quiz-option-text">Partially — important but not mission-critical</span></span></button>
+              </div>
+
+              <p class="quiz-step-label" style="margin-top:20px;margin-bottom:10px;">Would extended downtime from this vendor affect care delivery, donor operations, or finance?</p>
+              <div class="quiz-options vs-yn-options" id="vsDowntimeImpact" role="radiogroup" aria-label="Downtime impact">
+                <button class="quiz-option" data-group="downtime_impact" data-value="yes" type="button"><span><span class="quiz-option-text">Yes</span></span></button>
+                <button class="quiz-option" data-group="downtime_impact" data-value="no" type="button"><span><span class="quiz-option-text">No</span></span></button>
+              </div>
+
+              <p class="quiz-step-label" style="margin-top:20px;margin-bottom:10px;">Does this vendor have or require privileged or administrator access to your systems?</p>
+              <div class="vs-tooltip-anchor">
+                <span class="vs-tooltip-trigger">What is privileged access?</span>
+                <span class="vs-tooltip-body" role="tooltip">Privileged access means the vendor can install software, modify system settings, access databases directly, or perform actions beyond normal user permissions on your infrastructure.</span>
+              </div>
+              <div class="quiz-options vs-yn-options" id="vsPrivilegedAccess" role="radiogroup" aria-label="Privileged access" style="margin-top:10px;">
+                <button class="quiz-option" data-group="privileged_access" data-value="yes" type="button"><span><span class="quiz-option-text">Yes — admin or privileged access</span></span></button>
+                <button class="quiz-option" data-group="privileged_access" data-value="no" type="button"><span><span class="quiz-option-text">No — standard user access only</span></span></button>
+                <button class="quiz-option" data-group="privileged_access" data-value="unsure" type="button"><span><span class="quiz-option-text">Not sure</span></span></button>
+              </div>
+
+              <!-- Risk Score Result — shown after all Step 4 answers are given -->
+              <div class="vs-tier-result" id="vsTierResult" hidden>
+                <p class="quiz-step-label">Recommended questionnaire tier</p>
+                <div class="vs-tier-result-badge" id="vsTierBadge"></div>
+                <p class="vs-tier-result-reason" id="vsTierReason"></p>
+                <div class="vs-tier-override">
+                  <p class="vs-override-label mono">Override tier if needed:</p>
+                  <div class="vs-override-options" role="radiogroup" aria-label="Tier override">
+                    <label class="vs-override-option"><input type="radio" name="tier_override" value="lite"> <span>Lite</span></label>
+                    <label class="vs-override-option"><input type="radio" name="tier_override" value="standard"> <span>Standard</span></label>
+                    <label class="vs-override-option"><input type="radio" name="tier_override" value="hipaa_full"> <span>HIPAA Full</span></label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="quiz-nav">
+                <button class="vs-btn-back" id="vsBack4" type="button">← Back</button>
+                <button class="btn-next" id="vsNext4" type="button">
+                  Next: Export Options
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- ── STEP 5: Export Preferences ── -->
+            <div class="quiz-step" id="vs-step-5" data-step="5">
+              <p class="quiz-step-label">Step 5 of 5</p>
+              <h2 class="quiz-question display">Customize your questionnaire output</h2>
+
+              <div class="vs-toggle-grid">
+                <label class="vs-toggle-row">
+                  <span class="vs-toggle-label">
+                    <span class="vs-toggle-title">Include internal guidance notes</span>
+                    <span class="vs-toggle-desc">Helper text for each question visible to your team only</span>
+                  </span>
+                  <input type="checkbox" id="vsIncludeNotes" class="vs-toggle-input" checked>
+                  <span class="vs-toggle-switch" aria-hidden="true"></span>
+                </label>
+                <label class="vs-toggle-row">
+                  <span class="vs-toggle-label">
+                    <span class="vs-toggle-title">Include vendor response column</span>
+                    <span class="vs-toggle-desc">Adds a blank response field for each question</span>
+                  </span>
+                  <input type="checkbox" id="vsIncludeResponseCol" class="vs-toggle-input" checked>
+                  <span class="vs-toggle-switch" aria-hidden="true"></span>
+                </label>
+                <label class="vs-toggle-row">
+                  <span class="vs-toggle-label">
+                    <span class="vs-toggle-title">Include evidence request prompts</span>
+                    <span class="vs-toggle-desc">Asks vendors for SOC 2, HITRUST, pen test, or policy docs where relevant</span>
+                  </span>
+                  <input type="checkbox" id="vsIncludeEvidence" class="vs-toggle-input">
+                  <span class="vs-toggle-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+
+              <div class="form-group" style="margin-top:20px;">
+                <label for="vsNextReview">Next reassessment date (optional)</label>
+                <input type="date" id="vsNextReview" name="next_review_date">
+              </div>
+
+              <div class="vs-email-capture">
+                <p class="quiz-step-label" style="margin-bottom:8px;">Email me this questionnaire</p>
+                <p class="vs-step-intro" style="margin-bottom:12px;">We'll send a copy you can forward to the vendor or share with your team. No account required.</p>
+                <div class="form-group" style="margin-bottom:8px;">
+                  <label for="vsEmailDelivery">Email address (optional)</label>
+                  <input type="email" id="vsEmailDelivery" name="email_delivery" placeholder="jane@org.org">
+                </div>
+                <label class="vs-checkbox-row">
+                  <input type="checkbox" id="vsSaveProfile" name="save_profile">
+                  <span>Save my organization details for faster setup next time</span>
+                </label>
+                <p class="form-disclaimer" style="text-align:left;margin-top:6px;">We save your nonprofit's basic profile — org name, contact, and preferred settings. Do not enter PHI or patient information into this tool.</p>
+              </div>
+
+              <div class="quiz-nav">
+                <button class="vs-btn-back" id="vsBack5" type="button">← Back</button>
+                <button class="btn-next on" id="vsGenerate" type="button">
+                  Build My Questionnaire
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </div>
+            </div>
+
+          </div><!-- /quiz-body -->
+        </div><!-- /quiz-wrap -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PREVIEW PANEL ═════════════════════════════════════════════════════ -->
+  <section class="vs-preview-section" id="vs-preview" hidden>
+    <div class="container">
+      <div class="vs-preview-header">
+        <div>
+          <p class="section-label">Generated Questionnaire</p>
+          <h2 class="section-h2 display vs-preview-title" id="vsPreviewTitle">Vendor Security Questionnaire</h2>
+          <p class="vs-preview-meta mono" id="vsPreviewMeta"></p>
+        </div>
+        <div class="vs-preview-actions">
+          <button class="btn-pill" id="vsPrintBtn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print / Save PDF
+          </button>
+          <button class="btn-pill-outline" id="vsEmailBtn" type="button" style="display:none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Send to Email
+          </button>
+          <button class="btn-pill-outline" id="vsRestartBtn" type="button">Start Over</button>
+        </div>
+      </div>
+
+      <!-- Internal Summary -->
+      <div class="vs-summary-card" id="vsSummaryCard">
+        <div class="vs-summary-header">
+          <span class="vs-summary-label mono">Internal Summary — Not for Vendor</span>
+          <span class="vs-summary-tier mono" id="vsSummaryTierBadge"></span>
+        </div>
+        <div class="vs-summary-body" id="vsSummaryBody"></div>
+      </div>
+
+      <!-- Full Questionnaire Document -->
+      <div class="vs-doc" id="vsDoc"></div>
+
+    </div>
+  </section>
+
+  <!-- ══ FAQ ════════════════════════════════════════════════════════════════ -->
+  <section class="vs-faq" id="vs-faq">
+    <div class="container">
+      <p class="section-label centered">Common Questions</p>
+      <div class="vs-faq-grid">
+        <details class="vs-faq-item">
+          <summary class="vs-faq-q">What is a vendor security questionnaire?</summary>
+          <p class="vs-faq-a">A vendor security questionnaire is a structured set of questions you send to a vendor to assess their security practices, data handling, and compliance posture before sharing data or granting system access. It is one of the most common tools in third-party risk management.</p>
+        </details>
+        <details class="vs-faq-item">
+          <summary class="vs-faq-q">Which vendors need a questionnaire?</summary>
+          <p class="vs-faq-a">Any vendor that stores, processes, or has access to your organization's sensitive data. For HIPAA-regulated nonprofits, any vendor that may touch PHI should receive at least a baseline review and likely needs a Business Associate Agreement in place first.</p>
+        </details>
+        <details class="vs-faq-item">
+          <summary class="vs-faq-q">When does HIPAA apply to a vendor review?</summary>
+          <p class="vs-faq-a">HIPAA applies when a vendor will create, receive, maintain, or transmit protected health information on your behalf. That vendor becomes a Business Associate and must sign a BAA before PHI is shared. This tool automatically adds HIPAA-specific questions and a BAA reminder when you indicate PHI access.</p>
+        </details>
+        <details class="vs-faq-item">
+          <summary class="vs-faq-q">What is a Business Associate Agreement?</summary>
+          <p class="vs-faq-a">A BAA is a legally required contract between a HIPAA Covered Entity (your organization) and any vendor (Business Associate) that handles PHI. It documents each party's responsibilities for protecting PHI and outlines breach notification obligations. This tool is not a substitute for a BAA — confirm requirements with your legal or compliance team.</p>
+        </details>
+        <details class="vs-faq-item">
+          <summary class="vs-faq-q">What frameworks is the question pool based on?</summary>
+          <p class="vs-faq-a">The question library draws from SIG (Standardized Information Gathering), SIGLite, CSA CAIQ (Cloud Security Alliance Consensus Assessments Initiative Questionnaire), VSA (Vendor Security Alliance), and HIPAA Security Rule control expectations. These are widely recognized frameworks used by security and compliance teams.</p>
+        </details>
+        <details class="vs-faq-item">
+          <summary class="vs-faq-q">Do I need an account to use this?</summary>
+          <p class="vs-faq-a">No. You can complete the builder and export your questionnaire without creating an account. The optional save feature stores your organization details so you can skip setup on future visits.</p>
+        </details>
+        <details class="vs-faq-item">
+          <summary class="vs-faq-q">Is this legal advice?</summary>
+          <p class="vs-faq-a">No. This tool helps structure vendor due diligence but is not legal advice. It should not replace a review by your legal, compliance, or privacy team, especially for vendors that handle PHI or require a BAA.</p>
+        </details>
+        <details class="vs-faq-item">
+          <summary class="vs-faq-q">What information is stored if I save my profile?</summary>
+          <p class="vs-faq-a">Only your organization name, contact name, email, and preferred questionnaire settings. Do not enter PHI, patient data, or sensitive vendor responses into this tool.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+/* ── PAGE HERO ──────────────────────────────────────────────────────────── */
+.vs-hero {
+  padding: 140px 0 80px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.vs-hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; opacity: .3;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 79px,oklch(18% 0.012 78 / .06) 79px,oklch(18% 0.012 78 / .06) 80px),
+    repeating-linear-gradient(90deg,transparent,transparent 99px,oklch(18% 0.012 78 / .06) 99px,oklch(18% 0.012 78 / .06) 100px);
+}
+.vs-hero-inner { max-width: 760px; position: relative; }
+.vs-headline {
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: var(--lh-tight);
+  letter-spacing: -.02em;
+  margin: 16px 0 24px;
+  text-wrap: balance;
+}
+.vs-headline em { font-style: italic; color: var(--green-bright); }
+.vs-subhead {
+  font-size: var(--text-xl);
+  color: var(--text-muted);
+  line-height: var(--lh-body);
+  max-width: 60ch;
+  margin-bottom: 40px;
+}
+.vs-how-strip {
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap; margin-bottom: 32px;
+}
+.vs-how-item { display: flex; align-items: center; gap: 10px; }
+.vs-how-num { font-size: var(--text-xs); letter-spacing: .14em; color: var(--green-mid); }
+.vs-how-text { font-size: var(--text-sm); color: var(--text-muted); }
+.vs-how-arrow { color: var(--border-mid); font-size: 1.1rem; }
+.vs-trust-strip {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.vs-trust-item { font-size: var(--text-xs); letter-spacing: .08em; color: var(--text-faint); text-transform: uppercase; }
+.vs-trust-dot { color: var(--border-mid); }
+.vs-phi-notice {
+  display: flex; align-items: center; gap: 8px;
+  font-size: var(--text-sm); color: var(--text-muted);
+  margin-bottom: 32px; line-height: var(--lh-body);
+}
+.vs-phi-notice svg { flex-shrink: 0; color: var(--text-faint); }
+.vs-start-btn { margin-top: 4px; }
+
+/* ── TIER EXPLAINER ─────────────────────────────────────────────────────── */
+.vs-tiers { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.vs-tier-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin-top: 32px;
+}
+@media (max-width: 768px) { .vs-tier-cards { grid-template-columns: 1fr; } }
+.vs-tier-card {
+  padding: 24px; border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.vs-tier-badge {
+  font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--green-mid); font-weight: 500;
+}
+.vs-tier-card--hipaa_full .vs-tier-badge { color: var(--gold); }
+.vs-tier-desc { font-size: var(--text-sm); color: var(--text-muted); line-height: var(--lh-body); }
+.vs-tier-qs { font-size: var(--text-xs); color: var(--text-faint); font-family: var(--font-mono); }
+
+/* ── BUILDER SECTION ────────────────────────────────────────────────────── */
+.vs-builder-section { padding: var(--s-section) 0; }
+.vs-builder-wrap { max-width: 680px; margin: 0 auto; }
+.vs-step-intro { font-size: var(--text-base); color: var(--text-muted); margin-bottom: 20px; line-height: var(--lh-body); }
+.vs-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+@media (max-width: 560px) { .vs-form-grid { grid-template-columns: 1fr; } }
+.vs-yn-options { display: flex; flex-direction: column; gap: 8px; }
+.vs-required { color: oklch(55% 0.18 25); }
+
+/* ── HIPAA BANNER ───────────────────────────────────────────────────────── */
+.vs-hipaa-banner {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 16px 18px;
+  background: var(--gold-pale);
+  border: 1px solid var(--gold);
+  border-radius: var(--r-sm);
+  margin-bottom: 20px;
+  font-size: var(--text-sm);
+  color: var(--fg);
+  line-height: var(--lh-body);
+}
+.vs-hipaa-banner svg { flex-shrink: 0; color: var(--gold); margin-top: 2px; }
+.vs-hipaa-banner strong { display: block; margin-bottom: 4px; font-weight: 600; }
+.vs-hipaa-banner[hidden] { display: none; }
+
+/* ── TOOLTIP ────────────────────────────────────────────────────────────── */
+.vs-tooltip-anchor { position: relative; display: inline-block; margin-bottom: 4px; }
+.vs-tooltip-trigger {
+  font-size: var(--text-xs); color: var(--green-mid);
+  text-decoration: underline; text-underline-offset: 3px;
+  cursor: help; font-family: var(--font-mono);
+}
+.vs-tooltip-body {
+  display: none; position: absolute; left: 0; bottom: calc(100% + 6px);
+  width: 280px; z-index: 10;
+  background: var(--fg); color: var(--fg-dark);
+  font-size: var(--text-xs); line-height: var(--lh-body);
+  padding: 10px 12px; border-radius: var(--r-sm);
+  pointer-events: none;
+}
+.vs-tooltip-trigger:hover + .vs-tooltip-body,
+.vs-tooltip-trigger:focus + .vs-tooltip-body { display: block; }
+
+/* ── TIER RESULT ────────────────────────────────────────────────────────── */
+.vs-tier-result {
+  margin-top: 28px; padding: 20px 24px;
+  border: 1px solid var(--border-mid);
+  background: var(--bg-subtle);
+  border-radius: var(--r-sm);
+}
+.vs-tier-result[hidden] { display: none; }
+.vs-tier-result-badge {
+  font-family: var(--font-serif); font-size: 1.4rem;
+  margin: 8px 0; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+}
+.vs-tier-result-badge .tier-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.vs-tier-result-reason { font-size: var(--text-sm); color: var(--text-muted); line-height: var(--lh-body); margin-bottom: 16px; }
+.vs-tier-override { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.vs-override-label { font-size: var(--text-xs); letter-spacing: .1em; color: var(--text-muted); margin-bottom: 10px; display: block; }
+.vs-override-options { display: flex; gap: 16px; flex-wrap: wrap; }
+.vs-override-option {
+  display: flex; align-items: center; gap: 7px;
+  font-size: var(--text-sm); cursor: pointer;
+}
+.vs-override-option input { accent-color: var(--fg); }
+
+/* ── STEP TOGGLES ───────────────────────────────────────────────────────── */
+.vs-toggle-grid { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: var(--r-sm); overflow: hidden; }
+.vs-toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 18px; cursor: pointer; gap: 16px;
+  border-bottom: 1px solid var(--border); transition: background .15s;
+}
+.vs-toggle-row:last-child { border-bottom: none; }
+.vs-toggle-row:hover { background: oklch(18% 0.012 78 / .02); }
+.vs-toggle-label { flex: 1; }
+.vs-toggle-title { display: block; font-size: var(--text-base); font-weight: 500; color: var(--fg); margin-bottom: 2px; }
+.vs-toggle-desc { display: block; font-size: var(--text-sm); color: var(--text-muted); line-height: var(--lh-body); }
+.vs-toggle-input { position: absolute; opacity: 0; width: 0; height: 0; }
+.vs-toggle-switch {
+  width: 44px; height: 24px; flex-shrink: 0;
+  background: var(--border-mid); border-radius: var(--r-pill);
+  position: relative; transition: background .2s;
+}
+.vs-toggle-switch::after {
+  content: ''; position: absolute;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; top: 3px; left: 3px;
+  transition: transform .2s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 1px 3px oklch(18% 0.012 78 / .2);
+}
+.vs-toggle-input:checked ~ .vs-toggle-switch { background: var(--brand-navy); }
+.vs-toggle-input:checked ~ .vs-toggle-switch::after { transform: translateX(20px); }
+
+/* ── EMAIL CAPTURE ──────────────────────────────────────────────────────── */
+.vs-email-capture {
+  margin-top: 24px; padding: 20px 20px;
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+  background: var(--bg-subtle);
+}
+.vs-checkbox-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: var(--text-sm); color: var(--text-muted);
+  line-height: var(--lh-body); cursor: pointer;
+  margin-top: 4px;
+}
+.vs-checkbox-row input { flex-shrink: 0; margin-top: 3px; accent-color: var(--fg); }
+
+/* ── BACK BUTTON ────────────────────────────────────────────────────────── */
+.vs-btn-back {
+  background: none; border: none; color: var(--text-muted);
+  font-size: var(--text-sm); cursor: pointer; padding: 0;
+  font-family: var(--font-sans); transition: color .15s;
+  margin-right: auto;
+}
+.vs-btn-back:hover { color: var(--fg); }
+
+/* ── PREVIEW SECTION ────────────────────────────────────────────────────── */
+.vs-preview-section { padding: var(--s-section) 0; border-top: 1px solid var(--border); }
+.vs-preview-section[hidden] { display: none; }
+.vs-preview-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 24px; margin-bottom: 40px; flex-wrap: wrap;
+}
+.vs-preview-title { margin-bottom: 8px; }
+.vs-preview-meta { font-size: var(--text-sm); color: var(--text-faint); }
+.vs-preview-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; flex-shrink: 0; }
+
+/* Internal Summary Card */
+.vs-summary-card {
+  border: 1px solid var(--border); margin-bottom: 40px;
+  border-radius: var(--r-sm); overflow: hidden;
+}
+.vs-summary-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px; background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+}
+.vs-summary-label { font-size: var(--text-xs); color: var(--text-muted); letter-spacing: .1em; text-transform: uppercase; }
+.vs-summary-tier { font-size: var(--text-xs); letter-spacing: .1em; text-transform: uppercase; }
+.vs-summary-body { padding: 20px 24px; font-size: var(--text-sm); line-height: var(--lh-body); color: var(--fg); }
+.vs-summary-body dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; }
+.vs-summary-body dt { font-weight: 500; color: var(--text-muted); }
+.vs-summary-body dd { color: var(--fg); }
+
+/* Document */
+.vs-doc { max-width: 860px; }
+.vs-doc-cover {
+  background: var(--brand-navy); color: var(--fg-dark);
+  padding: 40px 40px 36px; margin-bottom: 32px;
+  border-radius: var(--r-sm); position: relative; overflow: hidden;
+}
+.vs-doc-cover::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .04; pointer-events: none;
+}
+.vs-doc-cover-eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .14em; text-transform: uppercase; color: oklch(97% 0.007 78 / .4); margin-bottom: 12px; position: relative; z-index: 1; }
+.vs-doc-cover-title { font-family: var(--font-serif); font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: var(--lh-tight); color: var(--fg-dark); margin-bottom: 6px; position: relative; z-index: 1; }
+.vs-doc-cover-vendor { font-family: var(--font-serif); font-size: clamp(1.5rem, 3vw, 2rem); font-style: italic; color: var(--green-bright); position: relative; z-index: 1; }
+.vs-doc-cover-meta { margin-top: 20px; display: flex; gap: 32px; flex-wrap: wrap; position: relative; z-index: 1; }
+.vs-doc-cover-meta-item { display: flex; flex-direction: column; gap: 3px; }
+.vs-doc-cover-meta-label { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: .1em; text-transform: uppercase; color: oklch(97% 0.007 78 / .35); }
+.vs-doc-cover-meta-val { font-size: var(--text-sm); color: oklch(97% 0.007 78 / .85); }
+
+.vs-doc-domain { margin-bottom: 40px; }
+.vs-doc-domain-header {
+  display: flex; align-items: center; gap: 12px;
+  padding-bottom: 10px; margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-mid);
+}
+.vs-doc-domain-num { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-faint); }
+.vs-doc-domain-title { font-family: var(--font-serif); font-size: 1.3rem; color: var(--fg); line-height: var(--lh-tight); }
+
+.vs-doc-question { padding: 16px 0; border-bottom: 1px solid oklch(18% 0.012 78 / .06); }
+.vs-doc-question:last-child { border-bottom: none; }
+.vs-doc-q-num { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-faint); margin-bottom: 4px; }
+.vs-doc-q-text { font-size: var(--text-base); color: var(--fg); line-height: var(--lh-body); font-weight: 500; margin-bottom: 6px; }
+.vs-doc-q-helper { font-size: var(--text-sm); color: var(--text-muted); line-height: var(--lh-body); margin-bottom: 8px; font-style: italic; }
+.vs-doc-q-evidence { font-size: var(--text-xs); color: var(--green-mid); font-family: var(--font-mono); margin-bottom: 8px; }
+.vs-doc-q-evidence::before { content: "Evidence: "; color: var(--text-faint); }
+.vs-doc-response { width: 100%; margin-top: 8px; background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 10px 12px; min-height: 48px; font-size: var(--text-sm); color: var(--text-muted); font-style: italic; }
+.vs-doc-hipaa-flag { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--gold); letter-spacing: .08em; text-transform: uppercase; margin-left: 8px; }
+
+/* ── FAQ ────────────────────────────────────────────────────────────────── */
+.vs-faq { padding: var(--s-section) 0; border-top: 1px solid var(--border); }
+.vs-faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; margin-top: 40px; }
+@media (max-width: 768px) { .vs-faq-grid { grid-template-columns: 1fr; } }
+.vs-faq-item { border-bottom: 1px solid var(--border); }
+.vs-faq-q {
+  padding: 18px 0; cursor: pointer;
+  font-size: var(--text-base); font-weight: 500; color: var(--fg);
+  list-style: none; display: flex; justify-content: space-between; gap: 16px;
+}
+.vs-faq-q::after { content: '+'; color: var(--text-faint); font-size: 1.2rem; flex-shrink: 0; }
+.vs-faq-item[open] .vs-faq-q::after { content: '−'; }
+.vs-faq-a { padding-bottom: 18px; font-size: var(--text-sm); color: var(--text-muted); line-height: var(--lh-body); }
+
+/* ── PRINT CSS ──────────────────────────────────────────────────────────── */
+@media print {
+  #nav, .sticky-mobile-cta, .vs-hero, .vs-tiers,
+  .vs-builder-section, .vs-faq,
+  .vs-preview-actions, .vs-summary-card { display: none !important; }
+
+  .vs-preview-section { padding: 0 !important; }
+  .vs-preview-section[hidden] { display: block !important; }
+  .vs-preview-header { display: none !important; }
+  #footer { display: none !important; }
+
+  body { background: #fff !important; color: #000 !important; font-size: 11pt; }
+  .container { max-width: 100%; padding: 0 !important; }
+  .vs-doc { max-width: 100%; }
+
+  .vs-doc-cover { background: #1a1a1a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .vs-doc-domain { page-break-inside: avoid; }
+  .vs-doc-question { page-break-inside: avoid; }
+  .vs-doc-response { border: 1px solid #ccc !important; background: #fafafa !important; min-height: 60px !important; }
+}
+</style>
+
+<script is:inline define:vars={{ libraryData }}>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const LIBRARY = libraryData;
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+const state = {
+  org_name: '', contact_name: '', email: '',
+  assessment_type: '', review_date: '',
+  vendor_name: '', vendor_category: '', deployment: '',
+  stores_data: '', connects_internal: '',
+  phi_access: '', baa_expected: '', has_subcontractors: '', regulated_financial: '',
+  operationally_critical: '', downtime_impact: '', privileged_access: '',
+  include_notes: true, include_response_col: true, evidence_prompts: false,
+  next_review_date: '', email_delivery: '', save_profile: false,
+  tier: 'lite', tier_override: null,
+};
+
+const STEP_LABELS = [
+  '',
+  'Step 1 of 5 — Organization Context',
+  'Step 2 of 5 — Vendor Profile',
+  'Step 3 of 5 — Data & HIPAA',
+  'Step 4 of 5 — Security Depth',
+  'Step 5 of 5 — Export Options',
+];
+const PROGRESS = [0, 0.20, 0.40, 0.60, 0.80, 1.0];
+
+// ─── STEP MANAGEMENT ────────────────────────────────────────────────────────
+let currentStep = 1;
+
+function goToStep(n) {
+  document.getElementById('vs-step-' + currentStep).classList.remove('active');
+  currentStep = n;
+  document.getElementById('vs-step-' + n).classList.add('active');
+  document.getElementById('vsProgressFill').style.transform = 'scaleX(' + PROGRESS[n] + ')';
+  document.getElementById('vsProgressFill').parentElement.setAttribute('aria-valuenow', Math.round(PROGRESS[n] * 100));
+  document.getElementById('vsStepLabel').textContent = STEP_LABELS[n];
+  document.getElementById('vsQuiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ─── OPTION SELECTION ───────────────────────────────────────────────────────
+function setupOptionGroup(containerId, stateKey, onChangeCallback) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.querySelectorAll('.quiz-option[data-group]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      container.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      state[stateKey] = this.dataset.value;
+      checkNextButtons();
+      if (onChangeCallback) onChangeCallback(this.dataset.value);
+    });
+  });
+}
+
+function checkNextButtons() {
+  // Step 1: need org_name, contact_name, email, assessment_type filled
+  const s1ok = state.org_name.trim() && state.contact_name.trim() && state.email.trim() && state.assessment_type;
+  document.getElementById('vsNext1').classList.toggle('on', !!s1ok);
+
+  // Step 2: need vendor_name, vendor_category, deployment, stores_data, connects_internal
+  const s2ok = state.vendor_name.trim() && state.vendor_category && state.deployment && state.stores_data && state.connects_internal;
+  document.getElementById('vsNext2').classList.toggle('on', !!s2ok);
+
+  // Step 3: need phi_access, baa_expected, has_subcontractors, regulated_financial
+  const s3ok = state.phi_access && state.baa_expected && state.has_subcontractors && state.regulated_financial;
+  document.getElementById('vsNext3').classList.toggle('on', !!s3ok);
+
+  // Step 4: need operationally_critical, downtime_impact, privileged_access
+  const s4ok = state.operationally_critical && state.downtime_impact && state.privileged_access;
+  if (s4ok) {
+    computeAndShowTier();
+    document.getElementById('vsNext4').classList.add('on');
+  } else {
+    document.getElementById('vsNext4').classList.remove('on');
+  }
+}
+
+// ─── TEXT FIELD LISTENERS ────────────────────────────────────────────────────
+function setupTextField(id, stateKey) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', () => { state[stateKey] = el.value; checkNextButtons(); });
+}
+
+// ─── HIPAA BRANCHING ────────────────────────────────────────────────────────
+function onPhiChange(val) {
+  const banner = document.getElementById('vsHipaaBanner');
+  if (val === 'yes' || val === 'unsure') {
+    banner.hidden = false;
+    banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    banner.hidden = true;
+  }
+}
+
+// ─── RISK SCORING ────────────────────────────────────────────────────────────
+function computeRiskScore() {
+  let score = 0;
+  const yesVal = v => v === 'yes' || v === 'unsure';
+
+  // High-weight (3 pts)
+  if (yesVal(state.phi_access))             score += 3;
+  if (yesVal(state.privileged_access))      score += 3;
+  if (yesVal(state.connects_internal))      score += 3;
+  if (state.stores_data === 'yes')          score += 2;
+  if (yesVal(state.operationally_critical)) score += 3;
+
+  // Medium-weight (2 pts)
+  if (yesVal(state.has_subcontractors))     score += 2;
+  if (state.deployment === 'cloud')         score += 1;
+  if (yesVal(state.downtime_impact))        score += 2;
+  if (yesVal(state.regulated_financial))    score += 2;
+
+  return score;
+}
+
+function computeAndShowTier() {
+  const score = computeRiskScore();
+  const phiAccess = state.phi_access === 'yes' || state.phi_access === 'unsure';
+
+  let tier = 'lite';
+  let reason = '';
+
+  if (phiAccess || score >= 9) {
+    tier = 'hipaa_full';
+    reason = phiAccess
+      ? 'This vendor may access protected health information (PHI). HIPAA Full tier includes all required HIPAA controls, BAA review, and breach notification questions.'
+      : 'Multiple high-weight risk factors indicate this vendor requires comprehensive review (score ' + score + '/20).';
+  } else if (score >= 4) {
+    tier = 'standard';
+    reason = 'This vendor has elevated risk factors — data storage, system connectivity, or operational criticality — that warrant a Standard review (score ' + score + '/20).';
+  } else {
+    tier = 'lite';
+    reason = 'This vendor has limited data access and low connectivity. A Lite questionnaire covers the essential baseline (score ' + score + '/20).';
+  }
+
+  state.tier = tier;
+
+  const tierLabels = { lite: 'Lite', standard: 'Standard', hipaa_full: 'HIPAA Full' };
+  const tierColors = { lite: 'var(--green)', standard: 'var(--green-mid)', hipaa_full: 'var(--gold)' };
+
+  const badge = document.getElementById('vsTierBadge');
+  badge.innerHTML = '<span class="tier-dot" style="background:' + tierColors[tier] + '"></span>' + tierLabels[tier] + ' Tier Recommended';
+  badge.style.color = tierColors[tier];
+
+  document.getElementById('vsTierReason').textContent = reason;
+
+  // Pre-select the matching override radio
+  const overrideRadios = document.querySelectorAll('input[name="tier_override"]');
+  overrideRadios.forEach(r => { r.checked = (r.value === tier); });
+
+  document.getElementById('vsTierResult').hidden = false;
+}
+
+// ─── TIER OVERRIDE ───────────────────────────────────────────────────────────
+document.querySelectorAll('input[name="tier_override"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    state.tier_override = radio.value;
+    state.tier = radio.value;
+  });
+});
+
+// ─── QUESTION ASSEMBLY ───────────────────────────────────────────────────────
+function assembleQuestions() {
+  const tier = state.tier;
+  const phiAccess = state.phi_access === 'yes' || state.phi_access === 'unsure';
+  const isCloud = state.deployment === 'cloud' || state.deployment === 'hybrid';
+
+  return LIBRARY.questions.filter(q => {
+    if (!q.tiers.includes(tier)) return false;
+    if (q.domain === 'hipaa_specific' && !phiAccess) return false;
+    if (q.hipaa && !phiAccess) return false;
+    return true;
+  });
+}
+
+// ─── PREVIEW RENDER ──────────────────────────────────────────────────────────
+function renderPreview() {
+  const qs = assembleQuestions();
+  const assessmentDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const tierLabels = { lite: 'Lite', standard: 'Standard', hipaa_full: 'HIPAA Full' };
+  const tierLabel = tierLabels[state.tier];
+
+  // Update meta
+  document.getElementById('vsPreviewTitle').textContent =
+    'Vendor Security Questionnaire — ' + (state.vendor_name || 'Vendor');
+  document.getElementById('vsPreviewMeta').textContent =
+    tierLabel + ' Tier · ' + qs.length + ' Questions · Prepared ' + assessmentDate;
+
+  // Summary card
+  const phiAccess = state.phi_access === 'yes' || state.phi_access === 'unsure';
+  const tierColors = { lite: 'var(--green)', standard: 'var(--green-mid)', hipaa_full: 'var(--gold)' };
+  document.getElementById('vsSummaryTierBadge').textContent = tierLabel + ' Tier';
+  document.getElementById('vsSummaryTierBadge').style.color = tierColors[state.tier];
+
+  const summaryBody = document.getElementById('vsSummaryBody');
+  const domainCount = [...new Set(qs.map(q => q.domain))].length;
+  const baaNote = phiAccess ? '⚠ BAA required — confirm with legal team before sharing PHI.' : '';
+
+  summaryBody.innerHTML = '<dl>' +
+    '<dt>Organization</dt><dd>' + (state.org_name || '—') + '</dd>' +
+    '<dt>Vendor</dt><dd>' + (state.vendor_name || '—') + '</dd>' +
+    '<dt>Assessment type</dt><dd>' + ({new_vendor:'New vendor review',renewal:'Contract renewal',periodic:'Periodic reassessment'}[state.assessment_type] || '—') + '</dd>' +
+    '<dt>Risk tier</dt><dd>' + tierLabel + '</dd>' +
+    '<dt>Questions included</dt><dd>' + qs.length + ' across ' + domainCount + ' domains</dd>' +
+    '<dt>PHI access</dt><dd>' + (phiAccess ? 'Yes — HIPAA Full review required' : 'No') + '</dd>' +
+    (state.next_review_date ? '<dt>Next review</dt><dd>' + state.next_review_date + '</dd>' : '') +
+    '</dl>' +
+    (baaNote ? '<p style="margin-top:12px;font-weight:500;color:var(--gold);">' + baaNote + '</p>' : '');
+
+  // Build document
+  const doc = document.getElementById('vsDoc');
+  let html = '';
+
+  // Cover
+  const responseDate = state.review_date ? 'Response requested by: ' + state.review_date : '';
+  html += '<div class="vs-doc-cover">' +
+    '<p class="vs-doc-cover-eyebrow">Vendor Security Questionnaire — ' + tierLabel + ' Tier</p>' +
+    '<p class="vs-doc-cover-title">' + (state.org_name || 'Your Organization') + '</p>' +
+    '<p class="vs-doc-cover-vendor">Re: ' + (state.vendor_name || 'Vendor') + '</p>' +
+    '<div class="vs-doc-cover-meta">' +
+    '<div class="vs-doc-cover-meta-item"><span class="vs-doc-cover-meta-label">Prepared by</span><span class="vs-doc-cover-meta-val">' + (state.contact_name || '—') + '</span></div>' +
+    '<div class="vs-doc-cover-meta-item"><span class="vs-doc-cover-meta-label">Date</span><span class="vs-doc-cover-meta-val">' + assessmentDate + '</span></div>' +
+    (responseDate ? '<div class="vs-doc-cover-meta-item"><span class="vs-doc-cover-meta-label">Response deadline</span><span class="vs-doc-cover-meta-val">' + state.review_date + '</span></div>' : '') +
+    '<div class="vs-doc-cover-meta-item"><span class="vs-doc-cover-meta-label">Framework basis</span><span class="vs-doc-cover-meta-val">SIG · CAIQ · VSA · HIPAA</span></div>' +
+    '</div>' +
+    '</div>';
+
+  // Group by domain
+  const domainOrder = LIBRARY.domains.map(d => d.id);
+  const grouped = {};
+  qs.forEach(q => {
+    if (!grouped[q.domain]) grouped[q.domain] = [];
+    grouped[q.domain].push(q);
+  });
+
+  let globalQNum = 1;
+
+  domainOrder.forEach(domainId => {
+    if (!grouped[domainId]) return;
+    const domainDef = LIBRARY.domains.find(d => d.id === domainId);
+    const domainLabel = domainDef ? domainDef.label : domainId;
+    const domainQs = grouped[domainId];
+
+    html += '<div class="vs-doc-domain">' +
+      '<div class="vs-doc-domain-header">' +
+      '<span class="vs-doc-domain-num mono">§' + String(domainDef.order).padStart(2,'0') + '</span>' +
+      '<h3 class="vs-doc-domain-title">' + domainLabel + '</h3>' +
+      '</div>';
+
+    domainQs.forEach(q => {
+      const isHipaa = q.hipaa || q.domain === 'hipaa_specific';
+      const hipaaFlag = isHipaa ? '<span class="vs-doc-hipaa-flag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> HIPAA</span>' : '';
+
+      html += '<div class="vs-doc-question">' +
+        '<p class="vs-doc-q-num mono">' + String(globalQNum).padStart(2,'0') + hipaaFlag + '</p>' +
+        '<p class="vs-doc-q-text">' + q.text + '</p>';
+
+      if (state.include_notes && q.helper) {
+        html += '<p class="vs-doc-q-helper">' + q.helper + '</p>';
+      }
+
+      if (state.evidence_prompts && q.evidence) {
+        html += '<p class="vs-doc-q-evidence">' + q.evidence + '</p>';
+      }
+
+      if (state.include_response_col) {
+        if (q.type === 'yes_no') {
+          html += '<div style="display:flex;gap:24px;margin-top:8px;">' +
+            '<label style="display:flex;align-items:center;gap:6px;font-size:var(--text-sm);cursor:pointer;"><input type="radio" name="ans_' + q.id + '" value="yes" style="accent-color:var(--fg);"> Yes</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;font-size:var(--text-sm);cursor:pointer;"><input type="radio" name="ans_' + q.id + '" value="no" style="accent-color:var(--fg);"> No</label>' +
+            '<label style="display:flex;align-items:center;gap:6px;font-size:var(--text-sm);cursor:pointer;"><input type="radio" name="ans_' + q.id + '" value="na" style="accent-color:var(--fg);"> N/A</label>' +
+            '</div><p class="vs-doc-response">Additional comments or evidence:</p>';
+        } else {
+          html += '<p class="vs-doc-response">Vendor response:</p>';
+        }
+      }
+
+      html += '</div>';
+      globalQNum++;
+    });
+
+    html += '</div>';
+  });
+
+  // Closing note
+  html += '<div style="margin-top:40px;padding:16px 20px;border:1px solid var(--border);border-radius:var(--r-sm);font-size:var(--text-sm);color:var(--text-muted);line-height:var(--lh-body);">' +
+    '<strong style="color:var(--fg);">About this questionnaire.</strong> This questionnaire was assembled using a question library based on SIG, CSA CAIQ, VSA, and HIPAA Security Rule frameworks. It is intended to support vendor due diligence and is not a guarantee of compliance. Organizations should review vendor responses with their security, legal, or compliance team as appropriate.' +
+    (phiAccess ? ' Vendors that access PHI must sign a Business Associate Agreement before PHI is shared.' : '') +
+    '</div>';
+
+  if (state.next_review_date) {
+    html += '<div style="margin-top:16px;padding:12px 16px;background:var(--bg-subtle);border:1px solid var(--border);border-radius:var(--r-sm);font-size:var(--text-sm);color:var(--text-muted);font-family:var(--font-mono);">Next reassessment date: ' + state.next_review_date + '</div>';
+  }
+
+  doc.innerHTML = html;
+}
+
+// ─── EMAIL DELIVERY ──────────────────────────────────────────────────────────
+async function sendEmail() {
+  const email = state.email_delivery || state.email;
+  if (!email) return;
+
+  const qs = assembleQuestions();
+  const tierLabels = { lite: 'Lite', standard: 'Standard', hipaa_full: 'HIPAA Full' };
+
+  try {
+    await fetch('https://proactivepixels-router.aqua-noriega.workers.dev/vendor-questionnaire', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: email,
+        org_name: state.org_name,
+        vendor_name: state.vendor_name,
+        tier: tierLabels[state.tier],
+        question_count: qs.length,
+        contact_name: state.contact_name,
+      })
+    });
+  } catch(e) {
+    // Fail silently — email delivery is Phase C
+    console.warn('Email delivery not yet active:', e.message);
+  }
+}
+
+// ─── TRACKING: suppress Pixel during form steps ──────────────────────────────
+function suppressPixel() {
+  if (window.fbq) {
+    window._fbqSuppressed = true;
+  }
+}
+function restorePixel() {
+  window._fbqSuppressed = false;
+}
+
+// ─── INITIALIZATION ──────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Suppress Meta Pixel while wizard is active
+  suppressPixel();
+
+  // Text fields — Step 1
+  setupTextField('vsOrgName',      'org_name');
+  setupTextField('vsContactName',  'contact_name');
+  setupTextField('vsEmail',        'email');
+  setupTextField('vsReviewDate',   'review_date');
+  setupOptionGroup('vsAssessmentType', 'assessment_type');
+
+  // Text fields — Step 2
+  setupTextField('vsVendorName', 'vendor_name');
+  setupOptionGroup('vsVendorCategory',   'vendor_category');
+  setupOptionGroup('vsDeployment',       'deployment');
+  setupOptionGroup('vsStoresData',       'stores_data');
+  setupOptionGroup('vsConnectsInternal', 'connects_internal');
+
+  // Step 3
+  setupOptionGroup('vsPhiAccess',          'phi_access',          onPhiChange);
+  setupOptionGroup('vsBaaExpected',        'baa_expected');
+  setupOptionGroup('vsHasSubcontractors',  'has_subcontractors');
+  setupOptionGroup('vsRegulatedFinancial', 'regulated_financial');
+
+  // Step 4
+  setupOptionGroup('vsOpCritical',       'operationally_critical');
+  setupOptionGroup('vsDowntimeImpact',   'downtime_impact');
+  setupOptionGroup('vsPrivilegedAccess', 'privileged_access');
+
+  // Step 5 toggles
+  document.getElementById('vsIncludeNotes').addEventListener('change', function() { state.include_notes = this.checked; });
+  document.getElementById('vsIncludeResponseCol').addEventListener('change', function() { state.include_response_col = this.checked; });
+  document.getElementById('vsIncludeEvidence').addEventListener('change', function() { state.evidence_prompts = this.checked; });
+  setupTextField('vsNextReview',    'next_review_date');
+  setupTextField('vsEmailDelivery', 'email_delivery');
+  document.getElementById('vsSaveProfile').addEventListener('change', function() { state.save_profile = this.checked; });
+
+  // Navigation
+  document.getElementById('vsNext1').addEventListener('click', () => { if (state.org_name && state.contact_name && state.email && state.assessment_type) goToStep(2); });
+  document.getElementById('vsNext2').addEventListener('click', () => { if (state.vendor_name && state.vendor_category && state.deployment && state.stores_data && state.connects_internal) goToStep(3); });
+  document.getElementById('vsNext3').addEventListener('click', () => { if (state.phi_access && state.baa_expected && state.has_subcontractors && state.regulated_financial) goToStep(4); });
+  document.getElementById('vsNext4').addEventListener('click', () => { if (state.operationally_critical && state.downtime_impact && state.privileged_access) goToStep(5); });
+
+  document.getElementById('vsBack2').addEventListener('click', () => goToStep(1));
+  document.getElementById('vsBack3').addEventListener('click', () => goToStep(2));
+  document.getElementById('vsBack4').addEventListener('click', () => goToStep(3));
+  document.getElementById('vsBack5').addEventListener('click', () => goToStep(4));
+
+  // Generate
+  document.getElementById('vsGenerate').addEventListener('click', () => {
+    renderPreview();
+
+    // Show email send button if email provided
+    const emailDelivery = document.getElementById('vsEmailDelivery').value;
+    if (emailDelivery) {
+      document.getElementById('vsEmailBtn').style.display = '';
+    }
+
+    // Show preview, scroll to it
+    const previewSection = document.getElementById('vs-preview');
+    previewSection.hidden = false;
+    previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Restore pixel now that wizard is done and data has left DOM
+    restorePixel();
+    if (window.fbq) fbq('track', 'Lead');
+  });
+
+  // Print
+  document.getElementById('vsPrintBtn').addEventListener('click', () => { window.print(); });
+
+  // Email send
+  document.getElementById('vsEmailBtn').addEventListener('click', () => { sendEmail(); });
+
+  // Restart
+  document.getElementById('vsRestartBtn').addEventListener('click', () => {
+    location.reload();
+  });
+
+  // Fire ViewContent on page load (safe — no user data)
+  if (window.fbq) fbq('track', 'ViewContent');
+});
+</script>
