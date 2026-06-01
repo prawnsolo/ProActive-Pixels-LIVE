@@ -1,0 +1,1438 @@
+{
+  "version": "1.0",
+  "totalQuestions": 95,
+  "domains": [
+    {
+      "id": "vendor_overview",
+      "label": "Vendor Overview & Service Description",
+      "order": 1
+    },
+    {
+      "id": "data_handling",
+      "label": "Data Handling & Classification",
+      "order": 2
+    },
+    {
+      "id": "access_control",
+      "label": "Access Control & Identity Management",
+      "order": 3
+    },
+    {
+      "id": "encryption",
+      "label": "Encryption & Key Management",
+      "order": 4
+    },
+    {
+      "id": "secure_dev",
+      "label": "Secure Development & Change Management",
+      "order": 5
+    },
+    {
+      "id": "logging_incident",
+      "label": "Logging, Monitoring & Incident Response",
+      "order": 6
+    },
+    {
+      "id": "backup_bc",
+      "label": "Backup, Disaster Recovery & Business Continuity",
+      "order": 7
+    },
+    {
+      "id": "infrastructure",
+      "label": "Infrastructure & Hosting",
+      "order": 8
+    },
+    {
+      "id": "endpoint",
+      "label": "Endpoint & Device Security",
+      "order": 9
+    },
+    {
+      "id": "workforce",
+      "label": "Workforce Security & Training",
+      "order": 10
+    },
+    {
+      "id": "third_party",
+      "label": "Third-Party & Subcontractor Risk",
+      "order": 11
+    },
+    {
+      "id": "compliance_certs",
+      "label": "Compliance, Audits & Certifications",
+      "order": 12
+    },
+    {
+      "id": "privacy_retention",
+      "label": "Privacy & Data Retention",
+      "order": 13
+    },
+    {
+      "id": "hipaa_specific",
+      "label": "HIPAA-Specific Obligations",
+      "order": 14
+    },
+    {
+      "id": "contractual_legal",
+      "label": "Contractual & Legal Requirements",
+      "order": 15
+    }
+  ],
+  "questions": [
+    {
+      "id": "VO-01",
+      "domain": "vendor_overview",
+      "text": "Please provide a brief description of your company and the primary services you deliver to our organization.",
+      "type": "long_text",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Include year founded, employee count, and primary service lines."
+    },
+    {
+      "id": "VO-02",
+      "domain": "vendor_overview",
+      "text": "What is the primary nature of your engagement with our organization?",
+      "type": "multiple_choice",
+      "options": [
+        "Software / SaaS platform",
+        "IT services or managed services",
+        "Consulting or advisory",
+        "Billing or revenue cycle management",
+        "Storage, hosting, or infrastructure",
+        "EHR-related or clinical software",
+        "Payment processing",
+        "Other"
+      ],
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Select the option that best describes your service role."
+    },
+    {
+      "id": "VO-03",
+      "domain": "vendor_overview",
+      "text": "Is your service cloud-based, on-premises, service-based (no software component), or a hybrid?",
+      "type": "multiple_choice",
+      "options": [
+        "Cloud-based (SaaS)",
+        "On-premises software or hardware",
+        "Service-based (human-delivered, no software)",
+        "Hybrid (cloud + on-premises)"
+      ],
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "VO-04",
+      "domain": "vendor_overview",
+      "text": "Have you undergone any security assessment, audit, or third-party review in the past 24 months?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Most recent audit report or executive summary",
+      "helper": "Examples: SOC 2 Type II, penetration test, ISO 27001 audit."
+    },
+    {
+      "id": "VO-05",
+      "domain": "vendor_overview",
+      "text": "Do you have a dedicated security or privacy function (security team, CISO, privacy officer, or equivalent)?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "VO-06",
+      "domain": "vendor_overview",
+      "text": "Do you maintain a written information security policy that is reviewed at least annually?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Information security policy (executive summary or table of contents)",
+      "helper": ""
+    },
+    {
+      "id": "DH-01",
+      "domain": "data_handling",
+      "text": "What categories of data will your service create, access, process, transmit, or store on behalf of our organization?",
+      "type": "multiple_choice",
+      "options": [
+        "No organizational data",
+        "Non-sensitive operational data only",
+        "Donor or fundraising data",
+        "Employee or HR data",
+        "Financial or billing data",
+        "Client / patient demographic data",
+        "Protected health information (PHI)",
+        "Other regulated data"
+      ],
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Select all that apply."
+    },
+    {
+      "id": "DH-02",
+      "domain": "data_handling",
+      "text": "Do you store our organization's data on your systems or infrastructure?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "DH-03",
+      "domain": "data_handling",
+      "text": "In what country or countries is our organization's data stored and processed?",
+      "type": "short_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": true,
+      "evidence": null,
+      "helper": "Include all storage and processing locations, including backup sites."
+    },
+    {
+      "id": "DH-04",
+      "domain": "data_handling",
+      "text": "Do you have a formal data classification policy that governs how different types of data are handled and protected?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Data classification policy",
+      "helper": ""
+    },
+    {
+      "id": "DH-05",
+      "domain": "data_handling",
+      "text": "How do you ensure that our organization's data is logically separated from other customers' data?",
+      "type": "long_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": true,
+      "evidence": null,
+      "helper": "Describe your multi-tenant isolation controls if applicable."
+    },
+    {
+      "id": "DH-06",
+      "domain": "data_handling",
+      "text": "Do you have a documented process for returning or destroying our data at contract termination?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Data disposal or return procedure",
+      "helper": ""
+    },
+    {
+      "id": "DH-07",
+      "domain": "data_handling",
+      "text": "Have you experienced a data breach, unauthorized access, or security incident involving customer data in the past three years?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "If yes, provide a summary of what occurred and corrective actions taken."
+    },
+    {
+      "id": "DH-08",
+      "domain": "data_handling",
+      "text": "Do you share our organization's data with any third parties other than your disclosed subprocessors?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "AC-01",
+      "domain": "access_control",
+      "text": "Is multi-factor authentication (MFA) required for all workforce members who access systems holding our data?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "MFA means a second factor beyond a password, such as an authenticator app or hardware key."
+    },
+    {
+      "id": "AC-02",
+      "domain": "access_control",
+      "text": "Do you enforce a least-privilege access model, limiting user permissions to only what is needed for their role?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "AC-03",
+      "domain": "access_control",
+      "text": "How is user access to our data or systems approved, reviewed, and revoked?",
+      "type": "long_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Access management procedure",
+      "helper": "Describe the process from onboarding through offboarding."
+    },
+    {
+      "id": "AC-04",
+      "domain": "access_control",
+      "text": "Do you conduct periodic access reviews (at minimum annually) to verify that access rights are still appropriate?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "AC-05",
+      "domain": "access_control",
+      "text": "Do privileged or administrator accounts receive additional controls such as separate credentials, session recording, or just-in-time access?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Privileged accounts include system admins, database admins, and anyone with elevated system access."
+    },
+    {
+      "id": "AC-06",
+      "domain": "access_control",
+      "text": "Do you use a password policy that enforces minimum length, complexity, and rotation requirements?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "AC-07",
+      "domain": "access_control",
+      "text": "Is remote access to your internal systems controlled through a VPN or equivalent secure channel?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "AC-08",
+      "domain": "access_control",
+      "text": "Do you log all access to systems and data that contain our organization's information?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "EN-01",
+      "domain": "encryption",
+      "text": "Is our organization's data encrypted in transit (e.g., using TLS 1.2 or higher)?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Encryption in transit protects data as it moves between systems or users."
+    },
+    {
+      "id": "EN-02",
+      "domain": "encryption",
+      "text": "Is our organization's data encrypted at rest?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Encryption at rest protects stored data files, databases, and backups."
+    },
+    {
+      "id": "EN-03",
+      "domain": "encryption",
+      "text": "What encryption standards or algorithms do you use for data at rest and in transit?",
+      "type": "short_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Examples: AES-256, TLS 1.3. Provide the standard used for each."
+    },
+    {
+      "id": "EN-04",
+      "domain": "encryption",
+      "text": "How are encryption keys managed and protected?",
+      "type": "long_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Describe key generation, rotation, storage, and access controls."
+    },
+    {
+      "id": "EN-05",
+      "domain": "encryption",
+      "text": "Are encryption keys stored separately from the data they protect?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Storing keys alongside encrypted data significantly weakens the protection."
+    },
+    {
+      "id": "EN-06",
+      "domain": "encryption",
+      "text": "Do your backup copies follow the same encryption requirements as production data?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "SD-01",
+      "domain": "secure_dev",
+      "text": "Do you follow a secure software development lifecycle (SDLC) that includes security review or testing before release?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": true,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "SD-02",
+      "domain": "secure_dev",
+      "text": "Do you conduct vulnerability scanning or penetration testing of your systems at least annually?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Most recent penetration test summary or remediation report",
+      "helper": ""
+    },
+    {
+      "id": "SD-03",
+      "domain": "secure_dev",
+      "text": "Do you have a formal change management process that requires review and testing of changes before deployment to production?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "SD-04",
+      "domain": "secure_dev",
+      "text": "Do you apply security patches and software updates within a defined timeframe following release?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Describe your patching SLA for critical, high, and medium vulnerabilities."
+    },
+    {
+      "id": "SD-05",
+      "domain": "secure_dev",
+      "text": "Do you maintain a vulnerability disclosure or bug bounty program?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "LI-01",
+      "domain": "logging_incident",
+      "text": "Do you maintain a documented incident response plan?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Incident response plan (executive summary)",
+      "helper": ""
+    },
+    {
+      "id": "LI-02",
+      "domain": "logging_incident",
+      "text": "What is your process for notifying customers in the event of a security incident affecting their data?",
+      "type": "long_text",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Include the communication channel, point of contact, and typical timeline."
+    },
+    {
+      "id": "LI-03",
+      "domain": "logging_incident",
+      "text": "What is your target timeline for notifying customers of a confirmed data breach?",
+      "type": "short_text",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Specify hours or days from confirmation of incident."
+    },
+    {
+      "id": "LI-04",
+      "domain": "logging_incident",
+      "text": "Do you maintain audit logs of system and data access, and are those logs protected from tampering?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "LI-05",
+      "domain": "logging_incident",
+      "text": "How long are audit and security logs retained?",
+      "type": "short_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "Specify the retention period in months or years."
+    },
+    {
+      "id": "LI-06",
+      "domain": "logging_incident",
+      "text": "Do you conduct tabletop or live incident response exercises at least annually?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "LI-07",
+      "domain": "logging_incident",
+      "text": "Do you use a security information and event management (SIEM) system or equivalent for real-time threat detection?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "BC-01",
+      "domain": "backup_bc",
+      "text": "Do you maintain regular data backups for systems that hold our organization's data?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "BC-02",
+      "domain": "backup_bc",
+      "text": "What is your target recovery time objective (RTO) for restoring services after a critical outage?",
+      "type": "short_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "RTO is the maximum acceptable time to restore normal operations after an incident."
+    },
+    {
+      "id": "BC-03",
+      "domain": "backup_bc",
+      "text": "What is your target recovery point objective (RPO) \u2014 that is, how much data loss is acceptable in a worst-case scenario?",
+      "type": "short_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "RPO is the maximum age of data that must be recovered. Example: 4 hours means up to 4 hours of data could be lost."
+    },
+    {
+      "id": "BC-04",
+      "domain": "backup_bc",
+      "text": "Are backups tested regularly to confirm they can be successfully restored?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "BC-05",
+      "domain": "backup_bc",
+      "text": "Do you maintain a documented business continuity or disaster recovery plan?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Business continuity or DR plan (executive summary)",
+      "helper": ""
+    },
+    {
+      "id": "BC-06",
+      "domain": "backup_bc",
+      "text": "Have you tested your disaster recovery procedures in the past 12 months?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "IH-01",
+      "domain": "infrastructure",
+      "text": "Do you use a third-party cloud provider (such as AWS, Azure, or Google Cloud) to host your service?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": true,
+      "evidence": null,
+      "helper": "If yes, name the provider(s) and describe your shared responsibility model."
+    },
+    {
+      "id": "IH-02",
+      "domain": "infrastructure",
+      "text": "Are your hosting environments certified or compliant with recognized security standards (e.g., SOC 2, FedRAMP, ISO 27001)?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": true,
+      "evidence": "Hosting provider compliance documentation or shared compliance report",
+      "helper": ""
+    },
+    {
+      "id": "IH-03",
+      "domain": "infrastructure",
+      "text": "Do you use network segmentation to isolate production systems from development, testing, and administrative systems?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "IH-04",
+      "domain": "infrastructure",
+      "text": "Do you use firewalls, intrusion detection, or intrusion prevention systems to protect your infrastructure?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "IH-05",
+      "domain": "infrastructure",
+      "text": "Do you have a process for managing and inventorying hardware and software assets?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "IH-06",
+      "domain": "infrastructure",
+      "text": "Is your infrastructure monitored continuously for availability and performance?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "EP-01",
+      "domain": "endpoint",
+      "text": "Are all devices used by your workforce to access our data required to have endpoint protection software (antivirus, EDR)?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "EP-02",
+      "domain": "endpoint",
+      "text": "Are mobile devices that access your systems subject to mobile device management (MDM) controls?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "MDM allows remote wipe and enforces device-level security policies."
+    },
+    {
+      "id": "EP-03",
+      "domain": "endpoint",
+      "text": "Do you enforce full-disk encryption on laptops and portable devices?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "EP-04",
+      "domain": "endpoint",
+      "text": "Do you have a policy governing the use of personal (BYOD) devices for work purposes?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "BYOD policy",
+      "helper": ""
+    },
+    {
+      "id": "EP-05",
+      "domain": "endpoint",
+      "text": "Are USB or removable media restricted or controlled on devices that access sensitive data?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "WF-01",
+      "domain": "workforce",
+      "text": "Do you conduct security awareness training for all workforce members at least annually?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "WF-02",
+      "domain": "workforce",
+      "text": "Do all workforce members with access to our data complete training before being granted access?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "WF-03",
+      "domain": "workforce",
+      "text": "Do you conduct background checks on employees and contractors who will have access to our data?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "WF-04",
+      "domain": "workforce",
+      "text": "Do you have acceptable use policies covering workforce member behavior with respect to data and systems?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Acceptable use policy",
+      "helper": ""
+    },
+    {
+      "id": "WF-05",
+      "domain": "workforce",
+      "text": "Are terminated employees' access rights revoked immediately upon departure?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "WF-06",
+      "domain": "workforce",
+      "text": "Do you conduct role-specific security training for personnel with elevated access or technical responsibilities?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "TP-01",
+      "domain": "third_party",
+      "text": "Do you use subcontractors or subprocessors to deliver any part of your service to our organization?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "TP-02",
+      "domain": "third_party",
+      "text": "Do any subcontractors or subprocessors have access to our organization's data?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "TP-03",
+      "domain": "third_party",
+      "text": "How do you assess and monitor the security practices of your subcontractors?",
+      "type": "long_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Subcontractor security assessment process or sample vendor questionnaire",
+      "helper": ""
+    },
+    {
+      "id": "TP-04",
+      "domain": "third_party",
+      "text": "Are your subcontractors contractually required to meet the same security and privacy standards as your own organization?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "TP-05",
+      "domain": "third_party",
+      "text": "Will you provide us with a list of subcontractors or subprocessors that may access our data?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Subprocessor list",
+      "helper": ""
+    },
+    {
+      "id": "TP-06",
+      "domain": "third_party",
+      "text": "Do you notify customers of material changes to your subprocessor list before those changes take effect?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "CA-01",
+      "domain": "compliance_certs",
+      "text": "Do you hold any current security or privacy certifications (e.g., SOC 2 Type II, ISO 27001, HITRUST)?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Certification report or letter of attestation",
+      "helper": ""
+    },
+    {
+      "id": "CA-02",
+      "domain": "compliance_certs",
+      "text": "Are those certifications current and within their renewal window?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Certificate expiration dates",
+      "helper": ""
+    },
+    {
+      "id": "CA-03",
+      "domain": "compliance_certs",
+      "text": "Are you willing to share audit reports, SOC 2 reports, or equivalent documentation under a non-disclosure agreement?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "CA-04",
+      "domain": "compliance_certs",
+      "text": "Do you conduct or commission annual internal or external security risk assessments?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Risk assessment summary or scope statement",
+      "helper": ""
+    },
+    {
+      "id": "CA-05",
+      "domain": "compliance_certs",
+      "text": "Do you have a process for identifying, tracking, and remediating compliance findings or audit observations?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "PR-01",
+      "domain": "privacy_retention",
+      "text": "Do you have a documented privacy policy that covers how you handle customer data?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Privacy policy (URL or document)",
+      "helper": ""
+    },
+    {
+      "id": "PR-02",
+      "domain": "privacy_retention",
+      "text": "What is your data retention schedule for our organization's data?",
+      "type": "short_text",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Data retention schedule",
+      "helper": "Specify how long data is kept in active systems, archives, and backups."
+    },
+    {
+      "id": "PR-03",
+      "domain": "privacy_retention",
+      "text": "Do you have a process for responding to data subject access requests or data deletion requests?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "PR-04",
+      "domain": "privacy_retention",
+      "text": "Are you able to confirm the specific locations where our data is stored, including any geographies outside the United States?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": true,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "PR-05",
+      "domain": "privacy_retention",
+      "text": "Do you use our organization's data for any secondary purposes, such as analytics, benchmarking, or product improvement?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "If yes, describe what data is used and how it is de-identified or protected."
+    },
+    {
+      "id": "HS-01",
+      "domain": "hipaa_specific",
+      "text": "Do you qualify as a Business Associate under HIPAA based on the services you will provide?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "A Business Associate is any vendor that creates, receives, maintains, or transmits PHI on behalf of a Covered Entity."
+    },
+    {
+      "id": "HS-02",
+      "domain": "hipaa_specific",
+      "text": "Are you willing to sign a Business Associate Agreement (BAA) before PHI is shared with your organization?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": "Executed BAA or BAA template",
+      "helper": "A signed BAA is required by HIPAA before PHI may be shared with a Business Associate."
+    },
+    {
+      "id": "HS-03",
+      "domain": "hipaa_specific",
+      "text": "Is PHI encrypted both at rest and in transit in your systems?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": "Encryption specification or security documentation",
+      "helper": ""
+    },
+    {
+      "id": "HS-04",
+      "domain": "hipaa_specific",
+      "text": "Do all workforce members who may access PHI receive HIPAA training before access is granted and at least annually thereafter?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": "Training completion records or training policy",
+      "helper": ""
+    },
+    {
+      "id": "HS-05",
+      "domain": "hipaa_specific",
+      "text": "Do you maintain audit logs specific to PHI access, including who accessed what data and when?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "HIPAA requires audit controls that record and examine activity in systems containing PHI."
+    },
+    {
+      "id": "HS-06",
+      "domain": "hipaa_specific",
+      "text": "What is your breach notification timeline for incidents involving PHI?",
+      "type": "short_text",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": "Breach notification procedure",
+      "helper": "HIPAA requires notification to a Covered Entity without unreasonable delay and within 60 days of discovery."
+    },
+    {
+      "id": "HS-07",
+      "domain": "hipaa_specific",
+      "text": "Do you conduct and document periodic security risk assessments covering PHI as required by the HIPAA Security Rule?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": "Most recent risk assessment summary",
+      "helper": ""
+    },
+    {
+      "id": "HS-08",
+      "domain": "hipaa_specific",
+      "text": "Do your subcontractors that may access PHI also sign a Business Associate Agreement?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": "Subcontractor BAA policy or sample agreement",
+      "helper": ""
+    },
+    {
+      "id": "HS-09",
+      "domain": "hipaa_specific",
+      "text": "Is access to PHI limited to the minimum necessary information required to perform the contracted service?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": "The HIPAA minimum necessary standard requires limiting PHI access to what is needed to accomplish the intended purpose."
+    },
+    {
+      "id": "HS-10",
+      "domain": "hipaa_specific",
+      "text": "Can you confirm where PHI will be stored and processed, including cloud regions and any non-US locations?",
+      "type": "short_text",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": true,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "HS-11",
+      "domain": "hipaa_specific",
+      "text": "Do you have documented policies and procedures for HIPAA compliance that are reviewed and updated at least annually?",
+      "type": "yes_no",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": true,
+      "cloud_relevant": false,
+      "evidence": "HIPAA policy index or table of contents",
+      "helper": ""
+    },
+    {
+      "id": "CL-01",
+      "domain": "contractual_legal",
+      "text": "Will you accept contractual security and privacy obligations, including the right to audit?",
+      "type": "yes_no",
+      "tiers": [
+        "lite",
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "CL-02",
+      "domain": "contractual_legal",
+      "text": "Do you carry cyber liability or errors and omissions insurance?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": "Certificate of insurance",
+      "helper": "Specify coverage amounts if available."
+    },
+    {
+      "id": "CL-03",
+      "domain": "contractual_legal",
+      "text": "Are you currently subject to any pending legal actions, regulatory investigations, or known material compliance violations?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "CL-04",
+      "domain": "contractual_legal",
+      "text": "What is your policy for data breach liability and indemnification?",
+      "type": "long_text",
+      "tiers": [
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    },
+    {
+      "id": "CL-05",
+      "domain": "contractual_legal",
+      "text": "Are you willing to provide annual security attestations or questionnaire updates during the contract term?",
+      "type": "yes_no",
+      "tiers": [
+        "standard",
+        "hipaa_full"
+      ],
+      "hipaa": false,
+      "cloud_relevant": false,
+      "evidence": null,
+      "helper": ""
+    }
+  ]
+}
