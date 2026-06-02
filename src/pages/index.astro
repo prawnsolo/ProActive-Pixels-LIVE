@@ -1,34 +1,643 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import WhoWeServe from '../components/WhoWeServe.astro';
-import Metrics from '../components/Metrics.astro';
-import Security from '../components/Security.astro';
-import Objections from '../components/Objections.astro';
-import LeadForm from '../components/LeadForm.astro';
-import CtaSection from '../components/CtaSection.astro';
 import Footer from '../components/Footer.astro';
-import StickyMobileCTA from '../components/StickyMobileCTA.astro';
 ---
 
 <BaseLayout
-  title="ProActive Pixels | Capacity Reviews for HIPAA Nonprofits"
-  description="We find where your staff hours are going and help get them back. Free Capacity Review. Operations Assessment in 24 hours. HIPAA compliant."
+  title="ProActive Pixels | HIPAA Nonprofit Admin Automation"
+  description="Your staff hours belong to your mission, not to paperwork. We find where the hours go and help you get them back. A Capacity Review takes 12 minutes."
   canonical="https://proactivepixels.com"
 >
   <Nav />
-  <Hero />
-  <Features />
-  <HowItWorks />
-  <WhoWeServe />
-  <Metrics />
-  <Security />
-  <Objections />
-  <LeadForm />
-  <CtaSection />
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section id="home-hero" class="hm-hero">
+    <div class="hm-hero-sphere">
+      <canvas id="sphereCanvas" width="900" height="900" aria-hidden="true"></canvas>
+    </div>
+    <div class="container hm-hero-inner">
+      <p class="hm-eyebrow mono">For HIPAA-regulated nonprofits &mdash; free clinics &bull; behavioral health &bull; FQHCs &bull; hospice</p>
+      <h1 class="hm-h1 display">
+        Your staff hours<br>
+        belong to your mission.<br>
+        <em>Not to paperwork.</em>
+      </h1>
+      <p class="hm-sub">We find where the hours go&mdash;intake, scheduling, follow-ups, case notes&mdash;and help you automate the specific tasks so those hours go back to program delivery.</p>
+      <div class="hm-ctas">
+        <a href="/capacity-review" class="btn-pill btn-pill--lg">
+          Start Your Capacity Review
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/blog" class="btn-pill-outline">See how it works</a>
+      </div>
+      <div class="hm-trust-strip">
+        <span class="hm-trust-item mono">12-min call</span>
+        <span class="hm-trust-dot" aria-hidden="true">&bull;</span>
+        <span class="hm-trust-item mono">Operations Assessment in 24 hrs</span>
+        <span class="hm-trust-dot" aria-hidden="true">&bull;</span>
+        <span class="hm-trust-item mono">HIPAA compliant</span>
+        <span class="hm-trust-dot" aria-hidden="true">&bull;</span>
+        <span class="hm-trust-item mono">No pitch on the call</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHO IT'S FOR ═══════════════════════════════════════════════════════ -->
+  <section class="hm-qualify">
+    <div class="container">
+      <p class="section-label">Is this for you?</p>
+      <h2 class="hm-section-h2">Right fit. Wrong fit. Be honest.</h2>
+      <p class="hm-section-sub">The Capacity Review is built for one kind of organization. If yours matches, it will find something. If it doesn't, we'll tell you.</p>
+      <div class="hm-qualify-grid">
+        <div class="hm-qualify-card hm-qualify-yes">
+          <div class="hm-qualify-label mono">This is for you if&hellip;</div>
+          <ul class="hm-qualify-list">
+            <li>Your organization handles protected health information (PHI)</li>
+            <li>You have 5&ndash;50 paid staff</li>
+            <li>Staff spend hours each week on intake paperwork, scheduling, or documentation</li>
+            <li>You're a free clinic, community health center, behavioral health org, substance abuse treatment program, mental health nonprofit, hospice, or FQHC</li>
+            <li>An Executive Director, Operations Director, or Program Manager is reading this</li>
+          </ul>
+        </div>
+        <div class="hm-qualify-card hm-qualify-no">
+          <div class="hm-qualify-label mono">This is not for you if&hellip;</div>
+          <ul class="hm-qualify-list">
+            <li>Your organization is for-profit</li>
+            <li>You don't handle PHI or have no HIPAA obligations</li>
+            <li>You're looking for general software consulting, not admin workflow recovery</li>
+            <li>You want a technology vendor, not a diagnostic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ THREE PATHS ════════════════════════════════════════════════════════ -->
+  <section class="hm-paths">
+    <div class="container">
+      <p class="section-label">Where do you want to start?</p>
+      <h2 class="hm-section-h2">Three ways in.</h2>
+      <div class="hm-paths-grid">
+
+        <a href="/capacity-review" class="hm-path-card hm-path-primary">
+          <div class="hm-path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="hm-path-tag mono">Ready now</div>
+          <h3 class="hm-path-title">Start Your Capacity Review</h3>
+          <p class="hm-path-desc">Answer three questions, call Alex, receive your Operations Assessment within 24 hours. Your three biggest bottlenecks, ranked by recoverable staff hours.</p>
+          <span class="hm-path-link">
+            Begin the review
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
+        <a href="/blog" class="hm-path-card">
+          <div class="hm-path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <div class="hm-path-tag mono">Want to learn first</div>
+          <h3 class="hm-path-title">Read the Blog</h3>
+          <p class="hm-path-desc">Articles on admin bottlenecks by sub-niche&mdash;free clinics, behavioral health, FQHCs, and more. Specific problems. No generic advice.</p>
+          <span class="hm-path-link">
+            Browse the blog
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
+        <a href="/vendor-security" class="hm-path-card">
+          <div class="hm-path-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="hm-path-tag mono">Evaluating a vendor</div>
+          <h3 class="hm-path-title">Build a Vendor Security Questionnaire</h3>
+          <p class="hm-path-desc">Free tool for HIPAA nonprofits. Answer five questions about your org and the vendor. Get a right-sized security questionnaire based on SIG, CAIQ, and HIPAA frameworks.</p>
+          <span class="hm-path-link">
+            Open the tool
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CREDIBILITY ════════════════════════════════════════════════════════ -->
+  <section class="hm-cred">
+    <div class="container">
+      <div class="hm-cred-grid">
+        <div class="hm-cred-stat">
+          <span class="hm-cred-value display">8&ndash;12</span>
+          <span class="hm-cred-label">recoverable staff hours found in a first assessment</span>
+        </div>
+        <div class="hm-cred-stat">
+          <span class="hm-cred-value display">24 hrs</span>
+          <span class="hm-cred-label">from Capacity Review call to written Operations Assessment in your inbox</span>
+        </div>
+        <div class="hm-cred-stat">
+          <span class="hm-cred-value display">12 min</span>
+          <span class="hm-cred-label">call length — no prep, no pitch, no commitment required</span>
+        </div>
+        <div class="hm-cred-stat">
+          <span class="hm-cred-value display">HIPAA</span>
+          <span class="hm-cred-label">we only deploy tools that meet HIPAA standards — every engagement, no exceptions</span>
+        </div>
+      </div>
+      <p class="hm-cred-footnote mono">
+        Staff-hours baseline drawn from clinical workflow research.
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5593724/" target="_blank" rel="noopener noreferrer">Based on clinical research &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ BOTTOM CTA ══════════════════════════════════════════════════════════ -->
+  <section class="hm-bottom-cta">
+    <div class="container hm-bottom-cta-inner">
+      <h2 class="hm-bottom-cta-h2 display">
+        12 minutes.<br>
+        <em>Written report in 24 hours.</em>
+      </h2>
+      <p class="hm-bottom-cta-sub">No pitch on the call. No commitment after. Just your three biggest bottlenecks, ranked by recoverable hours.</p>
+      <a href="/capacity-review" class="btn-pill btn-pill--lg">
+        Start Your Capacity Review
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
   <Footer />
-  <StickyMobileCTA />
 </BaseLayout>
+
+<!-- ══ SPHERE ANIMATION ════════════════════════════════════════════════════ -->
+<script is:inline>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function initSphere() {
+    var canvas = document.getElementById('sphereCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    var W = 900, H = 900, R = 320;
+    var N = 110;
+    var nodes = [];
+    var angleY = 0;
+
+    // Generate nodes on sphere surface using Fibonacci spiral
+    var phi = Math.PI * (3 - Math.sqrt(5));
+    for (var i = 0; i < N; i++) {
+      var y  = 1 - (i / (N - 1)) * 2;
+      var r  = Math.sqrt(1 - y * y);
+      var th = phi * i;
+      nodes.push({ x: Math.cos(th) * r, y: y, z: Math.sin(th) * r });
+    }
+
+    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var nodeColor  = isDark ? 'rgba(64,165,221,0.55)' : 'rgba(23,112,178,0.45)';
+    var lineColor  = isDark ? 'rgba(64,165,221,0.12)' : 'rgba(23,112,178,0.10)';
+    var glowColor  = isDark ? 'rgba(64,165,221,0.08)' : 'rgba(23,112,178,0.06)';
+
+    function project(node) {
+      var cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+      var rx   = node.x * cosY - node.z * sinY;
+      var rz   = node.x * sinY + node.z * cosY;
+      var ry   = node.y;
+      var depth = (rz + 1.5) / 2.5;
+      return { px: W / 2 + rx * R, py: H / 2 - ry * R, depth: depth, rz: rz };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      var projected = nodes.map(project);
+
+      // Draw connections (only nearby nodes)
+      for (var i = 0; i < N; i++) {
+        for (var j = i + 1; j < N; j++) {
+          var a = projected[i], b = projected[j];
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var dz = nodes[i].z - nodes[j].z;
+          var dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+          if (dist < 0.55) {
+            var alpha = (1 - dist / 0.55) * Math.min(a.depth, b.depth) * 0.5;
+            ctx.beginPath();
+            ctx.moveTo(a.px, a.py);
+            ctx.lineTo(b.px, b.py);
+            ctx.strokeStyle = isDark
+              ? 'rgba(64,165,221,' + (alpha * 0.4) + ')'
+              : 'rgba(23,112,178,' + (alpha * 0.35) + ')';
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      for (var i = 0; i < N; i++) {
+        var p = projected[i];
+        if (p.rz < -0.85) continue; // skip far-back nodes
+        var size   = 1.5 + p.depth * 2.5;
+        var opacity = 0.3 + p.depth * 0.65;
+        ctx.beginPath();
+        ctx.arc(p.px, p.py, size, 0, Math.PI * 2);
+        ctx.fillStyle = isDark
+          ? 'rgba(64,165,221,' + opacity + ')'
+          : 'rgba(23,112,178,' + opacity + ')';
+        ctx.fill();
+      }
+
+      angleY += 0.0025;
+    }
+
+    var raf;
+    function loop() { draw(); raf = requestAnimationFrame(loop); }
+
+    // Start only when hero is visible
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function(entries) {
+        if (entries[0].isIntersecting) { loop(); }
+        else { cancelAnimationFrame(raf); }
+      }, { threshold: 0.1 });
+      obs.observe(canvas.parentElement || canvas);
+    } else {
+      loop();
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    (window.requestIdleCallback || setTimeout)(initSphere);
+  } else {
+    window.addEventListener('load', function() {
+      (window.requestIdleCallback || setTimeout)(initSphere);
+    });
+  }
+})();
+</script>
+
+<style>
+/* ══ HOMEPAGE SCOPED STYLES ══════════════════════════════════════════════════ */
+
+/* ── HERO ─────────────────────────────────────────────────────────────────── */
+.hm-hero {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hm-hero-sphere {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 600px;
+  height: 600px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .hm-hero-sphere { width: 750px; height: 750px; right: -80px; }
+}
+
+@media (max-width: 768px) {
+  .hm-hero-sphere { width: 320px; height: 320px; right: -80px; top: 40%; opacity: 0.35; }
+}
+
+.hm-hero-sphere canvas { width: 100%; height: 100%; display: block; }
+
+.hm-hero-inner { position: relative; z-index: 1; max-width: 640px; }
+
+.hm-eyebrow {
+  display: block;
+  font-size: var(--text-xs, 0.6875rem);
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.hm-h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  color: var(--fg);
+}
+
+.hm-h1 em {
+  font-style: italic;
+  color: var(--green);
+}
+
+.hm-sub {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+
+.hm-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.hm-trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hm-trust-item {
+  font-size: var(--text-xs, 0.6875rem);
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+}
+
+.hm-trust-dot {
+  font-size: 0.5rem;
+  color: var(--border-mid);
+}
+
+/* ── SECTION SHARED ───────────────────────────────────────────────────────── */
+.hm-section-h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 8px 0 16px;
+  color: var(--fg);
+}
+
+.hm-section-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 540px;
+  line-height: 1.65;
+  margin-bottom: 40px;
+}
+
+/* ── WHO IT'S FOR ─────────────────────────────────────────────────────────── */
+.hm-qualify {
+  padding: var(--s-section) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.hm-qualify-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 680px) {
+  .hm-qualify-grid { grid-template-columns: 1fr; }
+}
+
+.hm-qualify-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px;
+}
+
+.hm-qualify-yes { border-left: 3px solid var(--green); }
+.hm-qualify-no  { border-left: 3px solid var(--border-mid); }
+
+.hm-qualify-label {
+  display: block;
+  font-size: var(--text-xs, 0.6875rem);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 16px;
+}
+
+.hm-qualify-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hm-qualify-yes .hm-qualify-list li {
+  padding: 7px 0 7px 22px;
+  position: relative;
+  font-size: 0.875rem;
+  color: var(--fg);
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.hm-qualify-yes .hm-qualify-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.hm-qualify-no .hm-qualify-list li {
+  padding: 7px 0 7px 22px;
+  position: relative;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.hm-qualify-no .hm-qualify-list li::before {
+  content: '✕';
+  position: absolute;
+  left: 0;
+  color: var(--text-faint);
+  font-size: 0.75rem;
+}
+
+.hm-qualify-list li:last-child { border-bottom: none; }
+
+/* ── THREE PATHS ──────────────────────────────────────────────────────────── */
+.hm-paths {
+  padding: var(--s-section) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.hm-paths-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 860px) {
+  .hm-paths-grid { grid-template-columns: 1fr; max-width: 480px; }
+}
+
+.hm-path-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px;
+  text-decoration: none;
+  color: var(--fg);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.hm-path-card:hover {
+  border-color: var(--green);
+  box-shadow: 0 4px 20px oklch(49% 0.12 244 / 0.12);
+  transform: translateY(-2px);
+}
+
+.hm-path-primary {
+  background: var(--green-pale, oklch(95% 0.015 252));
+  border-color: var(--green);
+}
+
+.hm-path-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+.hm-path-icon svg { width: 100%; height: 100%; }
+
+.hm-path-tag {
+  font-size: var(--text-xs, 0.6875rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+
+.hm-path-primary .hm-path-tag { color: var(--green-mid); }
+
+.hm-path-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: var(--fg);
+}
+
+.hm-path-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.hm-path-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-top: auto;
+}
+
+/* ── CREDIBILITY ──────────────────────────────────────────────────────────── */
+.hm-cred {
+  padding: var(--s-section) 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+
+.hm-cred-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 860px) {
+  .hm-cred-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .hm-cred-grid { grid-template-columns: 1fr; }
+}
+
+.hm-cred-stat {
+  border-left: 2px solid var(--green);
+  padding-left: 20px;
+}
+
+.hm-cred-value {
+  display: block;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: var(--fg);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.hm-cred-label {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.hm-cred-footnote {
+  font-size: var(--text-xs, 0.6875rem);
+  color: var(--text-faint);
+}
+
+.hm-cred-footnote a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.hm-cred-footnote a:hover { text-decoration: underline; }
+
+/* ── BOTTOM CTA ───────────────────────────────────────────────────────────── */
+.hm-bottom-cta {
+  padding: var(--s-section) 0;
+  background: var(--brand-navy, #171E62);
+}
+
+.hm-bottom-cta-inner {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.hm-bottom-cta-h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--fg-dark, oklch(97% 0.007 78));
+  margin-bottom: 16px;
+}
+
+.hm-bottom-cta-h2 em {
+  font-style: italic;
+  color: var(--green-bright, oklch(67% 0.10 228));
+}
+
+.hm-bottom-cta-sub {
+  font-size: 1rem;
+  color: var(--fg-dark-muted, oklch(97% 0.007 78 / 0.6));
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .hm-qualify-card { background: var(--bg-subtle); }
+  .hm-path-primary { background: oklch(20% 0.015 244 / 0.4); }
+  .hm-cred { background: var(--bg-subtle); }
+}
+</style>
