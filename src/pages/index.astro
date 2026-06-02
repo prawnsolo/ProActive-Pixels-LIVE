@@ -237,22 +237,19 @@ import Footer from '../components/Footer.astro';
 .hm-hero {
   position: relative;
   padding: 140px 0 100px;
-  overflow: visible;
-  /* Clip 100px from top: 80px nav + 20px breathing room so sphere top is fully visible.
-     Negative right/bottom values allow sphere to bleed freely on those sides. */
-  clip-path: inset(100px -1000px -1000px 0);
-  background: oklch(13% 0.015 250); /* dark hero — supports white text in both light/dark mode */
+  overflow: hidden; /* clips sphere within section — no clip-path needed */
+  background: oklch(13% 0.015 250);
   border-bottom: 1px solid var(--border);
 }
 
 .hm-hero-sphere {
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 100px; /* explicitly 100px from section top — clears 80px nav + 20px gap */
+  transform: none;
   width: 600px;
   height: 600px;
-  opacity: 0.30; /* was 0.40, reduced by 10% */
+  opacity: 0.30;
   pointer-events: none;
 }
 
