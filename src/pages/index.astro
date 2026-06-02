@@ -236,8 +236,9 @@ import Footer from '../components/Footer.astro';
 /* ── HERO ─────────────────────────────────────────────────────────────────── */
 .hm-hero {
   position: relative;
-  padding: 140px 0 100px;
-  overflow: hidden; /* clips sphere within section — no clip-path needed */
+  margin-top: 80px;  /* hero dark section starts exactly where nav ends — no dark bg in nav zone */
+  padding: 60px 0 100px;
+  overflow: hidden;
   background: oklch(13% 0.015 250);
   border-bottom: 1px solid var(--border);
 }
@@ -245,7 +246,7 @@ import Footer from '../components/Footer.astro';
 .hm-hero-sphere {
   position: absolute;
   right: 0;
-  top: 100px; /* explicitly 100px from section top — clears 80px nav + 20px gap */
+  top: 20px;  /* 20px from section top = 100px from viewport = 20px below nav bottom */
   transform: none;
   width: 600px;
   height: 600px;
