@@ -30,7 +30,6 @@ import Footer from '../components/Footer.astro';
         </a>
         <a href="/blog" class="btn-pill-outline">Read the blog</a>
       </div>
-      <p class="hm-micro">12 minutes &nbsp;&middot;&nbsp; Operations Assessment in 24 hours &nbsp;&middot;&nbsp; No prep needed</p>
     </div>
   </section>
 
@@ -239,9 +238,10 @@ import Footer from '../components/Footer.astro';
   position: relative;
   padding: 140px 0 100px;
   overflow: visible;
-  /* Hard clip: nothing renders in the top 80px (fixed nav zone).
-     Negative right/bottom values extend the clip region outward = sphere bleeds freely on those sides. */
-  clip-path: inset(80px -1000px -1000px 0);
+  /* Clip 100px from top: 80px nav + 20px breathing room so sphere top is fully visible.
+     Negative right/bottom values allow sphere to bleed freely on those sides. */
+  clip-path: inset(100px -1000px -1000px 0);
+  background: oklch(13% 0.015 250); /* dark hero — supports white text in both light/dark mode */
   border-bottom: 1px solid var(--border);
 }
 
@@ -252,7 +252,7 @@ import Footer from '../components/Footer.astro';
   transform: translateY(-50%);
   width: 600px;
   height: 600px;
-  opacity: 0.40;
+  opacity: 0.30; /* was 0.40, reduced by 10% */
   pointer-events: none;
 }
 
@@ -279,17 +279,17 @@ import Footer from '../components/Footer.astro';
   line-height: 1.08;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
-  color: var(--fg);
+  color: #ffffff;
 }
 
 .hm-h1 em {
   font-style: italic;
-  color: var(--green);
+  color: var(--green-bright, oklch(67% 0.10 228));
 }
 
 .hm-sub {
   font-size: 1.0625rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.65;
   max-width: 520px;
   margin-bottom: 36px;
@@ -320,13 +320,6 @@ import Footer from '../components/Footer.astro';
   color: var(--border-mid);
 }
 
-.hm-micro {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs, 0.6875rem);
-  color: var(--text-faint);
-  letter-spacing: 0.03em;
-  margin-top: 16px;
-}
 
 /* ── SECTION SHARED ───────────────────────────────────────────────────────── */
 .hm-section-h2 {
