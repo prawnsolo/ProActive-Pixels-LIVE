@@ -247,21 +247,23 @@ import Footer from '../components/Footer.astro';
 
 .hm-hero-sphere {
   position: absolute;
-  right: -60px;
+  right: -80px;
   top: 0;
   transform: none;
-  width: 600px;
-  height: 600px;
-  opacity: 0.75;
+  width: 580px;
+  height: 580px;
+  opacity: 0.55;
   pointer-events: none;
 }
 
 @media (min-width: 1024px) {
-  .hm-hero-sphere { width: 800px; height: 800px; right: -80px; }
+  .hm-hero-sphere { width: 700px; height: 700px; right: -100px; opacity: 0.55; }
 }
 
+/* On mobile the sphere should stay in the right quarter of the screen —
+   small enough not to cover the text, visible enough to feel present */
 @media (max-width: 768px) {
-  .hm-hero-sphere { width: 360px; height: 360px; right: -60px; top: 0; transform: none; opacity: 0.5; }
+  .hm-hero-sphere { width: 220px; height: 220px; right: -30px; top: 0; transform: none; opacity: 0.3; }
 }
 
 .hm-hero-sphere canvas { width: 100%; height: 100%; display: block; }
