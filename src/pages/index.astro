@@ -169,111 +169,74 @@ import Footer from '../components/Footer.astro';
   <Footer />
 </BaseLayout>
 
-<!-- ══ SPHERE ANIMATION ════════════════════════════════════════════════════ -->
+<!-- ══ SPHERE ANIMATION (ASCII character sphere — matches site visual language) ════ -->
 <script is:inline>
-(function() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  function initSphere() {
+  /* ── SPHERE (hero background) ── */
+  (function () {
     var canvas = document.getElementById('sphereCanvas');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
-
-    var W = 900, H = 900, R = 320;
-    var N = 110;
-    var nodes = [];
-    var angleY = 0;
-
-    // Generate nodes on sphere surface using Fibonacci spiral
-    var phi = Math.PI * (3 - Math.sqrt(5));
-    for (var i = 0; i < N; i++) {
-      var y  = 1 - (i / (N - 1)) * 2;
-      var r  = Math.sqrt(1 - y * y);
-      var th = phi * i;
-      nodes.push({ x: Math.cos(th) * r, y: y, z: Math.sin(th) * r });
+    var chars = '░▒▓█▀▄▌▐│─┤├┴┬╭╮╰╯';
+    var time = 0;
+    var rafId = null;
+    function resize() {
+      var dpr = window.devicePixelRatio || 1;
+      var rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
     }
-
-    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var nodeColor  = isDark ? 'rgba(64,165,221,0.55)' : 'rgba(23,112,178,0.45)';
-    var lineColor  = isDark ? 'rgba(64,165,221,0.12)' : 'rgba(23,112,178,0.10)';
-    var glowColor  = isDark ? 'rgba(64,165,221,0.08)' : 'rgba(23,112,178,0.06)';
-
-    function project(node) {
-      var cosY = Math.cos(angleY), sinY = Math.sin(angleY);
-      var rx   = node.x * cosY - node.z * sinY;
-      var rz   = node.x * sinY + node.z * cosY;
-      var ry   = node.y;
-      var depth = (rz + 1.5) / 2.5;
-      return { px: W / 2 + rx * R, py: H / 2 - ry * R, depth: depth, rz: rz };
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-
-      var projected = nodes.map(project);
-
-      // Draw connections (only nearby nodes)
-      for (var i = 0; i < N; i++) {
-        for (var j = i + 1; j < N; j++) {
-          var a = projected[i], b = projected[j];
-          var dx = nodes[i].x - nodes[j].x;
-          var dy = nodes[i].y - nodes[j].y;
-          var dz = nodes[i].z - nodes[j].z;
-          var dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-          if (dist < 0.55) {
-            var alpha = (1 - dist / 0.55) * Math.min(a.depth, b.depth) * 0.5;
-            ctx.beginPath();
-            ctx.moveTo(a.px, a.py);
-            ctx.lineTo(b.px, b.py);
-            ctx.strokeStyle = isDark
-              ? 'rgba(64,165,221,' + (alpha * 0.4) + ')'
-              : 'rgba(23,112,178,' + (alpha * 0.35) + ')';
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
+    resize();
+    window.addEventListener('resize', resize);
+    function render() {
+      var rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      var cx = rect.width / 2, cy = rect.height / 2;
+      var radius = Math.min(rect.width, rect.height) * 0.525;
+      ctx.font = '12px monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      var points = [];
+      for (var phi = 0; phi < Math.PI * 2; phi += 0.15) {
+        for (var theta = 0; theta < Math.PI; theta += 0.15) {
+          var x = Math.sin(theta) * Math.cos(phi + time * 0.5);
+          var y = Math.sin(theta) * Math.sin(phi + time * 0.5);
+          var z = Math.cos(theta);
+          var ry = time * 0.3;
+          var nx = x * Math.cos(ry) - z * Math.sin(ry);
+          var nz = x * Math.sin(ry) + z * Math.cos(ry);
+          var rx = time * 0.2;
+          var ny = y * Math.cos(rx) - nz * Math.sin(rx);
+          var fz = y * Math.sin(rx) + nz * Math.cos(rx);
+          var depth = (fz + 1) / 2;
+          var ci = Math.floor(depth * (chars.length - 1));
+          points.push({ x: cx + nx * radius, y: cy + ny * radius, z: fz, ch: chars[ci] });
         }
       }
-
-      // Draw nodes
-      for (var i = 0; i < N; i++) {
-        var p = projected[i];
-        if (p.rz < -0.85) continue; // skip far-back nodes
-        var size   = 1.5 + p.depth * 2.5;
-        var opacity = 0.3 + p.depth * 0.65;
-        ctx.beginPath();
-        ctx.arc(p.px, p.py, size, 0, Math.PI * 2);
+      points.sort(function (a, b) { return a.z - b.z; });
+      points.forEach(function (p) {
+        var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         ctx.fillStyle = isDark
-          ? 'rgba(64,165,221,' + opacity + ')'
-          : 'rgba(23,112,178,' + opacity + ')';
-        ctx.fill();
-      }
-
-      angleY += 0.0025;
+          ? 'rgba(248,245,240,' + (0.2 + (p.z + 1) * 0.4) + ')'
+          : 'rgba(0,0,0,' + (0.2 + (p.z + 1) * 0.4) + ')';
+        ctx.fillText(p.ch, p.x, p.y);
+      });
+      time += 0.005;
+      rafId = requestAnimationFrame(render);
     }
-
-    var raf;
-    function loop() { draw(); raf = requestAnimationFrame(loop); }
-
-    // Start only when hero is visible
     if ('IntersectionObserver' in window) {
       var obs = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) { loop(); }
-        else { cancelAnimationFrame(raf); }
-      }, { threshold: 0.1 });
-      obs.observe(canvas.parentElement || canvas);
-    } else {
-      loop();
-    }
-  }
+        if (entries[0].isIntersecting) { if (!rafId) render(); }
+        else { cancelAnimationFrame(rafId); rafId = null; }
+      }, { rootMargin: '50px' });
+      obs.observe(canvas);
+    } else { render(); }
+  })();
 
-  if (document.readyState === 'complete') {
-    (window.requestIdleCallback || setTimeout)(initSphere);
-  } else {
-    window.addEventListener('load', function() {
-      (window.requestIdleCallback || setTimeout)(initSphere);
-    });
-  }
 })();
 </script>
 

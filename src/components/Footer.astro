@@ -34,9 +34,9 @@
         <div>
           <div class="footer-col-title">Legal</div>
           <ul class="footer-col-links">
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">HIPAA Notice</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/hipaa">HIPAA</a></li>
           </ul>
         </div>
       </div>
@@ -55,69 +55,6 @@
 <script is:inline>
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  /* ── SPHERE (hero background) ── */
-  (function () {
-    var canvas = document.getElementById('sphereCanvas');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    var chars = '░▒▓█▀▄▌▐│─┤├┴┬╭╮╰╯';
-    var time = 0;
-    var rafId = null;
-    function resize() {
-      var dpr = window.devicePixelRatio || 1;
-      var rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
-    }
-    resize();
-    window.addEventListener('resize', resize);
-    function render() {
-      var rect = canvas.getBoundingClientRect();
-      ctx.clearRect(0, 0, rect.width, rect.height);
-      var cx = rect.width / 2, cy = rect.height / 2;
-      var radius = Math.min(rect.width, rect.height) * 0.525;
-      ctx.font = '12px monospace';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      var points = [];
-      for (var phi = 0; phi < Math.PI * 2; phi += 0.15) {
-        for (var theta = 0; theta < Math.PI; theta += 0.15) {
-          var x = Math.sin(theta) * Math.cos(phi + time * 0.5);
-          var y = Math.sin(theta) * Math.sin(phi + time * 0.5);
-          var z = Math.cos(theta);
-          var ry = time * 0.3;
-          var nx = x * Math.cos(ry) - z * Math.sin(ry);
-          var nz = x * Math.sin(ry) + z * Math.cos(ry);
-          var rx = time * 0.2;
-          var ny = y * Math.cos(rx) - nz * Math.sin(rx);
-          var fz = y * Math.sin(rx) + nz * Math.cos(rx);
-          var depth = (fz + 1) / 2;
-          var ci = Math.floor(depth * (chars.length - 1));
-          points.push({ x: cx + nx * radius, y: cy + ny * radius, z: fz, ch: chars[ci] });
-        }
-      }
-      points.sort(function (a, b) { return a.z - b.z; });
-      points.forEach(function (p) {
-        var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        ctx.fillStyle = isDark
-          ? 'rgba(248,245,240,' + (0.2 + (p.z + 1) * 0.4) + ')'
-          : 'rgba(0,0,0,' + (0.2 + (p.z + 1) * 0.4) + ')';
-        ctx.fillText(p.ch, p.x, p.y);
-      });
-      time += 0.005;
-      rafId = requestAnimationFrame(render);
-    }
-    if ('IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function(entries) {
-        if (entries[0].isIntersecting) { if (!rafId) render(); }
-        else { cancelAnimationFrame(rafId); rafId = null; }
-      }, { rootMargin: '50px' });
-      obs.observe(canvas);
-    } else { render(); }
-  })();
 
   /* ── TETRAHEDRON (CTA section) ── */
   (function () {
