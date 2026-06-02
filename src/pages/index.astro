@@ -28,8 +28,9 @@ import Footer from '../components/Footer.astro';
           Start Your Capacity Review
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="/blog" class="btn-pill-outline">See how it works</a>
+        <a href="/blog" class="btn-pill-outline">Read the blog</a>
       </div>
+      <p class="hm-micro">12 minutes &nbsp;&middot;&nbsp; Operations Assessment in 24 hours &nbsp;&middot;&nbsp; No prep needed</p>
     </div>
   </section>
 
@@ -101,8 +102,8 @@ import Footer from '../components/Footer.astro';
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div class="hm-path-tag mono">Evaluating a vendor</div>
-          <h3 class="hm-path-title">Build a Vendor Security Questionnaire</h3>
-          <p class="hm-path-desc">Free tool for HIPAA nonprofits. Answer five questions about your org and the vendor. Get a right-sized security questionnaire based on SIG, CAIQ, and HIPAA frameworks.</p>
+          <h3 class="hm-path-title">Build your vendor security questionnaire</h3>
+          <p class="hm-path-desc">Free tool for HIPAA nonprofits. Answer five questions about your org and the vendor. Get a questionnaire sized to your risk level, grounded in SIG, CAIQ, and HIPAA frameworks.</p>
           <span class="hm-path-link">
             Open the tool
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -127,7 +128,7 @@ import Footer from '../components/Footer.astro';
         </div>
         <div class="hm-cred-stat">
           <span class="hm-cred-value display">12 min</span>
-          <span class="hm-cred-label">call length — no prep, no pitch, no commitment required</span>
+          <span class="hm-cred-label">call length. No prep, no pitch, no commitment required.</span>
         </div>
         <div class="hm-cred-stat">
           <span class="hm-cred-value display">HIPAA</span>
@@ -237,14 +238,17 @@ import Footer from '../components/Footer.astro';
 .hm-hero {
   position: relative;
   padding: 140px 0 100px;
-  overflow: visible; /* sphere bleeds freely — body overflow-x:hidden handles horizontal */
+  overflow: visible;
+  /* Hard clip: nothing renders in the top 80px (fixed nav zone).
+     Negative right/bottom values extend the clip region outward = sphere bleeds freely on those sides. */
+  clip-path: inset(80px -1000px -1000px 0);
   border-bottom: 1px solid var(--border);
 }
 
 .hm-hero-sphere {
   position: absolute;
   right: -60px;
-  top: 80px;        /* clears the 80px fixed nav bar */
+  top: 0;
   transform: none;
   width: 600px;
   height: 600px;
@@ -257,7 +261,7 @@ import Footer from '../components/Footer.astro';
 }
 
 @media (max-width: 768px) {
-  .hm-hero-sphere { width: 360px; height: 360px; right: -60px; top: 70px; transform: none; opacity: 0.5; }
+  .hm-hero-sphere { width: 360px; height: 360px; right: -60px; top: 0; transform: none; opacity: 0.5; }
 }
 
 .hm-hero-sphere canvas { width: 100%; height: 100%; display: block; }
@@ -320,6 +324,14 @@ import Footer from '../components/Footer.astro';
   color: var(--border-mid);
 }
 
+.hm-micro {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs, 0.6875rem);
+  color: var(--text-faint);
+  letter-spacing: 0.03em;
+  margin-top: 16px;
+}
+
 /* ── SECTION SHARED ───────────────────────────────────────────────────────── */
 .hm-section-h2 {
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
@@ -360,8 +372,13 @@ import Footer from '../components/Footer.astro';
   padding: 28px;
 }
 
-.hm-qualify-yes { border-left: 3px solid var(--green); }
-.hm-qualify-no  { border-left: 3px solid var(--border-mid); }
+.hm-qualify-yes {
+  background: var(--green-pale, oklch(95% 0.015 252));
+  border-color: oklch(49% 0.12 244 / 0.25);
+}
+.hm-qualify-no {
+  background: var(--bg-subtle, oklch(94% 0.008 252));
+}
 
 .hm-qualify-label {
   display: block;
