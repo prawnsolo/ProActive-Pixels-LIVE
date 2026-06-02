@@ -50,26 +50,52 @@
 
       </div>
 
-      <!-- Report preview panel — direct link to /sample-report -->
+      <!-- Report preview panel — static Operations Assessment sample -->
       <div>
         <div class="report-panel-frame">
           <div class="report-panel-header">
             <span class="report-panel-label">Sample Report</span>
-            <span class="report-panel-badge">Live Preview</span>
+            <span class="report-panel-badge">Operations Assessment</span>
           </div>
-          <div class="report-iframe-wrapper" id="reportIframeWrapper">
-            <iframe
-              id="reportIframe"
-              data-src="/sample-report"
-              class="report-iframe"
-              scrolling="no"
-              tabindex="-1"
-              title="Sample Operations Assessment"
-              aria-hidden="true"
-            ></iframe>
+          <div class="rsp-wrap">
+            <div class="rsp-org">
+              <span class="rsp-org-name">Community Connections Free Clinic</span>
+              <span class="rsp-org-meta mono">14 staff &middot; Capacity Review: 12 min &middot; Delivered in 24 hrs</span>
+            </div>
+            <div class="rsp-section">
+              <div class="rsp-section-label mono">Top 3 bottlenecks &mdash; ranked by recoverable hours</div>
+              <div class="rsp-row">
+                <span class="rsp-num mono">01</span>
+                <div class="rsp-detail">
+                  <div class="rsp-title">New Patient Intake</div>
+                  <div class="rsp-bar-wrap"><div class="rsp-bar" style="width:82%"></div></div>
+                  <div class="rsp-hours mono">4.2 hrs / week recoverable</div>
+                </div>
+              </div>
+              <div class="rsp-row">
+                <span class="rsp-num mono">02</span>
+                <div class="rsp-detail">
+                  <div class="rsp-title">Appointment Reminders &amp; No-Show Follow-up</div>
+                  <div class="rsp-bar-wrap"><div class="rsp-bar" style="width:55%"></div></div>
+                  <div class="rsp-hours mono">2.8 hrs / week recoverable</div>
+                </div>
+              </div>
+              <div class="rsp-row">
+                <span class="rsp-num mono">03</span>
+                <div class="rsp-detail">
+                  <div class="rsp-title">Insurance Verification</div>
+                  <div class="rsp-bar-wrap"><div class="rsp-bar" style="width:30%"></div></div>
+                  <div class="rsp-hours mono">1.5 hrs / week recoverable</div>
+                </div>
+              </div>
+            </div>
+            <div class="rsp-total">
+              <span class="rsp-total-label">Total recoverable</span>
+              <span class="rsp-total-value">8.5 hrs / week</span>
+            </div>
           </div>
-          <a href="/sample-report" target="_blank" rel="noopener noreferrer" class="report-panel-cta" aria-label="View full sample Operations Assessment">
-            <span class="report-panel-cta-label">View full report</span>
+          <a href="/capacity-review" class="report-panel-cta" aria-label="Get your Operations Assessment">
+            <span class="report-panel-cta-label">Get your Operations Assessment</span>
             <span class="report-panel-cta-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg></span>
           </a>
         </div>
@@ -79,47 +105,6 @@
 </section>
 
 <script is:inline>
-/* ── REPORT IFRAME SCALING ── */
-(function() {
-  function scaleReportPreview() {
-    var wrapper = document.getElementById('reportIframeWrapper');
-    var iframe  = document.getElementById('reportIframe');
-    if (!wrapper || !iframe) return;
-    var containerW = wrapper.offsetWidth;
-    var reportW    = 900; /* matches .report-shell max-width */
-    var scale      = containerW / reportW;
-    var showPx     = 680; /* px of report to show at 1× */
-    iframe.style.width          = reportW + 'px';
-    iframe.style.height         = showPx  + 'px';
-    iframe.style.transform      = 'scale(' + scale + ')';
-    iframe.style.transformOrigin = 'top left';
-    wrapper.style.height        = Math.round(showPx * scale) + 'px';
-  }
-  window.addEventListener('resize', scaleReportPreview);
-  var iframe = document.getElementById('reportIframe');
-  if (iframe) iframe.addEventListener('load', scaleReportPreview);
-  /* Run immediately and again after fonts/paint settle */
-  scaleReportPreview();
-  setTimeout(scaleReportPreview, 150);
-  setTimeout(scaleReportPreview, 600);
-})();
-
-/* ── DEFER IFRAME — load /sample-report only when panel scrolls into view ── */
-(function() {
-  var wrapper = document.getElementById('reportIframeWrapper');
-  var iframe  = document.getElementById('reportIframe');
-  if (!wrapper || !iframe) return;
-  if (!('IntersectionObserver' in window)) {
-    iframe.src = iframe.dataset.src; return;
-  }
-  var obs = new IntersectionObserver(function(entries) {
-    if (!entries[0].isIntersecting) return;
-    iframe.src = iframe.dataset.src;
-    obs.disconnect();
-  }, { rootMargin: '200px 0px' });
-  obs.observe(wrapper);
-})();
-
 /* How It Works — scroll-triggered step activation */
 (function() {
   var steps = document.querySelectorAll('#howSteps .how-step');
@@ -151,3 +136,114 @@
   onScroll();
 })();
 </script>
+
+<style>
+/* ── STATIC REPORT PREVIEW ────────────────────────────────────────────────── */
+.rsp-wrap {
+  padding: 20px;
+  background: var(--bg-subtle, oklch(94% 0.008 252));
+  border-bottom: 1px solid var(--border, oklch(89% 0.008 252));
+}
+
+.rsp-org {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border, oklch(89% 0.008 252));
+}
+
+.rsp-org-name {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--fg, oklch(18% 0.012 78));
+  margin-bottom: 2px;
+}
+
+.rsp-org-meta {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--text-faint, oklch(62% 0.014 78));
+  line-height: 1.4;
+}
+
+.rsp-section { margin-bottom: 14px; }
+
+.rsp-section-label {
+  display: block;
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint, oklch(62% 0.014 78));
+  margin-bottom: 12px;
+}
+
+.rsp-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.rsp-row:last-child { margin-bottom: 0; }
+
+.rsp-num {
+  font-size: 0.625rem;
+  color: var(--text-faint, oklch(62% 0.014 78));
+  padding-top: 1px;
+  min-width: 16px;
+  flex-shrink: 0;
+}
+
+.rsp-detail { flex: 1; min-width: 0; }
+
+.rsp-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--fg, oklch(18% 0.012 78));
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.rsp-bar-wrap {
+  background: var(--border, oklch(89% 0.008 252));
+  border-radius: 2px;
+  height: 4px;
+  margin-bottom: 3px;
+  overflow: hidden;
+}
+
+.rsp-bar {
+  height: 100%;
+  background: var(--green, oklch(49% 0.12 244));
+  border-radius: 2px;
+}
+
+.rsp-hours {
+  font-size: 0.625rem;
+  color: var(--text-faint, oklch(62% 0.014 78));
+}
+
+.rsp-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--border, oklch(89% 0.008 252));
+}
+
+.rsp-total-label {
+  font-size: 0.6875rem;
+  color: var(--text-muted, oklch(46% 0.018 78));
+}
+
+.rsp-total-value {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--green, oklch(49% 0.12 244));
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .rsp-wrap { background: oklch(22% 0.01 252 / 0.6); }
+}
+</style>
