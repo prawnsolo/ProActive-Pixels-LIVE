@@ -460,6 +460,16 @@ const TIERS = {
       <!-- Full Questionnaire Document -->
       <div class="vs-doc" id="vsDoc"></div>
 
+      <!-- ══ CAPACITY REVIEW CTA ════════════════════════════════════════════ -->
+      <div class="vs-cr-cta">
+        <div class="vs-cr-cta-inner">
+          <p class="section-label centered">Next Step</p>
+          <h2 class="vs-cr-cta-headline">Now you know what to ask your vendors.</h2>
+          <p class="vs-cr-cta-body">Most of our clients find the vendor management process itself — the back-and-forth, the documentation, the compliance checks — is costing their team 3 to 5 hours a week. A Capacity Review finds those hours. 12 minutes with Alex. Written report in 24 hours.</p>
+          <a href="/capacity-review" class="btn-pill vs-cr-cta-btn">Start Your Capacity Review</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -785,7 +795,7 @@ const TIERS = {
 @media print {
   #nav, .sticky-mobile-cta, .vs-hero, .vs-tiers,
   .vs-builder-section, .vs-faq,
-  .vs-preview-actions, .vs-summary-card { display: none !important; }
+  .vs-preview-actions, .vs-summary-card, .vs-cr-cta { display: none !important; }
 
   .vs-preview-section { padding: 0 !important; }
   .vs-preview-section[hidden] { display: block !important; }
@@ -801,6 +811,42 @@ const TIERS = {
   .vs-doc-question { page-break-inside: avoid; }
   .vs-doc-response { border: 1px solid #ccc !important; background: #fafafa !important; min-height: 60px !important; }
 }
+
+/* ── CAPACITY REVIEW CTA ────────────────────────────────────────────────── */
+.vs-cr-cta {
+  border-top: 2px solid var(--border);
+  padding: var(--s-section, 80px) 0;
+  margin-top: 40px;
+}
+.vs-cr-cta-inner {
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.vs-cr-cta-headline {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin: 12px 0 16px;
+  line-height: 1.25;
+  color: var(--text-head, var(--text));
+}
+.vs-cr-cta-body {
+  font-size: 1rem;
+  color: var(--text-body, var(--text));
+  margin-bottom: 28px;
+  line-height: 1.65;
+}
+.vs-cr-cta-btn {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 14px 32px;
+  text-decoration: none;
+}
+@media (max-width: 600px) {
+  .vs-cr-cta-btn { width: 100%; text-align: center; }
+}
+
 </style>
 
 <script is:inline define:vars={{ libraryData }}>
