@@ -26,6 +26,11 @@
 </header>
 
 <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close navigation">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
   <a href="/about">About</a>
   <a href="/blog">Blog</a>
   <a href="/vendor-security">Vendor Security</a>
@@ -35,6 +40,25 @@
   <a href="mailto:solutions@proactivepixels.com">Contact</a>
   <a href="/capacity-review" class="btn-pill mobile-nav-cta" id="mobileNavCta">Start Your Capacity Review</a>
 </div>
+
+<style>
+.mobile-nav-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--fg, oklch(18% 0.012 78));
+  line-height: 0;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.mobile-nav-close:hover {
+  background: oklch(18% 0.012 78 / 0.06);
+}
+</style>
 
 <script is:inline>
   document.getElementById('navHamburger').addEventListener('click', function() {
@@ -46,6 +70,10 @@
   });
   document.getElementById('mobileNavCta').addEventListener('click', function() {
     document.body.classList.remove('nav-open');
+  });
+  document.getElementById('mobileNavClose').addEventListener('click', function() {
+    document.body.classList.remove('nav-open');
+    document.getElementById('navHamburger').setAttribute('aria-expanded', 'false');
   });
 </script>
 

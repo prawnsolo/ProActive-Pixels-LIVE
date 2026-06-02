@@ -22,7 +22,7 @@ import Footer from '../components/Footer.astro';
         belong to your mission.<br>
         <em>Not to paperwork.</em>
       </h1>
-      <p class="hm-sub">We find where the hours go and redirect them back to program delivery.</p>
+      <p class="hm-sub">We find where the hours go<br>and redirect them back to program delivery.</p>
       <div class="hm-ctas">
         <a href="/capacity-review" class="btn-pill btn-pill--lg">
           Start Your Capacity Review
@@ -244,7 +244,7 @@ import Footer from '../components/Footer.astro';
 .hm-hero-sphere {
   position: absolute;
   right: -60px;
-  top: 0;           /* starts at section top = overlaps transparent nav area */
+  top: 80px;        /* clears the 80px fixed nav bar */
   transform: none;
   width: 600px;
   height: 600px;
@@ -257,7 +257,7 @@ import Footer from '../components/Footer.astro';
 }
 
 @media (max-width: 768px) {
-  .hm-hero-sphere { width: 360px; height: 360px; right: -60px; top: 0; transform: none; opacity: 0.5; }
+  .hm-hero-sphere { width: 360px; height: 360px; right: -60px; top: 70px; transform: none; opacity: 0.5; }
 }
 
 .hm-hero-sphere canvas { width: 100%; height: 100%; display: block; }
