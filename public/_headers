@@ -1,10 +1,28 @@
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
-  X-Frame-Options: SAMEORIGIN
+  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Cross-Origin-Opener-Policy: same-origin-allow-popups
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://connect.facebook.net https://fonts.googleapis.com https://api.fontshare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://www.facebook.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://www.facebook.com https://proactivepixels-router.aqua-noriega.workers.dev; frame-src 'none'; object-src 'none'; base-uri 'self';
+
+# ── HIPAA-ADJACENT TRACKING CONSTRAINT ──────────────────────────────────────
+# Meta Pixel network connections are excluded on form/data-capture routes.
+# Even if the JS fires, the browser blocks the request at the header level.
+# This enforces the constraint independently of JavaScript execution.
+
+/capacity-review
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://fonts.googleapis.com https://api.fontshare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://proactivepixels-router.aqua-noriega.workers.dev; frame-src 'none'; object-src 'none'; base-uri 'self';
+
+/vendor-security
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://fonts.googleapis.com https://api.fontshare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://region1.google-analytics.com https://proactivepixels-router.aqua-noriega.workers.dev; frame-src 'none'; object-src 'none'; base-uri 'self';
+
+# ── NOTE: Kit (ConvertKit) newsletter ────────────────────────────────────────
+# When Kit embed is added to blog posts, extend the global CSP script-src and
+# connect-src to include https://app.convertkit.com
+
+# ── STATIC ASSET CACHING ─────────────────────────────────────────────────────
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
