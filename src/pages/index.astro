@@ -236,21 +236,19 @@ import Footer from '../components/Footer.astro';
 /* ── HERO ─────────────────────────────────────────────────────────────────── */
 .hm-hero {
   position: relative;
-  margin-top: 80px;  /* hero dark section starts exactly where nav ends — no dark bg in nav zone */
-  padding: 60px 0 100px;
+  padding: 140px 0 100px;
   overflow: hidden;
-  background: oklch(13% 0.015 250);
   border-bottom: 1px solid var(--border);
 }
 
 .hm-hero-sphere {
   position: absolute;
   right: 0;
-  top: 20px;  /* 20px from section top = 100px from viewport = 20px below nav bottom */
-  transform: none;
+  top: 50%;
+  transform: translateY(-50%);
   width: 600px;
   height: 600px;
-  opacity: 0.30;
+  opacity: 0.40;
   pointer-events: none;
 }
 
@@ -277,17 +275,17 @@ import Footer from '../components/Footer.astro';
   line-height: 1.08;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
-  color: #ffffff;
+  color: var(--fg);
 }
 
 .hm-h1 em {
   font-style: italic;
-  color: var(--green-bright, oklch(67% 0.10 228));
+  color: var(--green);
 }
 
 .hm-sub {
   font-size: 1.0625rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--text-muted);
   line-height: 1.65;
   max-width: 520px;
   margin-bottom: 36px;
