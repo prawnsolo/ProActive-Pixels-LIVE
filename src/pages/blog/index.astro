@@ -1,0 +1,293 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const subNicheLabels: Record<string, string> = {
+  'free-clinics':       'Free Clinics',
+  'community-health':   'Community Health Centers',
+  'behavioral-health':  'Behavioral Health',
+  'addiction-treatment':'Addiction Treatment',
+  'mental-health':      'Mental Health',
+  'hospice':            'Hospice & Home Health',
+  'fqhc':               'FQHCs',
+  'general':            'General',
+};
+
+const pillars  = posts.filter(p => p.data.isPillar);
+const articles = posts.filter(p => !p.data.isPillar);
+---
+
+<BaseLayout
+  title="Blog | ProActive Pixels"
+  description="Admin workflow recovery for HIPAA-regulated nonprofits. Articles on intake automation, staff-hours bottlenecks, and operations improvement for free clinics, behavioral health orgs, FQHCs, and more."
+  canonical="https://proactivepixels.com/blog"
+>
+  <Nav />
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="bl-hero">
+    <div class="container">
+      <p class="section-label">Blog</p>
+      <h1 class="bl-headline display">
+        Where the staff hours go.<br>
+        <em>And how to get them back.</em>
+      </h1>
+      <p class="bl-sub">
+        Articles on admin bottlenecks by sub-niche. Specific problems. Real workflows. No generic advice.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ PILLAR PAGES (sub-niche guides) ═══════════════════════════════════ -->
+  {pillars.length > 0 && (
+    <section class="bl-pillars">
+      <div class="container">
+        <p class="section-label">Guides by sub-niche</p>
+        <div class="bl-pillar-grid">
+          {pillars.map(post => (
+            <a href={`/blog/${post.slug}`} class="bl-pillar-card">
+              <span class="bl-pillar-tag mono">{subNicheLabels[post.data.subNiche] ?? post.data.subNiche}</span>
+              <h2 class="bl-pillar-title">{post.data.title}</h2>
+              <p class="bl-pillar-desc">{post.data.description}</p>
+              <span class="bl-pillar-link mono">Read the guide →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══ ALL ARTICLES ═══════════════════════════════════════════════════════ -->
+  {articles.length > 0 && (
+    <section class="bl-articles">
+      <div class="container">
+        <p class="section-label">{pillars.length > 0 ? 'Recent articles' : 'Articles'}</p>
+        <div class="bl-article-list">
+          {articles.map(post => (
+            <a href={`/blog/${post.slug}`} class="bl-article-row">
+              <div class="bl-article-meta">
+                <span class="bl-article-niche mono">{subNicheLabels[post.data.subNiche] ?? post.data.subNiche}</span>
+                <span class="bl-article-date mono">
+                  {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </span>
+              </div>
+              <h2 class="bl-article-title">{post.data.title}</h2>
+              <p class="bl-article-desc">{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══ EMPTY STATE ════════════════════════════════════════════════════════ -->
+  {posts.length === 0 && (
+    <section class="bl-empty">
+      <div class="container">
+        <p class="bl-empty-text">Articles coming soon. Start with a Capacity Review while you wait.</p>
+        <a href="/capacity-review" class="btn-pill">Start Your Capacity Review</a>
+      </div>
+    </section>
+  )}
+
+  <!-- ══ CTA ════════════════════════════════════════════════════════════════ -->
+  <section class="bl-cta">
+    <div class="container bl-cta-inner">
+      <h2 class="bl-cta-h2 display">
+        Ready to find your bottlenecks?
+      </h2>
+      <p class="bl-cta-sub">
+        12 minutes. Operations Assessment in 24 hours. Your three biggest admin bottlenecks, ranked by recoverable hours.
+      </p>
+      <a href="/capacity-review" class="btn-pill btn-pill--lg">
+        Start Your Capacity Review
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+/* ── HERO ─────────────────────────────────────────────────────────────────── */
+.bl-hero {
+  padding: 120px 0 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bl-headline {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 8px 0 20px;
+  max-width: 700px;
+}
+
+.bl-headline em { font-style: italic; color: var(--green); }
+
+.bl-sub {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  max-width: 540px;
+  line-height: 1.65;
+}
+
+/* ── PILLAR CARDS ─────────────────────────────────────────────────────────── */
+.bl-pillars {
+  padding: var(--s-section) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.bl-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.bl-pillar-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  text-decoration: none;
+  color: var(--fg);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.bl-pillar-card:hover {
+  border-color: var(--green);
+  transform: translateY(-2px);
+}
+
+.bl-pillar-tag {
+  font-size: var(--text-xs, 0.6875rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.bl-pillar-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  color: var(--fg);
+}
+
+.bl-pillar-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.bl-pillar-link {
+  font-size: var(--text-xs, 0.6875rem);
+  color: var(--green);
+  margin-top: auto;
+}
+
+/* ── ARTICLE LIST ─────────────────────────────────────────────────────────── */
+.bl-articles {
+  padding: var(--s-section) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.bl-article-list {
+  margin-top: 24px;
+}
+
+.bl-article-row {
+  display: block;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--fg);
+  transition: background 0.15s;
+}
+
+.bl-article-row:first-child { border-top: 1px solid var(--border); }
+.bl-article-row:hover { background: var(--bg-subtle); margin: 0 -24px; padding: 24px; }
+
+.bl-article-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.bl-article-niche {
+  font-size: var(--text-xs, 0.6875rem);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--green);
+}
+
+.bl-article-date {
+  font-size: var(--text-xs, 0.6875rem);
+  color: var(--text-faint);
+}
+
+.bl-article-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.bl-article-desc {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+/* ── EMPTY STATE ──────────────────────────────────────────────────────────── */
+.bl-empty {
+  padding: var(--s-section) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.bl-empty-text {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* ── CTA ──────────────────────────────────────────────────────────────────── */
+.bl-cta {
+  padding: var(--s-section) 0;
+  background: var(--brand-navy, #171E62);
+}
+
+.bl-cta-inner { max-width: 540px; }
+
+.bl-cta-h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--fg-dark, oklch(97% 0.007 78));
+  margin-bottom: 14px;
+}
+
+.bl-cta-sub {
+  font-size: 1rem;
+  color: var(--fg-dark-muted, oklch(97% 0.007 78 / 0.6));
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+</style>
