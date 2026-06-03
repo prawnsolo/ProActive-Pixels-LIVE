@@ -62,7 +62,13 @@ const TIERS = {
           Start the Builder
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-      </div>
+      
+        <!-- Phase D: welcome back banner (shown when returning via magic link) -->
+        <div id="vsWelcomeBanner" class="vs-welcome-banner" hidden>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Welcome back, <span id="vsWelcomeName">there</span>. Your organization profile has been restored.
+        </div>
+</div>
     </div>
   </section>
 
@@ -78,6 +84,34 @@ const TIERS = {
             <span class="vs-tier-qs mono">{t.qs}</span>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══ RESTORE PROFILE ══════════════════════════════════════════════════════ -->
+  <!-- Phase D: on-page restore input for returning users -->
+  <section class="vs-restore" id="vsRestoreSection" aria-label="Restore saved profile">
+    <div class="container">
+      <div class="vs-restore-inner">
+        <div class="vs-restore-text-col">
+          <p class="vs-restore-label mono">Returning?</p>
+          <p class="vs-restore-desc">Enter your email and we'll send a link to restore your saved organization profile.</p>
+        </div>
+        <form class="vs-restore-form" id="vsRestoreForm" novalidate>
+          <input
+            type="email"
+            id="vsRestoreEmail"
+            class="vs-restore-input"
+            placeholder="your@organization.org"
+            autocomplete="email"
+            aria-label="Your email address"
+          >
+          <button type="submit" class="btn-pill vs-restore-btn" id="vsRestoreBtn">
+            Send restore link
+          </button>
+        </form>
+        <p class="vs-restore-msg" id="vsRestoreMsg" hidden></p>
       </div>
     </div>
   </section>
@@ -461,6 +495,12 @@ const TIERS = {
       <div class="vs-doc" id="vsDoc"></div>
 
       <!-- ══ CAPACITY REVIEW CTA ════════════════════════════════════════════ -->
+      
+      <!-- Phase D: save confirmation (shown after profile saved) -->
+      <p class="vs-save-note mono" id="vsSaveConfirmNote" hidden>
+        Profile saved. Check your email for a restore link.
+      </p>
+
       <div class="vs-cr-cta">
         <div class="vs-cr-cta-inner">
           <p class="section-label centered">Next Step</p>
@@ -847,7 +887,184 @@ const TIERS = {
   .vs-cr-cta-btn { width: 100%; text-align: center; }
 }
 
+
+/* ── PHASE D: Restore profile section ────────────────────────────────────── */
+.vs-restore {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  background: var(--bg-subtle, oklch(94% 0.008 252));
+}
+.vs-restore-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.vs-restore-text-col { flex: 1; min-width: 180px; }
+.vs-restore-label {
+  font-size: var(--text-xs, 0.6875rem);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-faint);
+  margin-bottom: 4px;
+  display: block;
+}
+.vs-restore-desc {
+  font-size: var(--text-sm, 0.8125rem);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.vs-restore-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.vs-restore-input {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm, 0.8125rem);
+  padding: 10px 14px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-pill);
+  background: var(--bg);
+  color: var(--fg);
+  min-width: 220px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.vs-restore-input:focus { border-color: var(--green); }
+.vs-restore-btn {
+  font-size: var(--text-sm, 0.8125rem);
+  padding: 10px 20px;
+}
+.vs-restore-msg {
+  font-size: var(--text-sm, 0.8125rem);
+  color: var(--text-muted);
+  margin-top: 8px;
+  width: 100%;
+}
+
+/* ── PHASE D: Welcome back banner ─────────────────────────────────────────── */
+.vs-welcome-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  background: var(--green-pale, oklch(95% 0.015 252));
+  border: 1px solid oklch(49% 0.12 244 / 0.2);
+  border-radius: 6px;
+  font-size: var(--text-sm, 0.8125rem);
+  color: var(--green, oklch(49% 0.12 244));
+  font-family: var(--font-mono);
+}
+
+/* ── PHASE D: Save confirmation note ─────────────────────────────────────── */
+.vs-save-note {
+  font-size: var(--text-xs, 0.6875rem);
+  color: var(--green);
+  text-align: center;
+  margin-bottom: 16px;
+  letter-spacing: 0.03em;
+}
+
+/* Hide restore section in print */
+@media print {
+  .vs-restore { display: none !important; }
+}
+
 </style>
+
+<script is:inline>
+
+/* ── PHASE D: magic-link token prefill ─────────────────────────────────────── */
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var token = params.get('token');
+  if (!token) return;
+
+  fetch('https://proactivepixels-router.aqua-noriega.workers.dev/vendor-security/validate-token?token=' + encodeURIComponent(token))
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.valid || !data.profile) return;
+      var p = data.profile;
+
+      function prefillForm() {
+        if (p.org_name) {
+          var el = document.getElementById('vsOrgName');
+          if (el) { el.value = p.org_name; el.dispatchEvent(new Event('input')); }
+        }
+        if (p.contact_name) {
+          var el = document.getElementById('vsContactName');
+          if (el) { el.value = p.contact_name; el.dispatchEvent(new Event('input')); }
+        }
+        if (p.assessment_type) {
+          var btns = document.querySelectorAll('[data-field="assessment_type"]');
+          btns.forEach(function(b) { if (b.dataset.value === p.assessment_type) b.click(); });
+        }
+        var banner = document.getElementById('vsWelcomeBanner');
+        if (banner) {
+          var nameSpan = document.getElementById('vsWelcomeName');
+          if (nameSpan && p.contact_name) nameSpan.textContent = p.contact_name.split(' ')[0];
+          banner.hidden = false;
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', prefillForm);
+      } else {
+        prefillForm();
+      }
+
+      window.history.replaceState({}, document.title, window.location.pathname);
+    })
+    .catch(function(err) { console.warn('[Phase D] Token validation failed:', err); });
+})();
+
+/* ── PHASE D: on-page restore form ─────────────────────────────────────────── */
+(function() {
+  function initRestoreForm() {
+    var form = document.getElementById('vsRestoreForm');
+    if (!form) return;
+    var btn  = document.getElementById('vsRestoreBtn');
+    var msg  = document.getElementById('vsRestoreMsg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('vsRestoreEmail').value.trim();
+      if (!email) return;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      msg.hidden = true;
+
+      fetch('https://proactivepixels-router.aqua-noriega.workers.dev/vendor-security/request-link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function() {
+        msg.textContent = 'If we have a profile for that email, we sent a restore link. Check your inbox.';
+        msg.hidden = false;
+        btn.textContent = 'Sent';
+      })
+      .catch(function() {
+        msg.textContent = 'Something went wrong. Try again or continue without restoring.';
+        msg.hidden = false;
+        btn.disabled = false;
+        btn.textContent = 'Send restore link';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRestoreForm);
+  } else {
+    initRestoreForm();
+  }
+})();
+
+</script>
 
 <script is:inline define:vars={{ libraryData }}>
 // ─── DATA ───────────────────────────────────────────────────────────────────
@@ -1265,6 +1482,37 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('vsRestartBtn').addEventListener('click', () => {
     location.reload();
   });
+    // ── PHASE D: save profile to Supabase via Worker if opted in ──────────────
+    if (state.save_profile && state.email) {
+      fetch('https://proactivepixels-router.aqua-noriega.workers.dev/vendor-security/save-profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email:           state.email,
+          org_name:        state.org_name        || '',
+          contact_name:    state.contact_name    || '',
+          assessment_type: state.assessment_type || '',
+          settings: {
+            phi_access:             state.phi_access,
+            baa_expected:           state.baa_expected,
+            has_subcontractors:     state.has_subcontractors,
+            regulated_financial:    state.regulated_financial,
+            operationally_critical: state.operationally_critical,
+            downtime_impact:        state.downtime_impact,
+            privileged_access:      state.privileged_access,
+            include_notes:          state.include_notes,
+            include_response_col:   state.include_response_col,
+            evidence_prompts:       state.evidence_prompts,
+          }
+        })
+      }).then(function() {
+        var note = document.getElementById('vsSaveConfirmNote');
+        if (note) note.hidden = false;
+      }).catch(function(err) {
+        console.warn('[Phase D] Profile save failed:', err);
+      });
+    }
+
 
   // Fire ViewContent on page load (safe — no user data)
   if (window.fbq) fbq('track', 'ViewContent');
