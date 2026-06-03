@@ -1,0 +1,429 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="HIPAA Compliance | ProActive Pixels"
+  description="ProActive Pixels works exclusively with HIPAA-regulated nonprofits. We only deploy tools that meet HIPAA standards. BAA available. No PHI collected through our website."
+  canonical="https://proactivepixels.com/hipaa"
+>
+  <Nav />
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section class="hp-hero">
+    <div class="container">
+      <p class="section-label">Compliance Posture</p>
+      <h1 class="hp-headline display">
+        We work with organizations<br>
+        that handle protected health information.<br>
+        <em>That shapes everything we do.</em>
+      </h1>
+      <p class="hp-sub">
+        Every tool we deploy, every workflow we touch, every vendor we recommend — all of it runs through a single filter: does it meet HIPAA standards? If it doesn't, we don't use it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ POSTURE CARDS ══════════════════════════════════════════════════════ -->
+  <section class="hp-posture">
+    <div class="container">
+      <div class="hp-cards">
+
+        <div class="hp-card">
+          <div class="hp-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h2 class="hp-card-title">HIPAA Security Rule</h2>
+          <p class="hp-card-body">
+            The tools and workflows we deploy are aligned with the HIPAA Security Rule's administrative, physical, and technical safeguard requirements. We don't introduce systems that create new PHI exposure.
+          </p>
+        </div>
+
+        <div class="hp-card">
+          <div class="hp-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h2 class="hp-card-title">BAA Ready</h2>
+          <p class="hp-card-body">
+            If our engagement requires a Business Associate Agreement, we'll sign one. Ask during your Capacity Review. We treat it as a standard part of working with HIPAA-regulated organizations, not a negotiation.
+          </p>
+        </div>
+
+        <div class="hp-card">
+          <div class="hp-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h2 class="hp-card-title">HIPAA-Compliant Tools Only</h2>
+          <p class="hp-card-body">
+            We don't deploy consumer platforms, free-tier tools with unclear data handling, or systems without proper safeguards. Every tool recommendation goes through compliance review before it touches a client's workflows.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHAT THIS MEANS ════════════════════════════════════════════════════ -->
+  <section class="hp-means">
+    <div class="container hp-means-grid">
+      <div>
+        <p class="section-label">What this means in practice</p>
+        <h2 class="hp-means-h2">
+          Compliance isn't a checkbox.<br>
+          It's a constraint we design around.
+        </h2>
+      </div>
+      <div class="hp-means-body">
+        <p>
+          Vendors that don't work primarily with healthcare organizations often treat HIPAA compliance as an afterthought. They add it later, when a client asks. Or they present tools with a BAA option buried in a paid tier.
+        </p>
+        <p>
+          We don't do that. We work exclusively with HIPAA-regulated nonprofits. That means compliance is built into how we evaluate tools, structure workflows, and scope implementations from the start.
+        </p>
+        <p>
+          If a tool can't meet the bar, it doesn't make it into a recommendation. Your team shouldn't have to audit every suggestion we make. That's our job.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DIVIDER ════════════════════════════════════════════════════════════ -->
+  <div class="container"><hr class="hp-divider" /></div>
+
+  <!-- ══ HIPAA NOTICE ═══════════════════════════════════════════════════════ -->
+  <section class="hp-notice">
+    <div class="container hp-notice-grid">
+      <div class="hp-notice-sidebar">
+        <p class="section-label">Privacy &amp; Data Notice</p>
+        <p class="hp-notice-updated mono">Last updated: June 2026</p>
+        <p class="hp-notice-contact">
+          Questions?<br>
+          <a href="mailto:solutions@proactivepixels.com">solutions@proactivepixels.com</a>
+        </p>
+      </div>
+      <div class="hp-notice-content">
+
+        <h3 class="hp-notice-h3">What this site collects</h3>
+        <p>
+          This website collects two categories of information. Neither category includes PHI.
+        </p>
+        <ul class="hp-notice-list">
+          <li>
+            <strong>Analytics.</strong> We use Google Analytics 4 to understand page traffic. Analytics tags fire only on anonymous page views. They are suppressed on form interactions, post-submission states, and any page where organization or contact information could be inferred. No org name, role, or contact data is passed to analytics systems.
+          </li>
+          <li>
+            <strong>Intake form submissions.</strong> When you submit the Capacity Review form, we collect your first name, phone number, organization type, and the bottleneck category you select. This data is stored in a secured database and used only to route your intake call to Alex. We do not sell, share, or use this data for advertising.
+          </li>
+        </ul>
+
+        <h3 class="hp-notice-h3">What we do not collect</h3>
+        <p>
+          We do not collect, process, or store protected health information through this website. The Capacity Review form does not ask for patient names, diagnoses, treatment information, or any other PHI. Do not submit PHI through this form.
+        </p>
+
+        <h3 class="hp-notice-h3">Cookies and tracking</h3>
+        <p>
+          We use cookies through Google Analytics 4 for aggregate traffic analysis. These cookies do not identify you personally and are not linked to your intake submission data. You can opt out of Google Analytics using <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google's opt-out tool</a>.
+        </p>
+        <p>
+          We use the Meta Pixel on top-of-funnel page views only. The Meta Pixel does not fire on form interaction events, confirmation states, or any page where contact information is present.
+        </p>
+
+        <h3 class="hp-notice-h3">Third-party services</h3>
+        <p>
+          This site uses the following third-party services. None of these services receive PHI through our website.
+        </p>
+        <ul class="hp-notice-list">
+          <li><strong>Google Analytics 4</strong> — aggregate page traffic analysis</li>
+          <li><strong>Google Tag Manager</strong> — tag management with PII guards on the data layer</li>
+          <li><strong>Retell AI</strong> — voice AI platform that powers the Alex intake agent. Call recordings and transcripts are stored subject to Retell's data handling terms. No PHI should be shared on the intake call; the call is limited to workflow and capacity topics.</li>
+          <li><strong>Cloudflare Pages</strong> — site hosting and edge delivery</li>
+        </ul>
+
+        <h3 class="hp-notice-h3">Data retention</h3>
+        <p>
+          Intake form submissions are retained for the duration of the business relationship and for a reasonable period after, for record-keeping purposes. To request deletion of your intake data, contact <a href="mailto:solutions@proactivepixels.com">solutions@proactivepixels.com</a>.
+        </p>
+
+        <h3 class="hp-notice-h3">Contact</h3>
+        <p>
+          For privacy questions, HIPAA-related inquiries, or BAA requests, contact Jose Noriega at <a href="mailto:solutions@proactivepixels.com">solutions@proactivepixels.com</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ════════════════════════════════════════════════════════════════ -->
+  <section class="hp-cta">
+    <div class="container hp-cta-inner">
+      <h2 class="hp-cta-h2 display">
+        Ready to start?
+      </h2>
+      <p class="hp-cta-sub">
+        12 minutes with Alex. Written Operations Assessment in 24 hours. No PHI required on the call.
+      </p>
+      <a href="/capacity-review" class="btn-pill btn-pill--lg">
+        Start Your Capacity Review
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+/* ══ HIPAA PAGE STYLES ═══════════════════════════════════════════════════════ */
+
+/* ── HERO ─────────────────────────────────────────────────────────────────── */
+.hp-hero {
+  padding: 120px 0 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hp-headline {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin: 8px 0 24px;
+  max-width: 760px;
+}
+
+.hp-headline em {
+  font-style: italic;
+  color: var(--green);
+}
+
+.hp-sub {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 580px;
+}
+
+/* ── POSTURE CARDS ────────────────────────────────────────────────────────── */
+.hp-posture {
+  padding: var(--s-section) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.hp-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 860px) {
+  .hp-cards { grid-template-columns: 1fr; max-width: 480px; }
+}
+
+.hp-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px;
+}
+
+.hp-card-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+.hp-card-icon svg { width: 100%; height: 100%; }
+
+.hp-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.hp-card-body {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ── WHAT THIS MEANS ──────────────────────────────────────────────────────── */
+.hp-means {
+  padding: var(--s-section) 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-subtle);
+}
+
+.hp-means-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .hp-means-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.hp-means-h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  margin-top: 8px;
+}
+
+.hp-means-body p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.hp-means-body p:last-child { margin-bottom: 0; }
+
+/* ── DIVIDER ──────────────────────────────────────────────────────────────── */
+.hp-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ── NOTICE ───────────────────────────────────────────────────────────────── */
+.hp-notice {
+  padding: var(--s-section) 0;
+}
+
+.hp-notice-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .hp-notice-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.hp-notice-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.hp-notice-updated {
+  font-size: var(--text-xs, 0.6875rem);
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  margin-top: 12px;
+  margin-bottom: 20px;
+}
+
+.hp-notice-contact {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.hp-notice-contact a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.hp-notice-content h3.hp-notice-h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 32px 0 10px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.hp-notice-content h3.hp-notice-h3:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.hp-notice-content p {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 640px;
+  margin-bottom: 14px;
+}
+
+.hp-notice-content a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.hp-notice-content a:hover { text-decoration: underline; }
+
+.hp-notice-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 14px;
+}
+
+.hp-notice-list li {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  padding: 10px 0 10px 16px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  max-width: 640px;
+}
+
+.hp-notice-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.hp-notice-list li:last-child { border-bottom: none; }
+
+.hp-notice-list li strong { color: var(--fg); font-weight: 600; }
+
+/* ── CTA ──────────────────────────────────────────────────────────────────── */
+.hp-cta {
+  padding: var(--s-section) 0;
+  background: var(--brand-navy, #171E62);
+  border-top: 1px solid oklch(97% 0.007 78 / 0.08);
+}
+
+.hp-cta-inner {
+  max-width: 520px;
+}
+
+.hp-cta-h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--fg-dark, oklch(97% 0.007 78));
+  margin-bottom: 14px;
+}
+
+.hp-cta-sub {
+  font-size: 1rem;
+  color: var(--fg-dark-muted, oklch(97% 0.007 78 / 0.6));
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hp-means { background: var(--bg-subtle); }
+  .hp-card { background: var(--bg-subtle); }
+}
+</style>
