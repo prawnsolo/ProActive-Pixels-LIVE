@@ -1,23 +1,42 @@
 # ProActive Pixels
 
-> AI & Automation for Local Service Businesses — we find the revenue leaks, fix them fast, and keep them fixed.
+> Staff hour recovery for HIPAA-regulated nonprofits. We find where admin work is consuming your team's time and help you get those hours back to program delivery.
 
-ProActive Pixels helps local service businesses (HVAC, plumbing, electrical, cleaning, landscaping, and similar trades) stop losing revenue to missed calls, slow follow-up, and operational gaps. We implement AI voice agents and business automation systems — most clients are live within 72 hours. We don't sell software subscriptions. We find the problem, build the solution, and maintain it.
+ProActive Pixels works exclusively with nonprofits that handle protected health information (PHI) — free clinics, community health centers, behavioral health organizations, substance abuse treatment programs, mental health nonprofits, hospice providers, and FQHCs. We are not a software vendor. We are a diagnostic-first advisor: we look at where your team is losing hours to admin work — intake, scheduling, patient follow-ups, documentation — and help you automate those specific tasks so those hours go back to direct service.
+
+The starting point is a Capacity Review: a 12-minute structured call with Alex, our AI intake assistant. Alex asks a few focused questions about how your team operates. Your Operations Assessment — a written report identifying your three biggest admin bottlenecks, ranked by recoverable staff hours — arrives within 24 hours.
+
+Every engagement is HIPAA-aligned. We only deploy tools that meet HIPAA standards. No patient data is collected through this website.
 
 ## Key Pages
 
-- [Home](https://proactivepixels.com/): Overview of services and how we work
-- [Services](https://proactivepixels.com/services/): Full breakdown of what we do — AI voice agents, automated follow-up sequences, lead capture, and ongoing maintenance
-- [Work](https://proactivepixels.com/work/): Case studies and real results from client engagements
-- [About](https://proactivepixels.com/about/): Background and philosophy — built by an operator, for operators
-- [Blog](https://proactivepixels.com/blog/): Insights on AI, automation, and operations for service businesses
+- [Home](https://proactivepixels.com/): Overview of who we serve and the three ways to engage
+- [Capacity Review](https://proactivepixels.com/capacity-review/): Start a Capacity Review — answer three questions, then call Alex to begin your assessment
+- [Vendor Security Questionnaire](https://proactivepixels.com/vendor-security/): Free tool for HIPAA nonprofits — builds a right-sized vendor security questionnaire based on your org's risk profile, grounded in SIG, CAIQ, and HIPAA frameworks
+- [HIPAA Compliance](https://proactivepixels.com/hipaa/): Our compliance posture — what we do and don't collect, BAA availability, and how we approach PHI-adjacent work
+- [Privacy Policy](https://proactivepixels.com/privacy/): How we handle data collected through this site
+- [Terms of Service](https://proactivepixels.com/terms/): Terms governing use of proactivepixels.com
 
-## Blog Posts
+## Who We Serve
 
-- [After-Hours Calls: The Revenue Leak Most Service Businesses Ignore](https://proactivepixels.com/blog/after-hours-calls/)
-- [5 Signs Your Operation Is Ready for AI](https://proactivepixels.com/blog/five-signs-ready-for-ai/)
-- [The "Set It and Forget It" Automation Myth](https://proactivepixels.com/blog/set-it-and-forget-it-myth/)
+HIPAA-regulated nonprofits with 5–50 paid staff and active client or patient volume:
+
+- Free clinics and community health centers
+- Behavioral health organizations
+- Substance abuse treatment programs
+- Mental health nonprofits
+- Hospice and home health providers
+- Federally Qualified Health Centers (FQHCs)
+
+## What We Do
+
+The Capacity Review is the entry point. It is a structured 12-minute call that surfaces your three biggest admin bottlenecks. You receive a written Operations Assessment within 24 hours identifying which tasks are consuming the most staff time, which can be addressed with automation, how much of that time could return to direct client work, and where your team should start for the most immediate relief.
+
+Most organizations find 8 to 12 recoverable staff hours in their first assessment.
 
 ## Contact
 
-Email: solutions@proactivepixels.com
+- Email: solutions@proactivepixels.com
+- Phone: (540) 600-0080 — Monday through Friday, 8 AM to 8 PM ET
+- Location: Orange, VA — Piedmont Region
+- LinkedIn: https://www.linkedin.com/in/jose-noriega-206b6a304
